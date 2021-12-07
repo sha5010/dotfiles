@@ -1,0 +1,4 @@
+# MacOS で管理不要なディレクトリを除外
+MusicBrainz/
+configstore/
+iterm2/
