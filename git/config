@@ -1,0 +1,25 @@
+[user]
+	name = SHA-5010
+	email = 95682647+sha5010@users.noreply.github.com
+[color]
+	ui = auto
+[core]
+	editor = nvim
+	pager = less -FRX
+	quotepath = false
+[pager]
+	branch = false
+[alias]
+	st = status
+	cm = commit
+	br = branch
+	brm = branch -m
+	bra = branch -a -vv
+	co = checkout
+	cob = checkout -b
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	la = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[init]
+	defaultBranch = main
+[pull]
+	ff = only
