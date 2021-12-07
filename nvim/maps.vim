@@ -4,8 +4,15 @@ map <C-j> 10j
 map <C-k> 10k
 
 " Ctrl+h, Ctrl+l をそれぞれ g^, g$ に割当
-noremap <C-h> g^
-noremap <C-l> g$
+nnoremap <C-h> g^
+nnoremap <C-l> g$
+
+" Visual モードやオペレータ待機モードでは ^, $ に割当
+vmap <C-h> ^
+vmap <C-l> $
+
+omap <C-h> ^
+omap <C-l> $
 
 " Y で行末までヤンク (C, D と同じ挙動)
 nnoremap Y y$

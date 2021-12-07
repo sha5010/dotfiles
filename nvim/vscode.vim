@@ -67,8 +67,8 @@ nnoremap gj <Cmd>call VSCodeNotify('cursorMove', { 'to': 'down', 'by': 'line', '
 nnoremap gk <Cmd>call VSCodeNotify('cursorMove', { 'to': 'up', 'by': 'line', 'value': v:count ? v:count : 1 })<CR>
 
 " VSCode だと g^ がうまく動かず代わりに g0 がうまく動くので変更しておく
-map <C-h> g0
-map <C-l> g$
+nmap <C-h> g0
+nmap <C-l> g$
 
 " QuickScope setting
 highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
