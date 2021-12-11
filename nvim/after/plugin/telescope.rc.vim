@@ -2,12 +2,12 @@ if !exists('g:loaded_telescope')
   finish
 endif
 
-nnoremap <silent> <Leader>t <Cmd>Telescope find_files<CR>
-nnoremap <silent> <Leader>o <Cmd>Telescope oldfiles<CR>
-nnoremap <silent> <Leader>b <Cmd>Telescope buffers<CR>
-nnoremap <silent> <Leader>j <Cmd>Telescope current_buffer_fuzzy_find<CR>
-nnoremap <silent> <Leader>c <Cmd>Telescope command_history<CR>
-nnoremap <silent> <Leader>s <Cmd>Telescope search_history<CR>
+nnoremap <Leader>t <Cmd>Telescope find_files<CR>
+nnoremap <Leader>o <Cmd>Telescope oldfiles<CR>
+nnoremap <Leader>b <Cmd>Telescope buffers<CR>
+nnoremap <Leader>j <Cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <Leader>c <Cmd>Telescope command_history<CR>
+nnoremap <Leader>s <Cmd>Telescope search_history<CR>
 
 lua << EOF
 local actions = require('telescope.actions')

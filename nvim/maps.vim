@@ -18,8 +18,7 @@ omap <C-l> $
 nnoremap Y y$
 
 " 本来の A の機能は gA に変更し、A は末尾の空白を無視して挿入モードへ
-nnoremap gA A
-nnoremap A g_a
+nnoremap gA g_a
 
 " xで削除する時はヤンクしない (代わりに dl を使う)
 noremap x "_x
@@ -75,13 +74,15 @@ cnoremap <C-e> <END>
 cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+
 " %% で現在開いているファイルパスのディレクトリまでを展開
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 
 
 " Terminal mode
 tnoremap <C-[> <C-\><C-n>
-tnoremap <Esc> <C-\><C-n>
 
 tnoremap <C-k> <Up>
 tnoremap <C-j> <Down>

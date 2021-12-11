@@ -64,20 +64,11 @@ let g:nvim_tree_icons = {
     \   }
     \ }
 
-" nnoremap <silent> <leader>e :NvimTreeToggle<CR>
-" nnoremap <leader>r :NvimTreeRefresh<CR>
-" nnoremap <leader>n :NvimTreeFindFile<CR>
-nnoremap <silent> <leader>e :NvimTreeFindFileToggle<CR>
-" NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
-
-set termguicolors " this variable must be enabled for colors to be applied properly
-
-" a list of groups can be found at `:help nvim_tree_highlight`
-highlight NvimTreeFolderIcon guibg=blue
-
 lua << EOF
 local status, nvimtree = pcall(require, "nvim-tree")
 if (not status) then return end
+
+vim.g.loaded_nvimtree = 1
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 local list = {
@@ -164,3 +155,18 @@ nvimtree.setup {
 }
 
 EOF
+
+if !exists("g:loaded_nvimtree")
+  finish
+endif
+
+" nnoremap <silent> <leader>e :NvimTreeToggle<CR>
+" nnoremap <leader>r :NvimTreeRefresh<CR>
+" nnoremap <leader>n :NvimTreeFindFile<CR>
+nnoremap <silent> <leader>e :NvimTreeFindFileToggle<CR>
+" NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
+
+set termguicolors " this variable must be enabled for colors to be applied properly
+
+" a list of groups can be found at `:help nvim_tree_highlight`
+highlight NvimTreeFolderIcon guibg=blue

@@ -37,11 +37,12 @@ if !exists('g:vscode')
 endif
 
 if has("nvim")
-  Plug 'windwp/nvim-autopairs'          " カッコや引用符などの自動追加
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " 構文解析の補助
 endif
 
 if has("nvim") && !exists('g:vscode')
+  Plug 'windwp/nvim-autopairs'          " カッコや引用符などの自動追加
+
   Plug 'rktjmp/lush.nvim'               " gruvbox.nvim に必要
   Plug 'ellisonleao/gruvbox.nvim'       " カラースキーム
 

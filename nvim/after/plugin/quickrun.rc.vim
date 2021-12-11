@@ -8,7 +8,7 @@ let g:quickrun_config._ = {
       \ 'runner/vimproc/updatetime' : 60,
       \ 'outputter/buffer/opener' : ':rightbelow 8sp',
       \ 'outputter/buffer/close_on_empty' : 1,
-      \ 'outputter/buffer/into': 1,
+      \ 'outputter/buffer/into': 0,
       \ }
 let g:quickrun_config.python = {
       \ 'command': 'python3',
@@ -29,4 +29,8 @@ augroup END
 nnoremap <C-q> :QuickRun -mode n<CR>
 
 " Ctrl + C で Quickrun を停止
-nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+func! s:Sweep()
+  call quickrun#sweep_sessions()
+  echo 'QuickRun: Process Stopped.'
+endfunc
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? <SID>Sweep() : "\<C-c>"

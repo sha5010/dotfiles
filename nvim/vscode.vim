@@ -70,6 +70,20 @@ nnoremap gk <Cmd>call VSCodeNotify('cursorMove', { 'to': 'up', 'by': 'line', 'va
 nmap <C-h> g0
 nmap <C-l> g$
 
+" Git コマンド系を gz に割り当てる
+
+" コンフリクトした際に、Ours, Theirs, Both を呼ぶ (大文字にするとすべて)
+nnoremap gzo <Cmd>call VSCodeNotify('merge-conflict.accept.current')<CR>
+nnoremap gzt <Cmd>call VSCodeNotify('merge-conflict.accept.incoming')<CR>
+nnoremap gzb <Cmd>call VSCodeNotify('merge-conflict.accept.both')<CR>
+nnoremap gzO <Cmd>call VSCodeNotify('merge-conflict.accept.all-current')<CR>
+nnoremap gzT <Cmd>call VSCodeNotify('merge-conflict.accept.all-incoming')<CR>
+nnoremap gzB <Cmd>call VSCodeNotify('merge-conflict.accept.all-both')<CR>
+
+" [x ]x でコンフリクトの移動
+nnoremap [x <Cmd>call VSCodeNotify('merge-conflict.previous')<CR>
+nnoremap ]x <Cmd>call VSCodeNotify('merge-conflict.next')<CR>
+
 " QuickScope setting
-highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=213 cterm=underline
+" highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+" highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=213 cterm=underline
