@@ -34,6 +34,10 @@ map mk <Plug>(easymotion-k)
 map mh <Plug>(easymotion-linebackward)
 map ml <Plug>(easymotion-lineforward)
 map mm <Plug>(easymotion-lineanywhere)
-map mf <Plug>(easymotion-s)
-map mt <Plug>(easymotion-bd-t)
 map ms <Plug>(easymotion-bd-W)
+
+" マクロ用にもともとの機能を復活させる
+noremap mf f
+noremap mF F
+noremap mt t
+noremap mT T
