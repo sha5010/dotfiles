@@ -41,3 +41,5 @@ noremap mf f
 noremap mF F
 noremap mt t
 noremap mT T
+noremap m; ;
+noremap m, ,
