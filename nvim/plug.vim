@@ -36,11 +36,8 @@ if !exists('g:vscode')
   Plug 'thinca/vim-quickrun'            " バッファ上にあるコードを簡易実行
 endif
 
-if has("nvim")
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " 構文解析の補助
-endif
-
 if has("nvim") && !exists('g:vscode')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " 構文解析の補助
   Plug 'windwp/nvim-autopairs'          " カッコや引用符などの自動追加
 
   Plug 'rktjmp/lush.nvim'               " gruvbox.nvim に必要
