@@ -59,7 +59,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'gennaro-tedesco/nvim-peekup'    " レジスタを一覧表示
 
   Plug 'neovim/nvim-lspconfig'          " LSP を使用するための設定を行う
-  Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51' }   " LSP の構文情報をポップアップ表示
+  Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim6.0' }   " LSP の構文情報をポップアップ表示
   Plug 'folke/lsp-colors.nvim'          " 構文解析の結果に色を付ける (うまく動かない…)
   Plug 'hrsh7th/cmp-nvim-lsp'           " nvim-cmp 用：LSPの結果を候補に表示
   Plug 'hrsh7th/cmp-buffer'             " nvim-cmp 用：バッファから候補に表示
