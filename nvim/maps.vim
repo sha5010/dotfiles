@@ -24,6 +24,10 @@ nnoremap gA g_a
 noremap x "_x
 noremap X "_X
 
+" c で変更するときもレジスタに保存しないようにする (代わりに d を使う)
+noremap c "_c
+noremap C "_C
+
 " gV で最後にプットした範囲を Visual 選択
 nmap gV `[v`]
 
