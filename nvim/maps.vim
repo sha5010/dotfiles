@@ -21,12 +21,16 @@ nnoremap Y y$
 nnoremap gA g_a
 
 " xで削除する時はヤンクしない (代わりに dl を使う)
-noremap x "_x
-noremap X "_X
+nnoremap x "_x
+nnoremap x "_x
+vnoremap X "_X
+vnoremap X "_X
 
 " c で変更するときもレジスタに保存しないようにする (代わりに d を使う)
-noremap c "_c
-noremap C "_C
+nnoremap c "_c
+nnoremap C "_C
+vnoremap c "_c
+vnoremap C "_C
 
 " gV で最後にプットした範囲を Visual 選択
 nmap gV `[v`]
