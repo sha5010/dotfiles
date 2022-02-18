@@ -31,7 +31,7 @@ lua <<EOF
     }),
     formatting = {
       format = lspkind.cmp_format({
-        with_text = false,
+        mode = 'symbol_text',
         maxwidth = 50
       })
     }
