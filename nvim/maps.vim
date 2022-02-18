@@ -71,6 +71,38 @@ nmap s= <C-w>=
 " 左クリックでカーソルが移動しないように
 nmap <LeftMouse> <Nop>
 
+" オペーレーター待機モードでカッコや引用符をShiftなしで
+onoremap i8 i(
+onoremap i9 i)
+onoremap i2 i"
+onoremap i7 i'
+onoremap i@ i`
+onoremap i, i<
+onoremap i. i>
+onoremap a8 a(
+onoremap a9 a)
+onoremap a2 a"
+onoremap a7 a'
+onoremap a@ a`
+onoremap a, a<
+onoremap a. a>
+
+" Visualモードでも同様にShiftなしで
+vnoremap i8 i(
+vnoremap i9 i)
+vnoremap i2 i"
+vnoremap i7 i'
+vnoremap i@ i`
+onoremap i, i<
+onoremap i. i>
+vnoremap a8 a(
+vnoremap a9 a)
+vnoremap a2 a"
+vnoremap a7 a'
+vnoremap a@ a`
+onoremap a, a<
+onoremap a. a>
+
 " Insert
 inoremap <C-a> <HOME>
 inoremap <C-e> <END>
