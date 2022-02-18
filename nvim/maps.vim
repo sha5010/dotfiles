@@ -93,15 +93,15 @@ vnoremap i9 i)
 vnoremap i2 i"
 vnoremap i7 i'
 vnoremap i@ i`
-onoremap i, i<
-onoremap i. i>
+vnoremap i, i<
+vnoremap i. i>
 vnoremap a8 a(
 vnoremap a9 a)
 vnoremap a2 a"
 vnoremap a7 a'
 vnoremap a@ a`
-onoremap a, a<
-onoremap a. a>
+vnoremap a, a<
+vnoremap a. a>
 
 " Insert
 inoremap <C-a> <HOME>
