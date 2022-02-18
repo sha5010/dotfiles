@@ -9,10 +9,22 @@ let g:quickrun_config._ = {
       \ 'outputter/buffer/opener' : ':rightbelow 8sp',
       \ 'outputter/buffer/close_on_empty' : 1,
       \ 'outputter/buffer/into': 0,
+      \ 'hook/time/enable': 1,
       \ }
 let g:quickrun_config.python = {
       \ 'command': 'python3',
       \ 'cmdopt': '-u',
+      \ }
+let g:quickrun_config.go = {
+      \ 'command': 'go',
+      \ 'exec': ['%c run %s'],
+      \ 'type': 'go',
+      \ 'runner': 'system',
+      \ }
+let g:quickrun_config.cpp = {
+      \ 'command': 'g++',
+      \ 'input': 'input',
+      \ 'runner': 'system',
       \ }
 
 " デフォルトのキーマップを無効化
