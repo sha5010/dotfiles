@@ -14,16 +14,18 @@ let g:quickrun_config._ = {
 let g:quickrun_config.python = {
       \ 'command': 'python3',
       \ 'cmdopt': '-u',
+      \ 'input': '%{filereadable("input") ? "input" : "="}',
       \ }
 let g:quickrun_config.go = {
       \ 'command': 'go',
       \ 'exec': ['%c run %s'],
       \ 'type': 'go',
+      \ 'input': '%{filereadable("input") ? "input" : "="}',
       \ 'runner': 'system',
       \ }
 let g:quickrun_config.cpp = {
       \ 'command': 'g++',
-      \ 'input': 'input',
+      \ 'input': '%{filereadable("input") ? "input" : "="}',
       \ 'runner': 'system',
       \ }
 
