@@ -16,7 +16,7 @@ lua <<EOF
       ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
       ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i' }),
       ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i' }),
       ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i' }),
       ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
