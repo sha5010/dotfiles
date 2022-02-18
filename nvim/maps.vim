@@ -22,8 +22,8 @@ nnoremap gA g_a
 
 " xで削除する時はヤンクしない (代わりに dl を使う)
 nnoremap x "_x
-nnoremap x "_x
-vnoremap X "_X
+nnoremap X "_X
+vnoremap x "_x
 vnoremap X "_X
 
 " c で変更するときもレジスタに保存しないようにする (代わりに d を使う)
