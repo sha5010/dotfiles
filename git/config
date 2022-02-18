@@ -10,7 +10,7 @@
 [pager]
 	branch = false
 [alias]
-	st = status
+	st = status --short --branch
 	cm = commit
 	cma = commit --amend
 	br = branch
@@ -20,6 +20,11 @@
 	cob = checkout -b
 	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	la = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	d = diff
+	ds = diff --staged
+	dl = diff HEAD^..HEAD
+	rs = restore
+	rss = restore -S
 [init]
 	defaultBranch = main
 [pull]
