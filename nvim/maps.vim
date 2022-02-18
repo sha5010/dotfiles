@@ -1,4 +1,13 @@
 " key binding
+" VSCode でも使用されるキーマップは nore を使わない
+" それ以外は基本的に noremap を使う
+
+" jk を見えている単位で移動、gj,gk を行単位で移動
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
 " Ctrl+j, Ctrl+k で 10行上下へ移動
 map <C-j> 10j
 map <C-k> 10k
@@ -39,34 +48,79 @@ nmap gV `[v`]
 vnoremap > >gv
 vnoremap < <gv
 
+" Tab と Shift+Tab でタブ移動
 nmap <Tab> gt
 nmap <S-Tab> gT
 
+" t をタブ操作関連に割当
 nnoremap t <NOP>
-nmap te :<C-u>tabedit<SPACE>
+
+" te で :tabedit をコマンド入力 (ファイル名入力待ち状態へ)
+nnoremap te :<C-u>tabedit<SPACE>
+
+" tq でタブを閉じる
 nmap <silent> tq :<C-u>tabclose<CR>
 
+" t1 - t9 で n番目のタブへ移動
+nnoremap t1 1gt
+nnoremap t2 2gt
+nnoremap t3 3gt
+nnoremap t4 4gt
+nnoremap t5 5gt
+nnoremap t6 6gt
+nnoremap t7 7gt
+nnoremap t8 8gt
+nnoremap t9 9gt
+
+" t0 で最後のタブへ移動
+nnoremap <silent> t0 <Cmd>tablast<CR>
+
+" tt で新規タブ(無題)を作成
+nnoremap <silent> tt <Cmd>tabedit<CR>
+
+" ts でタブ一覧を表示
+nnoremap <silent> ts <Cmd>tabs<CR>
+
+" th, tl で現在タブを左右に移動
+nnoremap <silent> th <Cmd>tabmove-1<CR>
+nnoremap <silent> tl <Cmd>tabmove+1<CR>
+
+" ウィンドウ操作系 (<C-w>) を s に割当
 nnoremap s <NOP>
+
+" ウィンドウサイズ変更
+nnoremap s+ 5<C-w>+
+nnoremap s- 5<C-w>-
+nnoremap s< 5<C-w><
+nnoremap s> 5<C-w>>
+
+" ウィンドウサイズの均一化 (VSCode でも使用)
+nmap s= <C-w>=
+
+" ss で横分割、sv で縦分割
 nmap ss <C-w>s
 nmap sv <C-w>v
+
+" se で新規ファイルを横分割で作成
 nmap se <C-w>n
+
+" sq でウィンドウを閉じる
 nmap sq <C-w>q
 
+" st でカレントウィンドウを新しいタブページへ移動
+nnoremap st <C-w>T
+
+" s+hjkl でウィンドウ移動
 nmap sh <C-w>h
 nmap sj <C-w>j
 nmap sk <C-w>k
 nmap sl <C-w>l
 
+" s+HJKL で各方向へ最大サイズで再配置
 nmap sH <C-w>H
 nmap sJ <C-w>J
 nmap sK <C-w>K
 nmap sL <C-w>L
-
-nmap s+ <C-w>+
-nmap s- <C-w>-
-nmap s< <C-w><
-nmap s> <C-w>>
-nmap s= <C-w>=
 
 " 左クリックでカーソルが移動しないように
 nmap <LeftMouse> <Nop>
@@ -103,17 +157,21 @@ vnoremap a@ a`
 vnoremap a, a<
 vnoremap a. a>
 
-" Insert
+" Insert mode
+" Ctrl+a、Ctrl+e で行頭、行末移動
 inoremap <C-a> <HOME>
 inoremap <C-e> <END>
 
-" Command
+" Command mode
+" Ctrl+a、Ctrl+e で行頭、行末移動
 cnoremap <C-a> <HOME>
 cnoremap <C-e> <END>
 
+" Ctrl+k,j でヒストリを遡る
 cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 
+" Ctrl+h,l で左右にカーソル移動
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 
@@ -122,10 +180,13 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 
 
 " Terminal mode
+" Escape キーで挿入モードからノーマルモードへ
 tnoremap <C-[> <C-\><C-n>
 
+" Ctrl+k,j でヒストリを遡る
 tnoremap <C-k> <Up>
 tnoremap <C-j> <Down>
+
 
 " Leader key
 let mapleader = "\<SPACE>"
@@ -147,60 +208,7 @@ map <Leader>P "+P
 nmap <Leader>a ggVG
 
 " r で設定リロード
-nmap <silent> <Leader>r :<C-u>source ~/.config/nvim/init.vim<CR>
+nmap <silent> <Leader>r <Cmd>source ~/.config/nvim/init.vim<CR>
 
-" easymotion 系の設定
-" let g:EasyMotion_do_mapping = 0     " デフォルトキーマッピングの無効化
-"
-" map  <Leader>f <Plug>(easymotion-bd-f)
-" map  <Leader>s <Plug>(easymotion-s2)
-"
-" map  <Leader>w <Plug>(easymotion-w)
-" map  <Leader>b <Plug>(easymotion-b)
-" map  <Leader>W <Plug>(easymotion-W)
-" map  <Leader>B <Plug>(easymotion-B)
-" map  <Leader>j <Plug>(easymotion-bd-jk)
-" map  <Leader>k <Plug>(easymotion-bd-jk)
-" map  <Leader>h <Plug>(easymotion-sol-bd-jk)
-" map  <Leader>l <Plug>(easymotion-eol-bd-jk)
-"
-" map  <Leader>/ <Plug>(easymotion-vim-n)
-" map  <Leader><S-/> <Plug>(easymotion-vim-N)
-
-if !exists('g:vscode')
-  " jk を見えている単位で移動する
-  noremap j gj
-  noremap k gk
-  noremap gj j
-  noremap gk k
-
-  " ウィンドウサイズ変更
-  nnoremap s+ 5<C-w>+
-  nnoremap s- 5<C-w>-
-  nnoremap s< 5<C-w><
-  nnoremap s> 5<C-w>>
-
-  " カレントウィンドウを新しいタブページへ移動
-  nnoremap st <C-w>T
-
-  " z で wrap を切り替え
-  noremap <silent> <Leader>z :set invwrap<CR>
-
-  " tab
-  nnoremap t1 1gt
-  nnoremap t2 2gt
-  nnoremap t3 3gt
-  nnoremap t4 4gt
-  nnoremap t5 5gt
-  nnoremap t6 6gt
-  nnoremap t7 7gt
-  nnoremap t8 8gt
-  nnoremap t9 9gt
-  nnoremap <silent> t0 :<C-u>tablast<CR>
-
-  nnoremap <silent> tt :<C-u>tabedit<CR>
-  nnoremap <silent> ts :<C-u>tabs<CR>
-
-  nnoremap <silent> th :<C-u>tabmove-1<CR>
-  nnoremap <silent> tl :<C-u>tabmove+1<CR>
-endif
+" z で wrap を切り替え
+noremap <silent> <Leader>z :set invwrap<CR>

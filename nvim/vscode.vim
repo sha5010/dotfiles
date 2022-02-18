@@ -34,6 +34,12 @@ noremap <silent> <Leader>m <Cmd>call VSCodeNotify('editor.action.toggleMinimap')
 " st ですべての分割ウィンドウを結合 (タブ化)
 nnoremap <silent> st <Cmd>call VSCodeNotify('workbench.action.joinAllGroups')<CR>
 
+" ウィンドウのサイズ調整
+nmap s+ <C-w>+
+nmap s- <C-w>-
+nmap s< <C-w><
+nmap s> <C-w>>
+
 " Tab Change
 nnoremap <silent> te <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
 nnoremap <silent> tt <Cmd>call VSCodeNotify('workbench.action.files.newUntitledFile')<CR>
@@ -46,6 +52,7 @@ nnoremap <silent> t6 <Cmd>call VSCodeNotify('workbench.action.openEditorAtIndex6
 nnoremap <silent> t7 <Cmd>call VSCodeNotify('workbench.action.openEditorAtIndex7')<CR>
 nnoremap <silent> t8 <Cmd>call VSCodeNotify('workbench.action.openEditorAtIndex8')<CR>
 nnoremap <silent> t9 <Cmd>call VSCodeNotify('workbench.action.openEditorAtIndex9')<CR>
+nnoremap <silent> t0 <Cmd>call VSCodeNotify('workbench.action.lastEditorInGroup')<CR>
 
 nnoremap <silent> th <Cmd>call VSCodeNotify('workbench.action.moveEditorLeftInGroup')<CR>
 nnoremap <silent> tl <Cmd>call VSCodeNotify('workbench.action.moveEditorRightInGroup')<CR>
@@ -83,7 +90,3 @@ nnoremap gzB <Cmd>call VSCodeNotify('merge-conflict.accept.all-both')<CR>
 " [x ]x でコンフリクトの移動
 nnoremap [x <Cmd>call VSCodeNotify('merge-conflict.previous')<CR>
 nnoremap ]x <Cmd>call VSCodeNotify('merge-conflict.next')<CR>
-
-" QuickScope setting
-" highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-" highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=213 cterm=underline
