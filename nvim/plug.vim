@@ -68,7 +68,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'hrsh7th/nvim-cmp'               " LSP を利用した自動補完を提供
   Plug 'onsails/lspkind-nvim'           " nvim-cmp で表示される補完でアイコンを使用
 
-  Plug 'airblade/vim-gitgutter'         " Git の差分有無を左に表示
+  Plug 'lewis6991/gitsigns.nvim'        " Git の差分有無を左に表示
 endif
 
 call plug#end()
@@ -77,6 +77,3 @@ call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
-
-" gitgutter の設定を読み込み (先に読み込む必要あり)
-runtime ./after/plugin/gitgutter.rc.vim
