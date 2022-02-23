@@ -9,6 +9,7 @@ nnoremap <Leader>/ <Cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <Leader>* <Cmd>Telescope grep_string<CR>
 nnoremap <Leader>c <Cmd>Telescope command_history<CR>
 nnoremap <Leader>s <Cmd>Telescope search_history<CR>
+nnoremap <Leader>l <Cmd>Telescope registers<CR>
 nnoremap <Leader>g <Cmd>Telescope live_grep<CR>
 
 lua << EOF

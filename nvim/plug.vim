@@ -58,7 +58,6 @@ if has("nvim") && !exists('g:vscode')
   Plug 'easymotion/vim-easymotion'      " 単語ジャンプの簡易化
   Plug 'numToStr/Comment.nvim'          " コメントアウト
   Plug 'cappyzawa/trim.nvim'            " 保存時に行末スペースを削除
-  Plug 'gennaro-tedesco/nvim-peekup'    " レジスタを一覧表示
 
   Plug 'neovim/nvim-lspconfig'          " LSP を使用するための設定を行う
   Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim6.0' }   " LSP の構文情報をポップアップ表示
