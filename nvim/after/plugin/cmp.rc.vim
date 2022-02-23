@@ -13,7 +13,12 @@ lua <<EOF
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
+      ['<C-u>'] = cmp.mapping(function(fallback)
+        if cmp.get_selected_entry() then
+          return cmp.scroll_docs(-1)
+        end
+        fallback()
+      end, { 'i', 'c' }),
       ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<C-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i' }),
