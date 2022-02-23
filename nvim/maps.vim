@@ -192,15 +192,13 @@ tnoremap <C-j> <Down>
 let mapleader = "\<SPACE>"
 
 " n ハイライトを解除
-map <silent> <Leader>n :noh<CR>
+map <silent> <Leader>n <Cmd>nohlsearch<CR>
 
 " c,d,p,y についてはシステムのクリップボードを使用するようにする
 map <Leader>y "+y
 map <Leader>Y "+Y
 map <Leader>d "+d
 map <Leader>D "+D
-map <Leader>c "+c
-map <Leader>C "+C
 map <Leader>p "+p
 map <Leader>P "+P
 
@@ -211,4 +209,4 @@ nmap <Leader>a ggVG
 nmap <silent> <Leader>r <Cmd>source ~/.config/nvim/init.vim<CR>
 
 " z で wrap を切り替え
-noremap <silent> <Leader>z :set invwrap<CR>
+noremap <silent> <Leader>z <Cmd>set invwrap<CR>
