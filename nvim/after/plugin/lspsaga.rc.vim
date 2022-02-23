@@ -26,7 +26,7 @@ saga.init_lsp_saga {
   finder_reference_icon = "  ",
   max_preview_lines = 10,
   finder_action_keys = {
-    open = "o",
+    open = "<CR>",
     vsplit = "v",
     split = "s",
     quit = "q",
@@ -53,3 +53,7 @@ EOF
 nnoremap <silent>K <Cmd>Lspsaga hover_doc<CR>
 inoremap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
 nnoremap <silent>gh <Cmd>Lspsaga lsp_finder<CR>
+nnoremap <silent>[d <Cmd>Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent>]d <Cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent>gr <Cmd>Lspsaga rename<CR>
+nnoremap <silent>go <Cmd>Lspsaga show_line_diagnostic<CR>
