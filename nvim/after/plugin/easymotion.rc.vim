@@ -2,7 +2,6 @@ if !exists('g:EasyMotion_loaded') " && !exists('g:vscode')
   finish
 endif
 
-let g:EasyMotion_do_mapping = 0     " デフォルトキーマッピングの無効化
 let g:EasyMotion_smartcase = 1      " 小文字の時は大文字にもヒットさせる
 let g:EasyMotion_use_migemo = 1     " Migemo 検索を有効化
 

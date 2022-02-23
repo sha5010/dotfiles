@@ -79,3 +79,6 @@ call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
+
+" Easymotion の設定
+let g:EasyMotion_do_mapping = 0     " デフォルトキーマッピングの無効化
