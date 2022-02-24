@@ -80,13 +80,13 @@ nmap <C-l> g$
 " Git コマンド系を gz に割り当てる
 
 " コンフリクトした際に、Ours, Theirs, Both を呼ぶ (大文字にするとすべて)
-nnoremap gzo <Cmd>call VSCodeNotify('merge-conflict.accept.current')<CR>
-nnoremap gzt <Cmd>call VSCodeNotify('merge-conflict.accept.incoming')<CR>
-nnoremap gzb <Cmd>call VSCodeNotify('merge-conflict.accept.both')<CR>
-nnoremap gzO <Cmd>call VSCodeNotify('merge-conflict.accept.all-current')<CR>
-nnoremap gzT <Cmd>call VSCodeNotify('merge-conflict.accept.all-incoming')<CR>
-nnoremap gzB <Cmd>call VSCodeNotify('merge-conflict.accept.all-both')<CR>
+nnoremap gz, <Cmd>call VSCodeNotify('merge-conflict.accept.current')<CR>
+nnoremap gz. <Cmd>call VSCodeNotify('merge-conflict.accept.incoming')<CR>
+nnoremap gz- <Cmd>call VSCodeNotify('merge-conflict.accept.both')<CR>
+nnoremap gz< <Cmd>call VSCodeNotify('merge-conflict.accept.all-current')<CR>
+nnoremap gz> <Cmd>call VSCodeNotify('merge-conflict.accept.all-incoming')<CR>
+nnoremap gz= <Cmd>call VSCodeNotify('merge-conflict.accept.all-both')<CR>
 
-" [x ]x でコンフリクトの移動
-nnoremap [x <Cmd>call VSCodeNotify('merge-conflict.previous')<CR>
-nnoremap ]x <Cmd>call VSCodeNotify('merge-conflict.next')<CR>
+" [c ]c でコンフリクトの移動
+nnoremap [c <Cmd>call VSCodeNotify('merge-conflict.previous')<CR>
+nnoremap ]c <Cmd>call VSCodeNotify('merge-conflict.next')<CR>

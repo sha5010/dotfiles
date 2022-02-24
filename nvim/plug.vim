@@ -70,6 +70,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'onsails/lspkind-nvim'           " nvim-cmp で表示される補完でアイコンを使用
 
   Plug 'lewis6991/gitsigns.nvim'        " Git の差分有無を左に表示
+  Plug 'tpope/vim-fugitive'             " Git 操作を Vim 上で
 endif
 
 call plug#end()

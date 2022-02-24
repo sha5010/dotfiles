@@ -11,6 +11,8 @@ nnoremap <Leader>c <Cmd>Telescope command_history<CR>
 nnoremap <Leader>s <Cmd>Telescope search_history<CR>
 nnoremap <Leader>l <Cmd>Telescope registers<CR>
 nnoremap <Leader>g <Cmd>Telescope live_grep<CR>
+nnoremap gzw <Cmd>Telescope git_branches<CR>
+nnoremap gze <Cmd>Telescope git_files<CR>
 
 lua << EOF
 local actions = require('telescope.actions')
