@@ -21,15 +21,34 @@ require('telescope').setup{
   defaults = {
     mappings = {
 			i = {
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
+				["<C-j>"]   = actions.move_selection_next,
+				["<C-k>"]   = actions.move_selection_previous,
+				["<C-n>"]   = actions.move_selection_next,
+				["<C-p>"]   = actions.move_selection_previous,
 
-				["<C-[>"] = actions.close,
+				["<C-[>"]   = actions.close,
 
-				["<C-o>"] = actions.select_tab,
+				["<CR>"]    = actions.select_default,
+				["<C-x>"]   = actions.select_horizontal,
+				["<C-v>"]   = actions.select_vertical,
+				["<C-o>"]   = actions.select_tab,
+				["<C-t>"]   = actions.select_tab,
 
-        ["<C-f>"] = actions.results_scrolling_down,
-        ["<C-b>"] = actions.results_scrolling_up,
+        ["<C-f>"]   = actions.results_scrolling_down,
+        ["<C-b>"]   = actions.results_scrolling_up,
+
+        ["<C-u>"]   = { "<C-u>", type = "command"},
+
+        ["<C-d>"]   = actions.preview_scrolling_down,
+        ["<C-y>"]   = actions.preview_scrolling_up,
+
+        ["<Tab>"]   = actions.toggle_selection + actions.move_selection_worse,
+        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+        ["<C-q>"]   = actions.send_to_qflist + actions.open_qflist,
+        ["<C-S-Q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-l>"]   = actions.complete_tag,
+        ["<C-_>"]   = actions.which_key, -- keys from pressing <C-/>
+        ["<C-w>"]   = { "<C-w>", type = "command" },
 
 			},
       n = {
