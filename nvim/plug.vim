@@ -66,6 +66,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'easymotion/vim-easymotion'      " 単語ジャンプの簡易化
   Plug 'numToStr/Comment.nvim'          " コメントアウト
   Plug 'cappyzawa/trim.nvim'            " 保存時に行末スペースを削除
+  Plug 'lukas-reineke/indent-blankline.nvim'  " インデントガイド
 
   Plug 'neovim/nvim-lspconfig'          " LSP を使用するための設定を行う
   Plug 'williamboman/nvim-lsp-installer'  " Language Server の管理
