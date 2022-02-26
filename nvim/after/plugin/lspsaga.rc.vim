@@ -56,4 +56,4 @@ nnoremap <silent>gh <Cmd>Lspsaga lsp_finder<CR>
 nnoremap <silent>[d <Cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent>]d <Cmd>Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent>gr <Cmd>Lspsaga rename<CR>
-nnoremap <silent>go <Cmd>Lspsaga show_line_diagnostic<CR>
+nnoremap <silent>go <Cmd>Lspsaga show_line_diagnostics<CR>
