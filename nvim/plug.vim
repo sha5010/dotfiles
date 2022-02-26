@@ -33,6 +33,7 @@ Plug 'thinca/vim-visualstar'            " Visual モードで選択中に * 等�
 if has("nvim")
   Plug 'winston0410/cmd-parser.nvim'    " range-highlight を使うのに必要
   Plug 'winston0410/range-highlight.nvim'  " コマンドラインで範囲指定時にハイライト
+  Plug 'monaqa/dial.nvim'               " Increase(<C-a>) Decrease(<C-x>) の拡張
 endif
 
 if !exists('g:vscode')
