@@ -34,6 +34,7 @@ set lazyredraw        " マクロ実行時に画面描画しない (パフォー
 set cursorline        " 現在行をハイライト
 set showtabline=2     " タブラインを常時表示
 set updatetime=500    " 反映時間を短くする
+set pumheight=12      " 検索候補の最大表示数
 
 " ウィンドウ系
 set splitright        " 縦に画面分割時、右に開く
