@@ -55,6 +55,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'seblj/nvim-tabline'             " タブラインをカスタマイズ
   Plug 'kyazdani42/nvim-web-devicons'   " カラー付きのアイコンを表示
   Plug 'kyazdani42/nvim-tree.lua'       " ファイルツリーを表示
+  Plug 'akinsho/toggleterm.nvim'        " ターミナルを使いやすく拡張
 
   Plug 'nvim-lua/popup.nvim'            " telescope.nvim で必要
   Plug 'nvim-lua/plenary.nvim'          " telescope.nvim で必要
