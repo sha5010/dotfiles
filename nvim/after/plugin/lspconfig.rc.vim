@@ -52,18 +52,44 @@ local capabilitiles = require('cmp_nvim_lsp').update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pylsp', 'gopls', 'clangd' }
-for _, lsp in ipairs(servers) do
-  if vim.fn.executable(lsp) then
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-      capabilitiles = capabilitiles,
-      -- flags = {
-      --   debounce_text_changes = 150,
-      -- }
-    }
+-- if exists lsp-installer
+local status, lsp_installer = pcall(require, "nvim-lsp-installer")
+
+if (status) then
+  -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
+  -- or if the server is already installed).
+  lsp_installer.on_server_ready(function(server)
+      local opts = {}
+
+      -- (optional) Customize the options passed to the server
+      -- if server.name == "tsserver" then
+      --     opts.root_dir = function() ... end
+      -- end
+
+      opts.capabilitiles = capabilitiles
+
+      -- This setup() function will take the provided server configuration and decorate it with the necessary properties
+      -- before passing it onwards to lspconfig.
+      -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+      server:setup(opts)
+  end)
+
+else
+  -- Use a loop to conveniently call 'setup' on multiple servers and
+  -- map buffer local keybindings when the language server attaches
+  local servers = { 'pylsp', 'gopls', 'clangd' }
+  for _, lsp in ipairs(servers) do
+    if vim.fn.executable(lsp) then
+      nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        capabilitiles = capabilitiles,
+        -- flags = {
+        --   debounce_text_changes = 150,
+        -- }
+      }
+    end
   end
 end
+
+
 EOF
