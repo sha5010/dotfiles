@@ -21,7 +21,6 @@ if exists('g:vscode')
   Plug 'asvetliakov/vim-easymotion', { 'as': 'vscode-easymotion' }
 endif
 
-" Plug 'unblevable/quick-scope'           " 行内でジャンプに使用できる文字をハイライト
 Plug 'machakann/vim-sandwich'           " 囲む系の処理を簡単にできるようになる
 Plug 'machakann/vim-highlightedyank'    " ヤンクした箇所を一瞬ハイライト
 Plug 'terryma/vim-expand-region'        " Visual モードで選択範囲をいい感じに拡張
