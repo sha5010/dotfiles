@@ -22,6 +22,17 @@ local function short_mode()
   return (mode_to_short[mode] or mode)
 end
 
+local function tab_shiftwidth()
+  local is_expandtab = vim.o.expandtab
+  local shiftwidth = vim.o.shiftwidth
+
+  if is_expandtab then
+    return 'S:' .. shiftwidth
+  else
+    return 'T:' .. shiftwidth
+  end
+end
+
 lualine.setup {
   options = {
     icons_enabled = true,
@@ -51,6 +62,7 @@ lualine.setup {
         }
       },
       {
+        tab_shiftwidth,
         'fileformat',
         symbols = {
           unix = 'unix',

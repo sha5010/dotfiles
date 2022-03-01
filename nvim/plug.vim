@@ -28,6 +28,7 @@ Plug 'brglng/vim-im-select'             " Normal モードに戻るときに IME
 Plug 'kana/vim-operator-user'           " vim-operator-replace を使うのに必要
 Plug 'kana/vim-operator-replace'        " 置換時にオペレータが使えるようになる
 Plug 'thinca/vim-visualstar'            " Visual モードで選択中に * 等で検索
+Plug 'tpope/vim-sleuth'                 " shiftwidth や expandtab を自動判定
 
 if has("nvim")
   Plug 'winston0410/cmd-parser.nvim'    " range-highlight を使うのに必要
