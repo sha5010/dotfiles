@@ -29,6 +29,7 @@ treesitter_configs.setup {
     "rust",
     "regex",
     "comment",
+    "markdown",
     "javascript",
     "dockerfile"
   }
