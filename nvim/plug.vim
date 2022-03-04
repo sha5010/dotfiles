@@ -24,11 +24,17 @@ endif
 Plug 'machakann/vim-sandwich'           " 囲む系の処理を簡単にできるようになる
 Plug 'machakann/vim-highlightedyank'    " ヤンクした箇所を一瞬ハイライト
 Plug 'terryma/vim-expand-region'        " Visual モードで選択範囲をいい感じに拡張
-Plug 'brglng/vim-im-select'             " Normal モードに戻るときに IME を切る
 Plug 'kana/vim-operator-user'           " vim-operator-replace を使うのに必要
 Plug 'kana/vim-operator-replace'        " 置換時にオペレータが使えるようになる
 Plug 'thinca/vim-visualstar'            " Visual モードで選択中に * 等で検索
 Plug 'tpope/vim-sleuth'                 " shiftwidth や expandtab を自動判定
+
+" IME 制御プラグイン (Normal モードに戻るときに IME を切る)
+if system('uname -a') =~ "microsoft" || has("win32") || has("win64")
+  Plug 'kaz399/spzenhan.vim'            " Windows か WSL なら spzenhan
+else
+  Plug 'brglng/vim-im-select'           " それ以外は im-select
+endif
 
 if has("nvim")
   Plug 'winston0410/cmd-parser.nvim'    " range-highlight を使うのに必要
