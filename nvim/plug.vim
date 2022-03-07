@@ -57,7 +57,6 @@ if has("nvim") && !exists('g:vscode')
 
   Plug 'nathom/filetype.nvim'           " filetype の読み込みを高速化
 
-  Plug 'rktjmp/lush.nvim'               " gruvbox.nvim に必要
   Plug 'ellisonleao/gruvbox.nvim'       " カラースキーム
 
   Plug 'nvim-lualine/lualine.nvim'      " ステータスバーを見やすくする
