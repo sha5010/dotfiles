@@ -30,7 +30,9 @@ Plug 'thinca/vim-visualstar'            " Visual モードで選択中に * 等�
 Plug 'tpope/vim-sleuth'                 " shiftwidth や expandtab を自動判定
 
 " IME 制御プラグイン (Normal モードに戻るときに IME を切る)
-if system('uname -a') =~ "microsoft" || has("win32") || has("win64")
+let s:is_wsl = !empty($WSLENV) || !empty($WSL_DISTRO_NAME) || !empty($WSL_INTEROP)
+if has("win32") || has("win64") || s:is_wsl
+  let g:spzenhan = 1
   Plug 'kaz399/spzenhan.vim'            " Windows か WSL なら spzenhan
 else
   Plug 'brglng/vim-im-select'           " それ以外は im-select
