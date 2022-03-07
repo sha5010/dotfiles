@@ -20,19 +20,19 @@ local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
     mappings = {
-			i = {
-				["<C-j>"]   = actions.move_selection_next,
-				["<C-k>"]   = actions.move_selection_previous,
-				["<C-n>"]   = actions.move_selection_next,
-				["<C-p>"]   = actions.move_selection_previous,
+      i = {
+        ["<C-j>"]   = actions.move_selection_next,
+        ["<C-k>"]   = actions.move_selection_previous,
+        ["<C-n>"]   = actions.move_selection_next,
+        ["<C-p>"]   = actions.move_selection_previous,
 
-				["<C-[>"]   = actions.close,
+        ["<C-[>"]   = actions.close,
 
-				["<CR>"]    = actions.select_default,
-				["<C-x>"]   = actions.select_horizontal,
-				["<C-v>"]   = actions.select_vertical,
-				["<C-o>"]   = actions.select_tab,
-				["<C-t>"]   = actions.select_tab,
+        ["<CR>"]    = actions.select_default,
+        ["<C-x>"]   = actions.select_horizontal,
+        ["<C-v>"]   = actions.select_vertical,
+        ["<C-o>"]   = actions.select_tab,
+        ["<C-t>"]   = actions.select_tab,
 
         ["<C-f>"]   = actions.results_scrolling_down,
         ["<C-b>"]   = actions.results_scrolling_up,
@@ -50,7 +50,7 @@ require('telescope').setup{
         ["<C-_>"]   = actions.which_key, -- keys from pressing <C-/>
         ["<C-w>"]   = { "<C-w>", type = "command" },
 
-			},
+      },
       n = {
         ["q"] = actions.close,
       }
