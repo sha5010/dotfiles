@@ -23,7 +23,7 @@ endif
 " エンコーディング系
 set fileencodings=ucs-bom,utf-8,cp932,euc-jp,latin    " 読み込む場合のデフォルトエンコーディング
 set encoding=utf-8    " 保存時のデフォルトエンコードディング
-set nofixeol noeol    " ファイル末尾に改行を付けない
+set nofixeol          " <EOL>がないファイルの場合、自動的に付与しない
 
 " タイトル系
 set title             " タイトル表示 (よくわかってない)
