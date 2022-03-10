@@ -158,9 +158,11 @@ vnoremap a, a<
 vnoremap a. a>
 
 " Insert mode
-" Ctrl+a、Ctrl+e で行頭、行末移動
+" Ctrl+a,e,b,f を Emacs 風に
 inoremap <C-a> <HOME>
 inoremap <C-e> <END>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
 
 " Command mode
 " Ctrl+a、Ctrl+e で行頭、行末移動
@@ -171,9 +173,9 @@ cnoremap <C-e> <END>
 cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 
-" Ctrl+h,l で左右にカーソル移動
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
+" Ctrl+b,f で左右にカーソル移動
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
 
 " %% で現在開いているファイルパスのディレクトリまでを展開
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
