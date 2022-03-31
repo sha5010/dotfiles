@@ -2,8 +2,7 @@ local status, tabline = pcall(require, "tabline")
 if (not status) then return end
 
 local clear_highlights = function(hls)
-    for _, hl in ipairs(hls) do
-        local name, _ = unpack(hl)
+    for name, _ in pairs(hls) do
         vim.cmd('highlight clear ' .. name)
     end
 end
@@ -21,16 +20,14 @@ hl.c = {
 }
 
 local hls = {
-    { 'TabLineSeparatorActive',             { guifg = hl.c.active_sep,           guibg = hl.c.active_bg } },
-    { 'TabLineSeparatorInactive',           { guifg = hl.c.inactive_text,        guibg = hl.c.inactive_bg } },
-    { 'TabLineModifiedSeparatorActive',     { guifg = hl.c.modified_active_sep,  guibg = hl.c.active_bg } },
-    { 'TabLineModifiedSeparatorInactive',   { guifg = hl.c.inactive_text,        guibg = hl.c.inactive_bg } },
-    { 'TabLinePaddingActive',               { guifg = hl.c.active_bg,            guibg = hl.c.active_bg } },
-    { 'TabLinePaddingInactive',             { guifg = hl.c.inactive_bg,          guibg = hl.c.inactive_bg } },
-    { 'TabLineModifiedActive',              { guifg = hl.c.active_text,          guibg = hl.c.active_bg } },
-    { 'TabLineModifiedInactive',            { guifg = hl.c.inactive_text,        guibg = hl.c.inactive_bg } },
-    { 'TabLineCloseActive',                 { guifg = hl.c.active_text,          guibg = hl.c.active_bg } },
-    { 'TabLineCloseInactive',               { guifg = hl.c.inactive_text,        guibg = hl.c.inactive_bg } },
+     TabLineSeparatorActive           = { guifg = hl.c.active_sep,          guibg = hl.c.active_bg },
+     TabLineSeparatorInactive         = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
+     TabLineModifiedSeparatorActive   = { guifg = hl.c.modified_active_sep, guibg = hl.c.active_bg },
+     TabLineModifiedSeparatorInactive = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
+     TabLineModifiedActive            = { guifg = hl.c.active_text,         guibg = hl.c.active_bg },
+     TabLineModifiedInactive          = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
+     TabLineCloseActive               = { guifg = hl.c.active_text,         guibg = hl.c.active_bg },
+     TabLineCloseInactive             = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
 }
 
 -- re-configure highlights
