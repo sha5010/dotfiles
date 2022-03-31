@@ -44,6 +44,10 @@ vnoremap C "_C
 " gV で最後にプットした範囲を Visual 選択
 nmap gV `[v`]
 
+" \ or _ で空行追加
+nnoremap <silent> \ <Cmd>call append(line('.')-1, '')<CR>
+nnoremap <silent> _ <Cmd>call append(line('.')-1, '')<CR>
+
 " Visual モードでインデント変更後に選択範囲を解放しない
 vnoremap > >gv
 vnoremap < <gv
