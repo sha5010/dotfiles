@@ -91,6 +91,7 @@ nnoremap <silent> tl <Cmd>tabmove+1<CR>
 
 " ウィンドウ操作系 (<C-w>) を s に割当
 nnoremap s <NOP>
+vnoremap s <NOP>
 
 " ウィンドウサイズ変更
 nnoremap s+ 5<C-w>+
