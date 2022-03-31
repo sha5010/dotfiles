@@ -45,6 +45,7 @@ if has("nvim")
 endif
 
 if !exists('g:vscode')
+  Plug 'vim-jp/vimdoc-ja'               " ヘルプの日本語化
   Plug 'mbbill/undotree'                " Undo の履歴をツリー状に表示
   Plug 'Shougo/vimproc.vim'             " Quickrun を非同期でできるように
   Plug 'thinca/vim-quickrun'            " バッファ上にあるコードを簡易実行
