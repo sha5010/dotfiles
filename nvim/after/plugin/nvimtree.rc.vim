@@ -8,7 +8,6 @@ let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the
 let g:nvim_tree_symlink_arrow = ' ➛ ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
 let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 let g:nvim_tree_create_in_closed_folder = 1 "1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
-let g:nvim_tree_refresh_wait = 1000 "1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
 
 " List of filenames that gets highlighted with NvimTreeSpecialFile
 let g:nvim_tree_special_files = {
@@ -104,7 +103,6 @@ nvimtree.setup {
   open_on_setup       = false,
   ignore_buffer_on_setup = false,
   ignore_ft_on_setup  = {},
-  auto_close          = false,
   auto_reload_on_write = true,
   open_on_tab         = false,
   hijack_cursor       = false,
@@ -167,7 +165,7 @@ nvimtree.setup {
       global = false
     },
     open_file = {
-      quit_on_open = false,
+      quit_on_open = true,
       resize_window = false,
       window_picker = {
         enable = true,
@@ -194,6 +192,3 @@ nnoremap <silent> <leader>e :NvimTreeFindFileToggle<CR>
 " NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
 
 set termguicolors " this variable must be enabled for colors to be applied properly
-
-" a list of groups can be found at `:help nvim_tree_highlight`
-highlight NvimTreeFolderIcon guibg=blue
