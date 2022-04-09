@@ -69,6 +69,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'nvim-lua/popup.nvim'            " telescope.nvim で必要
   Plug 'nvim-lua/plenary.nvim'          " telescope.nvim で必要
   Plug 'nvim-telescope/telescope.nvim'  " ファイルやコマンドのファジーサーチ
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
   " Plug 'phaazon/hop.nvim'               " 単語ジャンプの簡易化
   Plug 'easymotion/vim-easymotion'      " 単語ジャンプの簡易化
