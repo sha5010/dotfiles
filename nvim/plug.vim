@@ -52,13 +52,13 @@ if !exists('g:vscode')
 endif
 
 if has("nvim") && !exists('g:vscode')
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " 構文解析の補助
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'commit': 'bc25a6a'}   " 構文解析の補助
   Plug 'windwp/nvim-autopairs'          " カッコや引用符などの自動追加
   Plug 'norcalli/nvim-colorizer.lua'    " カラーコードを可視化
 
   Plug 'nathom/filetype.nvim'           " filetype の読み込みを高速化
 
-  Plug 'ellisonleao/gruvbox.nvim'       " カラースキーム
+  Plug 'ellisonleao/gruvbox.nvim', { 'commit': 'dc6bae9' }       " カラースキーム
 
   Plug 'nvim-lualine/lualine.nvim'      " ステータスバーを見やすくする
   Plug 'seblj/nvim-tabline'             " タブラインをカスタマイズ
@@ -68,12 +68,12 @@ if has("nvim") && !exists('g:vscode')
 
   Plug 'nvim-lua/popup.nvim'            " telescope.nvim で必要
   Plug 'nvim-lua/plenary.nvim'          " telescope.nvim で必要
-  Plug 'nvim-telescope/telescope.nvim'  " ファイルやコマンドのファジーサーチ
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': 'nvim-0.6' }  " ファイルやコマンドのファジーサーチ
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
   " Plug 'phaazon/hop.nvim'               " 単語ジャンプの簡易化
   Plug 'easymotion/vim-easymotion'      " 単語ジャンプの簡易化
-  Plug 'numToStr/Comment.nvim'          " コメントアウト
+  Plug 'numToStr/Comment.nvim', {'tag': 'v0.6' }          " コメントアウト
   Plug 'cappyzawa/trim.nvim'            " 保存時に行末スペースを削除
   Plug 'lukas-reineke/indent-blankline.nvim'  " インデントガイド
 
@@ -85,7 +85,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'hrsh7th/cmp-buffer'             " nvim-cmp 用：バッファから候補に表示
   Plug 'hrsh7th/cmp-path'               " nvim-cmp 用：パスから候補に表示
   Plug 'hrsh7th/cmp-cmdline'            " nvim-cmp 用：コマンドを候補に表示
-  Plug 'hrsh7th/nvim-cmp'               " LSP を利用した自動補完を提供
+  Plug 'hrsh7th/nvim-cmp', { 'commit': 'bba6fb6' }               " LSP を利用した自動補完を提供
   Plug 'onsails/lspkind-nvim'           " nvim-cmp で表示される補完でアイコンを使用
 
   Plug 'lewis6991/gitsigns.nvim'        " Git の差分有無を左に表示
