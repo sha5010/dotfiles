@@ -1,9 +1,9 @@
 local status, tabline = pcall(require, "tabline")
 if (not status) then return end
 
-local clear_highlights = function(hls)
-    for name, _ in pairs(hls) do
-        vim.cmd('highlight clear ' .. name)
+local hi = function(colors)
+    for name, opts in pairs(colors) do
+        vim.api.nvim_set_hl(0, name, opts)
     end
 end
 
@@ -15,25 +15,19 @@ hl.c = {
     inactive_bg = hl.get_color('TabLineFill', 'bg'),
     active_text = '#eeeeee',
     inactive_text = '#7f8490',
-    active_sep = '#a89984',             -- lualine_a_normal
-    modified_active_sep = '#fe8019',    -- lualine_a_visual
+    active_sep = hl.get_color('lualine_a_normal', 'bg'),
 }
 
 local hls = {
-     TabLineSeparatorActive           = { guifg = hl.c.active_sep,          guibg = hl.c.active_bg },
-     TabLineSeparatorInactive         = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
-     TabLineModifiedSeparatorActive   = { guifg = hl.c.modified_active_sep, guibg = hl.c.active_bg },
-     TabLineModifiedSeparatorInactive = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
-     TabLineModifiedActive            = { guifg = hl.c.active_text,         guibg = hl.c.active_bg },
-     TabLineModifiedInactive          = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
-     TabLineCloseActive               = { guifg = hl.c.active_text,         guibg = hl.c.active_bg },
-     TabLineCloseInactive             = { guifg = hl.c.inactive_text,       guibg = hl.c.inactive_bg },
+     TabLineSeparatorSel = { fg = hl.c.active_sep,     bg = hl.c.active_bg } ,
+     TabLineSeparator    = { fg = hl.c.inactive_text,  bg = hl.c.inactive_bg } ,
+     TabLineModifiedSel  = { fg = hl.c.active_sep,     bg = hl.c.active_bg } ,
+     TabLineModified     = { fg = hl.c.inactive_text,  bg = hl.c.inactive_bg } ,
+     TabLineCloseSel     = { fg = hl.c.inactive_text,  bg = hl.c.inactive_bg } ,
+     TabLineClose        = { fg = hl.c.inactive_text,  bg = hl.c.inactive_bg } ,
+     TabLinePaddingSel   = { link = 'TabLineSel' },
+     TabLinePadding      = { link = 'TabLineFill' },
 }
-
--- re-configure highlights
-clear_highlights(hls)
-hl.highlight_all(hls)
-
 
 tabline.setup{
     no_name = '[No Name]',    -- Name for buffers with no name
@@ -47,3 +41,5 @@ tabline.setup{
     show_index = true ,       -- Shows the index of tab before filename
     show_icon = true,         -- Shows the devicon
 }
+
+hi(hls)
