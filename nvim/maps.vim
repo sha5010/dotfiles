@@ -188,7 +188,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 
 " Terminal mode
 " Escape キーで挿入モードからノーマルモードへ
-tnoremap <C-[> <C-\><C-n>
+tnoremap <ESC> <C-\><C-n>
 
 " Ctrl+k,j でヒストリを遡る
 tnoremap <C-k> <Up>
