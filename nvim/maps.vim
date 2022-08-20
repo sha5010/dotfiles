@@ -33,7 +33,6 @@ nnoremap gA g_a
 nnoremap x "_x
 nnoremap X "_X
 vnoremap x "_x
-vnoremap X "_X
 
 " c で変更するときもレジスタに保存しないようにする (代わりに d を使う)
 nnoremap c "_c
