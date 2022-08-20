@@ -51,6 +51,7 @@ endif
 if has("nvim") && !exists('g:vscode')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " 構文解析の補助
   Plug 'windwp/nvim-autopairs'          " カッコや引用符などの自動追加
+  Plug 'windwp/nvim-ts-autotag'         " タグを自動で閉じる
   Plug 'norcalli/nvim-colorizer.lua'    " カラーコードを可視化
 
   Plug 'nathom/filetype.nvim'           " filetype の読み込みを高速化
