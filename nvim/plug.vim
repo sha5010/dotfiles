@@ -75,7 +75,8 @@ if has("nvim") && !exists('g:vscode')
   Plug 'lukas-reineke/indent-blankline.nvim'  " インデントガイド
 
   Plug 'neovim/nvim-lspconfig'          " LSP を使用するための設定を行う
-  Plug 'williamboman/nvim-lsp-installer'  " Language Server の管理
+  Plug 'williamboman/mason.nvim'        " Language Server の管理
+  Plug 'williamboman/mason-lspconfig.nvim' " Language Server の管理
   Plug 'tami5/lspsaga.nvim'             " LSP の構文情報をポップアップ表示
   Plug 'folke/lsp-colors.nvim'          " 構文解析の結果に色を付ける (うまく動かない…)
   Plug 'hrsh7th/cmp-nvim-lsp'           " nvim-cmp 用：LSPの結果を候補に表示
@@ -84,6 +85,7 @@ if has("nvim") && !exists('g:vscode')
   Plug 'hrsh7th/cmp-cmdline'            " nvim-cmp 用：コマンドを候補に表示
   Plug 'hrsh7th/nvim-cmp'               " LSP を利用した自動補完を提供
   Plug 'onsails/lspkind-nvim'           " nvim-cmp で表示される補完でアイコンを使用
+  Plug 'L3MON4D3/LuaSnip'               " スニペット
 
   Plug 'lewis6991/gitsigns.nvim'        " Git の差分有無を左に表示
   Plug 'tpope/vim-fugitive'             " Git 操作を Vim 上で
