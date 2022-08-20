@@ -17,7 +17,7 @@ set ignorecase        " 検索時、大文字小文字を区別しない
 set smartcase         " ただし大文字が入力された場合は区別する
 
 if has('nvim')
-  set inccommand=nosplit
+  set inccommand=split
 endif
 
 " エンコーディング系
