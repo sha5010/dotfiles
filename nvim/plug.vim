@@ -22,7 +22,6 @@ if exists('g:vscode')
 endif
 
 Plug 'machakann/vim-sandwich'           " 囲む系の処理を簡単にできるようになる
-Plug 'machakann/vim-highlightedyank'    " ヤンクした箇所を一瞬ハイライト
 Plug 'thinca/vim-visualstar'            " Visual モードで選択中に * 等で検索
 Plug 'tpope/vim-sleuth'                 " shiftwidth や expandtab を自動判定
 

@@ -43,6 +43,12 @@ set splitbelow        " 横に画面分割時、下に開く
 " マウスの有効化
 set mouse=a
 
+" ヤンクしたときにハイライト表示する
+augroup HighlightYank
+  autocmd!
+  autocmd! TextYankPost * silent! lua vim.highlight.on_yank{timeout=500}
+augroup END
+
 " Imports {{{
 " --------------------------------------------------
 runtime ./plug.vim
