@@ -23,7 +23,6 @@ endif
 
 Plug 'machakann/vim-sandwich'           " 囲む系の処理を簡単にできるようになる
 Plug 'machakann/vim-highlightedyank'    " ヤンクした箇所を一瞬ハイライト
-Plug 'terryma/vim-expand-region'        " Visual モードで選択範囲をいい感じに拡張
 Plug 'kana/vim-operator-user'           " vim-operator-replace を使うのに必要
 Plug 'kana/vim-operator-replace'        " 置換時にオペレータが使えるようになる
 Plug 'thinca/vim-visualstar'            " Visual モードで選択中に * 等で検索
