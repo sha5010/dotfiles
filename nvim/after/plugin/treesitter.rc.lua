@@ -1,13 +1,7 @@
-if !exists('g:loaded_nvim_treesitter')
-  finish
-endif
-
-lua << EOF
 local status, treesitter_configs = pcall(require, "nvim-treesitter.configs")
+if (not status) then return end
+
 treesitter_configs.setup {
-  -- ensure_installed = "maintained",
-  -- sync_install = false,
-  -- ignore_install = {},
   highlight = {
     enable = true,
     disable = {},
@@ -32,12 +26,14 @@ treesitter_configs.setup {
     "markdown",
     "javascript",
     "dockerfile"
-  }
+  },
+  sync_install = true,
+  auto_install = true,
+  autotag = {
+    enable = true,
+  },
 }
-EOF
 
-" folding setting
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
-
-syntax enable
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = false
