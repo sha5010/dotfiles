@@ -20,8 +20,7 @@ mason_lspconfig.setup_handlers({ function(server)
 
     -- Mappings
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 
     -- formatting
     if client.server_capabilities.document_formatting then
@@ -41,3 +40,34 @@ mason_lspconfig.setup_handlers({ function(server)
 
   lspconfig[server].setup(opts)
 end })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    update_in_insert = false,
+    virtual_text = { spacing = 4 },
+    severity_sort = true,
+  }
+)
+
+-- Diagnostics symbols in the sign column (gutter)
+local signs = {
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Info = " ",
+}
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = ""})
+end
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●'
+  },
+  update_in_insert = true,
+  float = {
+    source = "always", -- Or "if_many"
+  },
+})
