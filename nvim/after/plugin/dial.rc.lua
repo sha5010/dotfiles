@@ -15,58 +15,14 @@ require("dial.config").augends:register_group{
     augend.date.alias["%Y年%-m月%-d日(%ja)"],
     augend.date.alias["%m/%d"],
     augend.date.new{  -- "%m/%d(%ja)"
-      pattern = {
-        regex = [[(\d{2})/(\d{2})\((月|火|水|木|金|土|日)\)]],
-        capture = { "%m", "%d" },
-      },
-      format = function(datetime)
-        local text_date = os.date("%m/%d", datetime)
-        local week_idx = tonumber(os.date("%u", datetime))
-        return ("%s(%s)"):format(text_date, JA_WEEKDAYS[week_idx])
-      end,
-      judge_datekind = function(_, curpos)
-        if curpos == nil or curpos <= 0 or curpos >= 3 then
-          return "day"
-        else
-          return "month"
-        end
-      end,
-      calc_curpos = function(text, kind)
-        if kind == "month" then
-          return 2
-        else
-          return #text
-        end
-      end,
+      pattern = "%m/%d(%J)",
+      default_kind = "day",
       only_valid = false,
     },
     augend.date.alias["%-m/%-d"],
     augend.date.new{  -- "%-m/%-d(%ja)"
-      pattern = {
-        regex = [[(\d{1,2})/(\d{1,2})\((月|火|水|木|金|土|日)\)]],
-        capture = { "%m", "%d" },
-      },
-      format = function(datetime)
-        local text_date = os.date("%-m/%-d", datetime)
-        local week_idx = tonumber(os.date("%u", datetime))
-        return ("%s(%s)"):format(text_date, JA_WEEKDAYS[week_idx])
-      end,
-      judge_datekind = function(text, curpos)
-        local idx_slash = text:find("/")
-        if curpos == nil or curpos <= 0 or curpos >= idx_slash then
-          return "day"
-        else
-          return "month"
-        end
-      end,
-      calc_curpos = function(text, kind)
-        local idx_slash = text:find("/")
-        if kind == "month" then
-          return idx_slash - 1
-        else
-          return #text
-        end
-      end,
+      pattern = "%-m/%-d(%J)",
+      default_kind = "day",
       only_valid = false,
     },
     augend.date.alias["%H:%M:%S"],

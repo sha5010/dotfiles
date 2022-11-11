@@ -33,7 +33,7 @@ mason_lspconfig.setup_handlers({ function(server)
 
   local status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if (status) then
-    opts.capabilities = cmp_nvim_lsp.update_capabilities(
+    opts.capabilities = cmp_nvim_lsp.default_capabilities(
       vim.lsp.protocol.make_client_capabilities()
     )
   end
