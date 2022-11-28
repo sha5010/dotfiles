@@ -1,8 +1,6 @@
 local status, augend = pcall(require, "dial.augend")
 if (not status) then return end
 
-local JA_WEEKDAYS = { "月", "火", "水", "木", "金", "土", "日" }
-
 require("dial.config").augends:register_group{
   default = {
     augend.integer.alias.decimal_int,
@@ -22,6 +20,16 @@ require("dial.config").augends:register_group{
     augend.date.alias["%-m/%-d"],
     augend.date.new{  -- "%-m/%-d(%ja)"
       pattern = "%-m/%-d(%J)",
+      default_kind = "day",
+      only_valid = false,
+    },
+    augend.date.new{  -- "%-m月%-日"
+      pattern = "%-m月%-d日",
+      default_kind = "day",
+      only_valid = false,
+    },
+    augend.date.new{  -- "%-m月%-日(%ja)"
+      pattern = "%-m月%-d日(%J)",
       default_kind = "day",
       only_valid = false,
     },
@@ -52,10 +60,3 @@ require("dial.config").augends:register_group{
     },
   },
 }
-
-vim.api.nvim_set_keymap("n", "<C-a>", require("dial.map").inc_normal(), {noremap = true})
-vim.api.nvim_set_keymap("n", "<C-x>", require("dial.map").dec_normal(), {noremap = true})
-vim.api.nvim_set_keymap("v", "<C-a>", require("dial.map").inc_visual(), {noremap = true})
-vim.api.nvim_set_keymap("v", "<C-x>", require("dial.map").dec_visual(), {noremap = true})
-vim.api.nvim_set_keymap("v", "g<C-a>", require("dial.map").inc_gvisual(), {noremap = true})
-vim.api.nvim_set_keymap("v", "g<C-x>", require("dial.map").dec_gvisual(), {noremap = true})
