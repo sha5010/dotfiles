@@ -308,11 +308,14 @@ return {
     end,
   },
 
-  -- ["nvim-lualine/lualine.nvim"] = {
-  --   config = function()
-  --     require("custom.plugins.configs.lualine")
-  --   end,
-  -- },
+  ["nvim-lualine/lualine.nvim"] = {
+    opt = true,
+    after = "ui",
+    config = function()
+      require("custom.plugins.configs.lualine")
+    end,
+    cond = cond_vscode,
+  },
 
   ["gbprod/substitute.nvim"] = {
     opt = true,

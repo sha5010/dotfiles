@@ -30,6 +30,8 @@ opt.cursorline = true
 opt.showtabline = 2
 opt.updatetime = 500
 opt.pumheight = 12
+opt.winhighlight = "Normal:ActiveWindow,NormalNC:InactiveWindow"
+
 
 -- split winodws
 opt.splitright = true
