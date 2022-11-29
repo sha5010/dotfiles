@@ -56,6 +56,25 @@ else
   theme = "auto"
 end
 
+local diff_color = nil
+if status_ok then
+  diff_color = {
+    added = { fg = base46.base_30.green },
+    modified = { fg = base46.base_30.blue },
+    removed = { fg = base46.base_30.red },
+  }
+end
+
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return {
+      added = gitsigns.added,
+      modified = gitsigns.changed,
+      removed = gitsigns.removed,
+    }
+  end
+end
 
 local function short_mode()
   local mode_to_short = {
@@ -87,7 +106,7 @@ local function tab_shiftwidth()
   local shiftwidth = vim.o.shiftwidth
 
   if is_expandtab then
-    return ' ' .. shiftwidth
+    return ' ' .. shiftwidth
   else
     return ' ' .. shiftwidth
   end
@@ -98,29 +117,32 @@ lualine.setup {
     icons_enabled = true,
     theme = theme,
     section_separators = {left = '', right = ''},
-    component_separators = {left = '￨', right = ''},
+    component_separators = {left = '', right = ''},
     disabled_filetypes = {}
   },
   sections = {
     -- lualine_a = {'mode'},
     lualine_a = {short_mode},
     lualine_b = {'branch'},
-    lualine_c = {{
-      'filename',
-      file_status = true, -- displays file status (readonly status, modified status)
-      path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
-      symbols = {
-        modified = '●',
-        readonly = ''
+    lualine_c = {
+      { 'filename',
+        file_status = true, -- displays file status (readonly status, modified status)
+        path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+        symbols = {
+          modified = '●',
+          readonly = ''
+        },
       },
       { 'diff',
         symbols = {
-          added = '烙',
-          modified = 'ﴞ ',
+          added = ' ',
+          modified = ' ',
           removed = ' ',
-        }
+        },
+        diff_color = diff_color,
+        source = diff_source,
       }
-    }},
+    },
     lualine_x = {
       { 'diagnostics',
         sources = {"nvim_diagnostic"},
