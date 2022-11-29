@@ -143,6 +143,20 @@ return {
     end,
   },
 
+  ["lewis6991/gitsigns.nvim"] = {
+    override_options = {
+      signs = {
+        add = {
+          text = "▍",
+        },
+        change = {
+          text = "▍",
+        },
+      },
+    },
+    cond = cond_vscode
+  },
+
   -- update cmp key mapping
   ["hrsh7th/nvim-cmp"] = {
     override_options = function()
@@ -430,7 +444,6 @@ return {
   ["kyazdani42/nvim-web-devicons"] = { cond = cond_vscode },
   ["lukas-reineke/indent-blankline.nvim"] = { cond = cond_vscode },
   ["nvim-treesitter/nvim-treesitter"] = { cond = cond_vscode },
-  ["lewis6991/gitsigns.nvim"] = { cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
   ["kyazdani42/nvim-tree.lua"] = { cond = cond_vscode },
 }
