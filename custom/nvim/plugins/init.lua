@@ -1,3 +1,7 @@
+-- windows environment
+local is_wsl = os.getenv('WSLENV') ~= nil or os.getenv('WSL_DISTRO_NAME') ~= nil or os.getenv('WSL_INTEROP') ~= nil
+local is_windows = vim.fn.has('win32') ~= 0 or vim.fn.has('win64') ~= 0 or is_wsl
+
 -- vscode judge
 local cond_vscode = (function()
   if vim.g.vscode == nil then
@@ -306,6 +310,15 @@ return {
     config = function()
       vim.g.im_select_default = "com.google.inputmethod.Japanese.Roman"
     end,
+    disable = is_windows,
+  },
+
+  ["kaz399/spzenhan.vim"] = {
+    opt = true,
+    setup = function()
+      require('plugins.configs.spzenhan')
+    end,
+    disable = not is_windows,
   },
 
   ["nvim-lualine/lualine.nvim"] = {
