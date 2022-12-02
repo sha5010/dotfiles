@@ -2,13 +2,13 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 local group_name = 'zenhan'
-local spzenhan_executable = vim.fn.stdpath('data') .. '/pack/packer/opt/spzenhan.vim/zenhan/spzenhan.exe'
+local spzenhan_executable = vim.fn.stdpath('data') .. '/site/pack/packer/opt/spzenhan.vim/zenhan/spzenhan.exe'
 spzenhan_executable = string.gsub(spzenhan_executable, '\\', '/')
 
 if (not vim.fn.executable(spzenhan_executable)) then return end
 
 local switch_ime = function(status)
-  local code = status and '1' or '0'
+  local code = status ~= 0 and '1' or '0'
   vim.fn.system(spzenhan_executable .. ' ' .. code)
 end
 

@@ -330,7 +330,7 @@ return {
   ["kaz399/spzenhan.vim"] = {
     opt = true,
     setup = function()
-      require('plugins.configs.spzenhan')
+      require('custom.plugins.configs.spzenhan')
     end,
     disable = not is_windows,
   },
