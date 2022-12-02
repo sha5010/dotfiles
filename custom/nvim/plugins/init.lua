@@ -133,6 +133,13 @@ return {
     end,
   },
 
+  ["nvim-treesitter/nvim-treesitter"] = {
+    override_options = {
+      auto_install = true,
+    },
+    cond = cond_vscode
+  },
+
   ["akinsho/bufferline.nvim"] = {
     after = "base46",
     config = function()
@@ -443,7 +450,6 @@ return {
   ["NvChad/extensions"] = { cond = cond_vscode },
   ["kyazdani42/nvim-web-devicons"] = { cond = cond_vscode },
   ["lukas-reineke/indent-blankline.nvim"] = { cond = cond_vscode },
-  ["nvim-treesitter/nvim-treesitter"] = { cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
   ["kyazdani42/nvim-tree.lua"] = { cond = cond_vscode },
 }
