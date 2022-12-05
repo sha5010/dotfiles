@@ -316,11 +316,11 @@ M.lspsaga = {
   plugin = true,
   n = {
     ["K"] = { "<cmd>Lspsaga hover_doc<CR>" },
-    ["gd"] = { "<cmd>Lspsaga lsp_finder<CR>" },
+    ["gd"] = { "<cmd>Lspsaga peek_definition<CR>" },
     ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
     ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>" },
     ["gr"] = { "<cmd>Lspsaga rename<CR>" },
-    ["gl"] = { "<cmd>Lspsaga show_line_diagnostics<CR>" },
+    ["gs"] = { "<cmd>Lspsaga show_line_diagnostics<CR>" },
     ["gh"] = { "<cmd>Lspsaga code_action<CR>" },
     ["gD"] = { "<cmd>Lspsaga preview_definition<CR>" },
   },
