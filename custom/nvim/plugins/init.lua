@@ -433,15 +433,32 @@ return {
         -- default config
         _ = {
           runner = "neovim_job",
+          ["outputter/buffer/opener"] = "rightbelow 8sp",
+          ["outputter/buffer/close_on_empty"] = 1,
+          ["outputter/buffer/into"] = 0,
+          ["hook/time/enable"] = 1,
         },
         python = {
           command = "python3",
-          cmdopt = { "-u" },
+          cmdopt = "-u",
           input = '%{filereadable("input") ? "input" : "="}',
         },
       }
 
       if vim.g.vscode == nil then require("core.utils").load_mappings("quickrun") end
+    end,
+    config = function()
+      vim.api.nvim_create_augroup('QuickRunClose', {})
+      vim.api.nvim_create_autocmd('FileType', {
+        group = 'QuickRunClose',
+        pattern = 'quickrun',
+        callback = function()
+          vim.keymap.set('n', 'q', '<cmd>quit<CR>', {
+            buffer = true,
+            silent = true,
+          })
+        end,
+      })
     end,
     cond = cond_vscode,
   },
