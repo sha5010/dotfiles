@@ -120,10 +120,8 @@ M.general = {
     ["<leader>P"] = { '"+P', { noremap = false } },
 
     ["<leader>a"] = { "gg0vG$" },
-
-    ["<leader>r"] = { "<Cmd>source ~/.config/nvim/init.lua<CR>" },
-
-    ["<leader>z"] = { "<Cmd>set invwrap<CR>" },
+    ["<leader>r"] = { "<Cmd>set relativenumber!<CR>" },
+    ["<leader>z"] = { "<Cmd>set wrap!<CR>" },
   },
   x = {
     ["<C-j>"] = { "10j", opts = { noremap = false } },
@@ -150,7 +148,8 @@ M.general = {
     ["<leader>p"] = { '"+p', { noremap = false } },
     ["<leader>P"] = { '"+P', { noremap = false } },
 
-    ["<leader>z"] = { "<Cmd>set invwrap<CR>" },
+    ["<leader>r"] = { "<Cmd>set relativenumber!<CR>" },
+    ["<leader>z"] = { "<Cmd>set wrap!<CR>" },
   },
   o = {
     ["<C-h>"] = { "^" },
