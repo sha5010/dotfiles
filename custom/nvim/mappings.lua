@@ -12,8 +12,33 @@ M.disabled = {
     ["<C-s>"] = "",
     ["<C-c>"] = "",
     ["<leader>rn"] = "",
+    ["<leader>uu"] = "",
     ["<leader>tt"] = "",
     ["<leader>b"] = "",
+
+    -- lspconfig
+    ["gi"] = "",
+    ["<leader>ra"] = "",
+    ["<leader>f"] = "",
+    ["<leader>q"] = "",
+    ["<leader>fm"] = "",
+    ["<leader>wa"] = "",
+    ["<leader>wr"] = "",
+    ["<leader>wl"] = "",
+
+    -- nvimtree
+    ["<C-n>"] = "",
+
+    -- telescope
+    ["<leader>tk"] = "",
+    ["<leader>cm"] = "",
+    ["<leader>pt"] = "",
+    ["<leader>th"] = "",
+
+    -- gitsigns
+    ["<leader>rh"] = "",
+    ["<leader>ph"] = "",
+    ["<leader>td"] = "",
   },
   t = {
     ["<C-x>"] = "",
@@ -32,7 +57,7 @@ M.general = {
     ["<C-k>"] = { "10k", opts = { noremap = false } },
 
     ["<C-h>"] = { "g^" },
-    ["<C-l>"] = {" g$" },
+    ["<C-l>"] = { "g$" },
 
     ["Y"] = { "y$" },
 
@@ -173,6 +198,120 @@ for _, v in pairs({"o", "x"}) do
   M.general[v]["a,"] = { "a<" }
   M.general[v]["a."] = { "a>" }
 end
+
+-- change default mappings
+M.lspconfig = {
+  plugin = true,
+  n = {
+    ["gl"] = {
+      function()
+        vim.diagnostic.setloclist()
+      end,
+      "diagnostic setloclist",
+    },
+    ["<leader>F"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      "lsp formatting",
+    },
+  },
+}
+
+M.nvimtree = {
+  plugin = true,
+  n = {
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree"},
+  },
+}
+
+M.telescope = {
+  plugin = true,
+  n = {
+    -- find
+    ["<leader>fk"] = { "<cmd> Telescope keymaps <CR>", "show keys" },
+    ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "find marks" },
+    ["<leader>ft"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
+    ["<leader>fr"] = { "<cmd> Telescope registers <CR>", "find registers" },
+    ["<leader>f/"] = { "<cmd> Telescope search_history <CR>", "search history" },
+    ["<leader>f:"] = { "<cmd> Telescope command_history <CR>", "command history" },
+
+    -- jump
+    ["<leader>b"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "fuzzy jump" },
+
+    -- git
+    ["<leader>gl"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
+    ["<leader>gf"] = { "<cmd> Telescope git_files <CR>", "git files" },
+    ["<leader>gh"] = { "<cmd> Telescope git_branches <CR>", "git branches" },
+    ["<leader>gs"] = { "<cmd> Telescope git_stash <CR>", "git stash" },
+  },
+}
+
+M.gitsigns = {
+  plugin = true,
+  n = {
+    ["<leader>gr"] = {
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      "Reset hunk",
+    },
+    ["<leader>gR"] = {
+      function()
+        require("gitsigns").reset_buffer()
+      end,
+      "Reset buffer",
+    },
+    ["<leader>gp"] = {
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      "preview hunk",
+    },
+    ["<leader>gm"] = {
+      function()
+        require("gitsigns").toggle_deleted()
+      end,
+      "Toggle deleted",
+    },
+    ["<leader>ga"] = {
+      function()
+        require("gitsigns").stage_hunk()
+      end,
+      "Stage hunk",
+    },
+    ["<leader>gA"] = {
+      function()
+        require("gitsigns").stage_buffer()
+      end,
+      "Stage buffer",
+    },
+    ["<leader>gu"] = {
+      function()
+        require("gitsigns").undo_stage_hunk()
+      end,
+      "Reset hunk",
+    },
+    ["<leader>gU"] = {
+      function()
+        require("gitsigns").reset_buffer_index()
+      end,
+      "Reset buffer index",
+    },
+    ["<leader>gq"] = {
+      function()
+        require("gitsigns").setqflist()
+      end,
+      "Reset hunk",
+    },
+    ["<leader>gw"] = {
+      function()
+        require("gitsigns").toggle_word_diff()
+      end,
+      "Reset hunk",
+    },
+  },
+}
 
 M.lspsaga = {
   plugin = true,
