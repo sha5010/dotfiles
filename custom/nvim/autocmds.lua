@@ -37,6 +37,18 @@ function M.setup()
      end
     end,
   })
+
+  augroup('CloseQuickFix', {})
+  autocmd('FileType', {
+    group = 'CloseQuickFix',
+    pattern = 'qf',
+    callback = function()
+      vim.keymap.set('n', 'q', '<cmd>quit<CR>', {
+        buffer = true,
+        silent = true,
+      })
+    end,
+  })
 end
 
 return M
