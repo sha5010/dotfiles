@@ -47,155 +47,158 @@ M.disabled = {
 
 M.general = {
   i = {
-    ["<C-a>"] = { "<Home>" },
-    ["<C-e>"] = { "<End>" },
-    ["<C-b>"] = { "<Left>" },
-    ["<C-f>"] = { "<Right>" },
+    ["<C-a>"] = { "<C-o>^", "beginning of line" },
+    ["<C-e>"] = { "<End>", "end of line" },
+    ["<C-b>"] = { "<Left>", "move left" },
+    ["<C-f>"] = { "<Right>", "move right" },
   },
   n = {
-    ["<C-j>"] = { "10j", opts = { noremap = false } },
-    ["<C-k>"] = { "10k", opts = { noremap = false } },
+    ["<C-j>"] = { "10j", opts = { noremap = false }, "10 up" },
+    ["<C-k>"] = { "10k", opts = { noremap = false }, "10 down" },
 
-    ["<C-h>"] = { "g^" },
-    ["<C-l>"] = { "g$" },
+    ["<C-h>"] = { "g^", "beginning of window" },
+    ["<C-l>"] = { "g$", "end of window" },
 
-    ["Y"] = { "y$" },
+    ["Y"] = { "y$", "yank to end of line" },
 
-    ["x"] = { '"_x' },
-    ["X"] = { '"_X' },
-    ["c"] = { '"_c' },
-    ["C"] = { '"_C' },
+    ["x"] = { '"_x', "" },
+    ["X"] = { '"_X', "" },
+    ["c"] = { '"_c', "" },
+    ["C"] = { '"_C', "" },
 
-    ["gV"] = { "`[v`]", { noremap = false } },
+    ["gV"] = { "`[v`]", { noremap = false }, "select put text" },
 
-    ["<Bslash>"] = { '<Cmd>call append(line(".")-1, "")<CR>' },
-    ["_"] = { '<Cmd>call append(line(".")-1, "")<CR>' },
+    ["<Bslash>"] = { '<Cmd>call append(line(".")-1, "")<CR>', "insert blank line" },
+    ["_"] = { '<Cmd>call append(line(".")-1, "")<CR>', "insert blank line" },
 
-    ["<TAB>"] = { "gt", { noremap = false } },
-    ["<S-Tab>"] = { "gT", { noremap = false } },
+    ["<TAB>"] = { "gt", { noremap = false }, "next tab" },
+    ["<S-Tab>"] = { "gT", { noremap = false }, "previous tab" },
 
     ["t"] = { "<Nop>" },
-    ["te"] = { ":<C-u>tabedit " },
-    ["tq"] = { "<Cmd>tabclose<CR>", { noremap = false } },
+    ["te"] = { ":<C-u>tabedit ", "tabedit" },
+    ["tq"] = { "<Cmd>tabclose<CR>", { noremap = false }, "close tab" },
 
-    ["t0"] = { "<Cmd>tablast<CR>" },
-    ["tt"] = { "<Cmd>tabedit<CR>" },
-    ["ts"] = { "<Cmd>tabs<CR>" },
-    ["th"] = { "<Cmd>tabmove-1<CR>" },
-    ["tl"] = { "<Cmd>tabmove+1<CR>" },
+    ["t0"] = { "<Cmd>tablast<CR>", "select last tab" },
+    ["tt"] = { "<Cmd>tabedit<CR>", "add blank tab" },
+    ["ts"] = { "<Cmd>tabs<CR>", "show tabs" },
+    ["th"] = { "<Cmd>tabmove-1<CR>", "move tab to left" },
+    ["tl"] = { "<Cmd>tabmove+1<CR>", "move tab to right" },
 
     ["s"] = { "<Nop>" },
-    ["s+"] = { "5<C-w>+" },
-    ["s-"] = { "5<C-w>-" },
-    ["s<"] = { "5<C-w><" },
-    ["s>"] = { "5<C-w>>" },
+    ["s+"] = { "5<C-w>+", "wider window vertically" },
+    ["s-"] = { "5<C-w>-", "narrow window vertically" },
+    ["s<"] = { "5<C-w><", "narrow window horizontally" },
+    ["s>"] = { "5<C-w>>", "wider window horizontally" },
 
-    ["s="] = { "<C-w>=", { noremap = false } },
+    ["s="] = { "<C-w>=", { noremap = false }, "make all window equally" },
 
-    ["ss"] = { "<C-w>s", { noremap = false } },
-    ["sv"] = { "<C-w>v", { noremap = false } },
+    ["ss"] = { "<C-w>s", { noremap = false }, "split horizontally" },
+    ["sv"] = { "<C-w>v", { noremap = false }, "split vertically" },
 
-    ["se"] = { "<C-w>n", { noremap = false } },
-    ["sq"] = { "<C-w>q", { noremap = false } },
+    ["se"] = { "<C-w>n", { noremap = false }, "split new file" },
+    ["sq"] = { "<C-w>q", { noremap = false }, "close window" },
 
-    ["st"] = { "<C-w>T" },
+    ["st"] = { "<C-w>T", "move window to tab" },
 
-    ["sh"] = { "<C-w>h" },
-    ["sj"] = { "<C-w>j" },
-    ["sk"] = { "<C-w>k" },
-    ["sl"] = { "<C-w>l" },
+    ["sh"] = { "<C-w>h", "window left" },
+    ["sj"] = { "<C-w>j", "window down" },
+    ["sk"] = { "<C-w>k", "window up" },
+    ["sl"] = { "<C-w>l", "window right" },
 
-    ["sH"] = { "<C-w>H" },
-    ["sJ"] = { "<C-w>J" },
-    ["sK"] = { "<C-w>K" },
-    ["sL"] = { "<C-w>L" },
+    ["sH"] = { "<C-w>H", "move window to left" },
+    ["sJ"] = { "<C-w>J", "move window to bottom" },
+    ["sK"] = { "<C-w>K", "move window to top" },
+    ["sL"] = { "<C-w>L", "mvoe window to right" },
 
-    ["<leader>n"] = { "<Cmd>nohlsearch<CR>" },
+    ["<leader>n"] = { "<Cmd>nohlsearch<CR>", "stop highlighting" },
 
-    ["<leader>y"] = { '"+y', { noremap = false } },
-    ["<leader>Y"] = { '"+Y', { noremap = false } },
-    ["<leader>d"] = { '"+d', { noremap = false } },
-    ["<leader>D"] = { '"+D', { noremap = false } },
-    ["<leader>p"] = { '"+p', { noremap = false } },
-    ["<leader>P"] = { '"+P', { noremap = false } },
+    ["<leader>y"] = { '"+y', { noremap = false }, "yank to clipboard" },
+    ["<leader>Y"] = { '"+Y', { noremap = false }, "yank to clipboard" },
+    ["<leader>d"] = { '"+d', { noremap = false }, "cut to clipboard" },
+    ["<leader>D"] = { '"+D', { noremap = false }, "cut to clipboard" },
+    ["<leader>p"] = { '"+p', { noremap = false }, "put from clipboard" },
+    ["<leader>P"] = { '"+P', { noremap = false }, "put from clipboard" },
 
-    ["<leader>a"] = { "gg0vG$" },
-    ["<leader>r"] = { "<Cmd>set relativenumber!<CR>" },
-    ["<leader>z"] = { "<Cmd>set wrap!<CR>" },
+    ["<leader>a"] = { "gg0vG$", "select entire buffer" },
+    ["<leader>r"] = { "<Cmd>set relativenumber!<CR>", "toggle relativenumber" },
+    ["<leader>z"] = { "<Cmd>set wrap!<CR>", "toggle wrap" },
   },
   x = {
-    ["<C-j>"] = { "10j", opts = { noremap = false } },
-    ["<C-k>"] = { "10k", opts = { noremap = false } },
+    ["<C-j>"] = { "10j", opts = { noremap = false }, "10 down" },
+    ["<C-k>"] = { "10k", opts = { noremap = false }, "10 up" },
 
-    ["<C-h>"] = { "^" },
-    ["<C-l>"] = { "$" },
+    ["<C-h>"] = { "^", "beginning of line" },
+    ["<C-l>"] = { "$", "end of line" },
 
-    ["x"] = { '"_x' },
-    ["c"] = { '"_c' },
-    ["C"] = { '"_C' },
+    ["x"] = { '"_x', "" },
+    ["X"] = { '"_X', "" },
+    ["c"] = { '"_c', "" },
+    ["C"] = { '"_C', "" },
 
-    [">"] = { ">gv" },
-    ["<"] = { "<gv" },
+    [">"] = { ">gv", "increase indent" },
+    ["<"] = { "<gv", "decrease indent" },
 
     ["s"] = { "<Nop>" },
 
-    ["<leader>n"] = { "<Cmd>nohlsearch<CR>" },
+    ["<leader>n"] = { "<Cmd>nohlsearch<CR>", "stop highlighting" },
 
-    ["<leader>y"] = { '"+y', { noremap = false } },
-    ["<leader>Y"] = { '"+Y', { noremap = false } },
-    ["<leader>d"] = { '"+d', { noremap = false } },
-    ["<leader>D"] = { '"+D', { noremap = false } },
-    ["<leader>p"] = { '"+p', { noremap = false } },
-    ["<leader>P"] = { '"+P', { noremap = false } },
+    ["<leader>y"] = { '"+y', { noremap = false }, "yank to clipboard" },
+    ["<leader>Y"] = { '"+Y', { noremap = false }, "yank to clipboard" },
+    ["<leader>d"] = { '"+d', { noremap = false }, "cut to clipboard" },
+    ["<leader>D"] = { '"+D', { noremap = false }, "cut to clipboard" },
+    ["<leader>p"] = { '"+p', { noremap = false }, "put from clipboard" },
+    ["<leader>P"] = { '"+P', { noremap = false }, "put from clipboard" },
 
-    ["<leader>r"] = { "<Cmd>set relativenumber!<CR>" },
-    ["<leader>z"] = { "<Cmd>set wrap!<CR>" },
+    ["<leader>r"] = { "<Cmd>set relativenumber!<CR>", "toggle relativenumber" },
+    ["<leader>z"] = { "<Cmd>set wrap!<CR>", "toggle wrap" },
   },
   o = {
-    ["<C-h>"] = { "^" },
-    ["<C-l>"] = { "$" },
+    ["<C-h>"] = { "^", "beginning of line" },
+    ["<C-l>"] = { "$", "end of line" },
   },
   c = {
-    ["<C-a>"] = { "<Home>" },
-    ["<C-e>"] = { "<End>" },
-    ["<C-k>"] = { "<Up>" },
-    ["<C-j>"] = { "<Down>" },
-    ["<C-b>"] = { "<Left>" },
-    ["<C-f>"] = { "<Right>" },
+    ["<C-a>"] = { "<Home>", "beginning of line" },
+    ["<C-e>"] = { "<End>", "end of line" },
+    ["<C-k>"] = { "<Up>", "up" },
+    ["<C-j>"] = { "<Down>", "down" },
+    ["<C-b>"] = { "<Left>", "left" },
+    ["<C-f>"] = { "<Right>", "right" },
 
     ["%%"] = {
-      function ()
+      function()
         return vim.fn.getcmdtype() == ":" and vim.fn.expand("%:h") .. "/" or "%%"
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "expand cwd path",
     },
   },
   t = {
-    ["<Esc>"] = { "<C-\\><C-n>" },
+    ["<Esc>"] = { "<C-\\><C-n>", "normal mode" },
 
-    ["<C-k>"] = { "<Up>" },
-    ["<C-j>"] = { "<Down>" },
+    ["<C-k>"] = { "<Up>", "up" },
+    ["<C-j>"] = { "<Down>", "down" },
   },
 }
 
 for i = 1, 9 do
-  M.general.n["t"..i] = { i.. "gt" }
+  M.general.n["t" .. i] = { i .. "gt", "select tab " .. i }
 end
 
-for _, v in pairs({"o", "x"}) do
-  M.general[v]["i8"] = { "i(" }
-  M.general[v]["i9"] = { "i)" }
-  M.general[v]["i2"] = { 'i"' }
-  M.general[v]["i7"] = { "i'" }
-  M.general[v]["i@"] = { "i`" }
-  M.general[v]["i,"] = { "i<" }
-  M.general[v]["i."] = { "i>" }
-  M.general[v]["a8"] = { "a(" }
-  M.general[v]["a9"] = { "a)" }
-  M.general[v]["a2"] = { 'a"' }
-  M.general[v]["a7"] = { "a'" }
-  M.general[v]["a@"] = { "a`" }
-  M.general[v]["a,"] = { "a<" }
-  M.general[v]["a."] = { "a>" }
+for _, v in pairs({ "o", "x" }) do
+  M.general[v]["i8"] = { "i(", "" }
+  M.general[v]["i9"] = { "i)", "" }
+  M.general[v]["i2"] = { 'i"', "" }
+  M.general[v]["i7"] = { "i'", "" }
+  M.general[v]["i@"] = { "i`", "" }
+  M.general[v]["i,"] = { "i<", "" }
+  M.general[v]["i."] = { "i>", "" }
+  M.general[v]["a8"] = { "a(", "" }
+  M.general[v]["a9"] = { "a)", "" }
+  M.general[v]["a2"] = { 'a"', "" }
+  M.general[v]["a7"] = { "a'", "" }
+  M.general[v]["a@"] = { "a`", "" }
+  M.general[v]["a,"] = { "a<", "" }
+  M.general[v]["a."] = { "a>", "" }
 end
 
 -- change default mappings
@@ -324,21 +327,21 @@ M.diffview = {
 M.lspsaga = {
   plugin = true,
   n = {
-    ["K"] = { "<cmd>Lspsaga hover_doc<CR>" },
-    ["gd"] = { "<cmd>Lspsaga peek_definition<CR>" },
-    ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
-    ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>" },
-    ["gr"] = { "<cmd>Lspsaga rename<CR>" },
-    ["gs"] = { "<cmd>Lspsaga show_line_diagnostics<CR>" },
-    ["gh"] = { "<cmd>Lspsaga code_action<CR>" },
-    ["gD"] = { "<cmd>Lspsaga preview_definition<CR>" },
+    ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "hover doc" },
+    ["gd"] = { "<cmd>Lspsaga peek_definition<CR>", "peek definition" },
+    ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "next diagnostic result" },
+    ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "previous diagnostic result" },
+    ["gr"] = { "<cmd>Lspsaga rename<CR>", "rename" },
+    ["gs"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diagnostics" },
+    ["gh"] = { "<cmd>Lspsaga code_action<CR>", "show code action" },
+    ["gD"] = { "<cmd>Lspsaga preview_definition<CR>", "preview definition" },
   },
 }
 
 M.bufferline = {
   plugin = true,
   n = {
-    ["tp"] = { "<Cmd>BufferLinePick<CR>" },
+    ["tp"] = { "<Cmd>BufferLinePick<CR>", "pick tab" },
   },
 }
 
@@ -347,27 +350,29 @@ M.searchbox = {
   n = {
     ["<leader>s"] = {
       function()
-        require("searchbox").replace { confirm = "menu", default_value = vim.fn.expand "<cword>" }
-      end, "Find and Replace [ Current Buffer ]"
+        require("searchbox").replace({ confirm = "menu", default_value = vim.fn.expand("<cword>") })
+      end,
+      "Find and Replace [ Current Buffer ]",
     },
   },
   x = {
     ["<leader>s"] = {
       function()
         -- grab the old value of a register
-        local a_content = vim.fn.getreg "a"
+        local a_content = vim.fn.getreg("a")
         -- copy the current visual selection to "a" register
-        vim.cmd 'noau normal! "ay"'
+        vim.cmd('noau normal! "ay"')
         -- grab content
-        local content, v_mode = vim.fn.getreg "a", false
+        local content, v_mode = vim.fn.getreg("a"), false
         -- restore the "a" register
         vim.fn.setreg("a", a_content)
 
-        if content:match "\n" then
+        if content:match("\n") then
           content, v_mode = "", true
         end
-        require("searchbox").replace { confirm = "menu", default_value = content, visual_mode = v_mode }
-      end, "Find and Replace [ Current Buffer ]"
+        require("searchbox").replace({ confirm = "menu", default_value = content, visual_mode = v_mode })
+      end,
+      "Find and Replace [ Current Buffer ]",
     },
   },
 }
@@ -378,34 +383,46 @@ M.dial = {
     ["<C-a>"] = {
       function()
         return require("dial.map").inc_normal()
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "increase",
     },
     ["<C-x>"] = {
       function()
         return require("dial.map").dec_normal()
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "decrease",
     },
   },
   x = {
     ["<C-a>"] = {
       function()
         return require("dial.map").inc_visual()
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "increase",
     },
     ["<C-x>"] = {
       function()
         return require("dial.map").dec_visual()
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "decrease",
     },
     ["g<C-a>"] = {
       function()
         return require("dial.map").inc_gvisual()
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "increase by an additional",
     },
     ["g<C-x>"] = {
       function()
         return require("dial.map").dec_gvisual()
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "decrease by an additional",
     },
   },
 }
@@ -416,78 +433,85 @@ M.substitute = {
     ["S"] = {
       function()
         require("substitute").operator()
-      end
+      end,
+      "substitute",
     },
     ["SS"] = {
       function()
         require("substitute").line()
-      end
+      end,
+      "substitute line",
     },
     ["sx"] = {
       function()
         require("substitute.exchange").operator()
-      end
+      end,
+      "exchange",
     },
     ["sxx"] = {
       function()
         require("substitute.exchange").line()
-      end
+      end,
+      "exchange line",
     },
     ["sxc"] = {
       function()
         require("substitute.exchange").cancel()
-      end
+      end,
+      "cancel exchange",
     },
   },
   x = {
     ["S"] = {
       function()
         require("substitute").visual()
-      end
+      end,
+      "substitute",
     },
     ["sx"] = {
       function()
         require("substitute.exchange").visual()
-      end
-    }
-  }
+      end,
+      "exchange",
+    },
+  },
 }
 
 M.undotree = {
   plugin = true,
   n = {
-    ["U"] = { '<cmd>UndotreeToggle|UndotreeFocus<CR>', 'Toggle Undotree' },
-  }
+    ["U"] = { "<cmd>UndotreeToggle|UndotreeFocus<CR>", "Toggle Undotree" },
+  },
 }
 
 local avoid_macro = function(key, cmd)
   if vim.g.EasyMotion_loaded == nil then
     return key
   end
-  return (vim.fn.reg_recording() == '' and vim.fn.reg_executing() == '') and cmd or key
+  return (vim.fn.reg_recording() == "" and vim.fn.reg_executing() == "") and cmd or key
 end
 
 local easymotion_keys = {
   n = {
-    ["f"] = '<Plug>(easymotion-sl)',
-    ["F"] = '<Plug>(easymotion-lineanywhere)',
-    [";"] = '<Plug>(easymotion-next)',
-    [","] = '<Plug>(easymotion-prev)',
-    ["m"] = '<Plug>(easymotion-bd-W)',
+    ["f"] = "<Plug>(easymotion-sl)",
+    ["F"] = "<Plug>(easymotion-lineanywhere)",
+    [";"] = "<Plug>(easymotion-next)",
+    [","] = "<Plug>(easymotion-prev)",
+    ["m"] = "<Plug>(easymotion-bd-W)",
   },
   x = {
-    ["f"] = '<Plug>(easymotion-sl)',
-    ["F"] = '<Plug>(easymotion-lineanywhere)',
-    [";"] = '<Plug>(easymotion-next)',
-    [","] = '<Plug>(easymotion-prev)',
-    ["m"] = '<Plug>(easymotion-bd-W)',
+    ["f"] = "<Plug>(easymotion-sl)",
+    ["F"] = "<Plug>(easymotion-lineanywhere)",
+    [";"] = "<Plug>(easymotion-next)",
+    [","] = "<Plug>(easymotion-prev)",
+    ["m"] = "<Plug>(easymotion-bd-W)",
   },
   o = {
-    ["f"] = '<Plug>(easymotion-fl)',
-    ["F"] = '<Plug>(easymotion-Fl)',
-    ["t"] = '<Plug>(easymotion-tl)',
-    ["T"] = '<Plug>(easymotion-Tl)',
-  }
+    ["f"] = "<Plug>(easymotion-fl)",
+    ["F"] = "<Plug>(easymotion-Fl)",
+    ["t"] = "<Plug>(easymotion-tl)",
+    ["T"] = "<Plug>(easymotion-Tl)",
+  },
 }
 
 M.easymotion = {
@@ -500,7 +524,8 @@ for m, v in pairs(easymotion_keys) do
     M.easymotion[m][k] = {
       function()
         return avoid_macro(k, c)
-      end, opts = { noremap = false, expr = true }
+      end,
+      opts = { noremap = false, expr = true },
     }
   end
 end
@@ -508,7 +533,7 @@ end
 M.quickrun = {
   plugin = true,
   n = {
-    ["<C-q>"] = { "<Cmd>QuickRun<CR>"},
+    ["<C-q>"] = { "<Cmd>QuickRun<CR>", "QuickRun" },
     ["<C-c>"] = {
       function()
         if vim.fn.exists("*quickrun#session#exists") == 1
@@ -520,11 +545,13 @@ M.quickrun = {
         else
           return "<C-c>"
         end
-      end, opts = { expr = true }
+      end,
+      opts = { expr = true },
+      "cancel QuickRun process",
     },
   },
   x = {
-    ["<C-q>"] = { "<Cmd>QuickRun -mode v<CR>"},
+    ["<C-q>"] = { "<Cmd>QuickRun -mode v<CR>", "QuickRun" },
   },
 }
 
