@@ -336,7 +336,7 @@ return {
     config = function()
       vim.g.im_select_default = "com.google.inputmethod.Japanese.Roman"
     end,
-    disable = true,
+    disable = is_windows,
   },
 
   ["kaz399/spzenhan.vim"] = {
