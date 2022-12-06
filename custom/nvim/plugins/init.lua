@@ -38,6 +38,7 @@ return {
         end,
       },
     },
+    cond = cond_vscode,
   },
 
   -- enable which-key
@@ -72,10 +73,12 @@ return {
   },
 
   ["neovim/nvim-lspconfig"] = {
-    after = "mason.nvim",
+    opt = true,
+    cond = cond_vscode,
   },
 
   ["ray-x/lsp_signature.nvim"] = {
+    opt = true,
     after = "nvim-lspconfig",
     config = function()
       require("lsp_signature").setup({
@@ -122,7 +125,7 @@ return {
       "mason.nvim",
     },
     requires = {
-      { "jayp0521/mason-null-ls.nvim" },
+      { "jayp0521/mason-null-ls.nvim", opt = true },
     },
     config = function()
       require("mason-null-ls").setup({
@@ -148,6 +151,7 @@ return {
     setup = function()
       if vim.g.vscode == nil then require("core.utils").load_mappings("bufferline") end
     end,
+    cond = cond_vscode,
   },
 
   ["lewis6991/gitsigns.nvim"] = {
@@ -210,6 +214,7 @@ return {
     config = function()
       require("guess-indent").setup({})
     end,
+    cond = cond_vscode,
   },
 
   ["windwp/nvim-autopairs"] = {
@@ -465,6 +470,7 @@ return {
 
   -- disable default plugins in vscode
   ["NvChad/extensions"] = { cond = cond_vscode },
+  ["rafamadriz/friendly-snippets"] = { cond = cond_vscode },
   ["kyazdani42/nvim-web-devicons"] = { cond = cond_vscode },
   ["lukas-reineke/indent-blankline.nvim"] = { cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
