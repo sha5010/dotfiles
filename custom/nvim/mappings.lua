@@ -312,6 +312,15 @@ M.gitsigns = {
   },
 }
 
+-- custom plugins
+M.diffview = {
+  plugin = true,
+  n = {
+    ["<leader>gd"] = { "<cmd> DiffviewOpen <CR>", "diffview" },
+    ["<leader>gD"] = { "<cmd> DiffviewFileHistory <CR>", "diffview file history" },
+  }
+}
+
 M.lspsaga = {
   plugin = true,
   n = {

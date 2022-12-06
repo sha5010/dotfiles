@@ -143,6 +143,15 @@ return {
     cond = cond_vscode
   },
 
+  ["kevinhwang91/nvim-bqf"] = {
+    opt = true,
+    ft = "qf",
+    config = function()
+      require('bqf').setup()
+    end,
+    cond = cond_vscode,
+  },
+
   ["akinsho/bufferline.nvim"] = {
     after = "base46",
     config = function()
@@ -166,6 +175,19 @@ return {
       },
     },
     cond = cond_vscode
+  },
+
+  ["sindrets/diffview.nvim"] = {
+    opt = true,
+    requires = "plenary.nvim",
+    cmd = { "DiffviewOpen", "DiffviewToggleFiles", "DiffviewFileHistory"},
+    config = function()
+      require("diffview").setup({})
+    end,
+    setup = function()
+      if vim.g.vscode == nil then require("core.utils").load_mappings("diffview") end
+    end,
+    cond = cond_vscode,
   },
 
   -- update cmp key mapping
