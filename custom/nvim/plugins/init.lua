@@ -74,6 +74,7 @@ return {
 
   ["neovim/nvim-lspconfig"] = {
     opt = true,
+    after = "ui",
     cond = cond_vscode,
   },
 
@@ -196,13 +197,41 @@ return {
       local cmp = require("cmp")
       return {
         mapping = {
-          ["<CR>"] = cmp.mapping(
-            cmp.mapping.confirm({
-              behavior = cmp.ConfirmBehavior.Replace,
-              select = false,
-            }),
-            { "i", "c" }
-          ),
+          ["<C-p>"] = cmp.mapping(function()
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              cmp.complete()
+            end
+          end, { "i", "c" }),
+          ["<C-n>"] = cmp.mapping(function()
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              cmp.complete()
+            end
+          end, { "i", "c" }),
+          ["<CR>"] = cmp.mapping(cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+          }), { "i", "c" }),
+          ["<C-e>"] = cmp.mapping(function(fallback) fallback() end, { "i", "c" }),
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<C-c>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.confirm({
+                behavior = cmp.ConfirmBehavior.Insert,
+                select = true,
+              })
+            elseif require("luasnip").expand_or_jumpable() then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+            else
+              fallback()
+            end
+          end, { "i", "c" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback) fallback() end, { "i", "c" }),
         },
         sources = {
           { name = "luasnip" },
@@ -236,6 +265,49 @@ return {
     config = function()
       require("guess-indent").setup({})
     end,
+    cond = cond_vscode,
+  },
+
+  ["kyazdani42/nvim-tree.lua"] = {
+    override_options = {
+      renderer = {
+        highlight_git = true,
+        group_empty = true,
+      },
+      git = {
+        enable = true,
+      },
+      diagnostics = {
+        enable = true,
+        show_on_dirs = true,
+      },
+      actions = {
+        open_file = {
+          quit_on_open = true,
+        },
+      },
+      view = {
+        mappings = {
+          list = {
+            { key = "l",  action = "edit" },
+            { key = "h",  action = "close_node" },
+            { key = "Y",  action = "copy_absolute_path" },
+            { key = "gy", action = "copy_path" },
+            { key = "[d", action = "prev_diag_item" },
+            { key = "[g", action = "prev_git_item" },
+            { key = "]d", action = "next_diag_item" },
+            { key = "]g", action = "next_git_item" },
+            { key = "o",  action = "system_open" },
+
+            -- disable default mapping
+            {
+              key = { "s", "[e", "]e", "[c", "]c" },
+              action = ""
+            },
+          },
+        },
+      },
+    },
     cond = cond_vscode,
   },
 
@@ -496,5 +568,4 @@ return {
   ["kyazdani42/nvim-web-devicons"] = { cond = cond_vscode },
   ["lukas-reineke/indent-blankline.nvim"] = { cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
-  ["kyazdani42/nvim-tree.lua"] = { cond = cond_vscode },
 }
