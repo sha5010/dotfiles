@@ -511,9 +511,11 @@ M.quickrun = {
     ["<C-q>"] = { "<Cmd>QuickRun<CR>"},
     ["<C-c>"] = {
       function()
-        if vim.fn["quickrun#session#exists"]() then
+        if vim.fn.exists("*quickrun#session#exists") == 1
+          and vim.fn["quickrun#session#exists"]() ~= 0 then
+
           vim.fn["quickrun#sweep_sessions"]()
-          print('QuickRun: Process Stopped.')
+          print("QuickRun: Process Stopped.")
           return ""
         else
           return "<C-c>"
