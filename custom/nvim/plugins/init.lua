@@ -27,8 +27,14 @@ return {
   ["NvChad/nvterm"] = false,
 
   -- disable tabufline and statusline
+  ["NvChad/base46"] = {
+    module = "base46",
+    cond = cond_vscode,
+  },
+
   ["NvChad/ui"] = {
-    after = false,
+    module = "nvchad_ui",
+    after = { "lualine.nvim", "bufferline.nvim" },
     override_options = {
       tabufline = { enabled = false },
       statusline = {
@@ -49,55 +55,39 @@ return {
 
   -- lsp related stuff
   ["williamboman/mason.nvim"] = {
-    opt = true,
-    config = function()
-      require("mason").setup()
-    end,
-    setup = function()
-      require("custom.utils").packer_lazy_load("mason.nvim", 1000)
-      -- reload the current file so lsp actually starts for it
-      vim.defer_fn(function()
-        vim.cmd('if &ft == "packer" | echo "" | else | silent! e %')
-      end, 0)
-    end,
+    cmd = false,
+    module = "mason",
+    after = { "null-ls.nvim", "mason-lspconfig.nvim" },
     cond = cond_vscode,
   },
 
   ["williamboman/mason-lspconfig.nvim"] = {
     opt = true,
-    after = "mason.nvim",
-    module = "mason-lspconfig",
+    wants = "mason.nvim",
     config = function()
       require("custom.plugins.configs.mason-lspconfig")
     end,
+    cond = cond_vscode,
   },
 
   ["neovim/nvim-lspconfig"] = {
-    opt = true,
-    after = "ui",
+    config = function()
+      require("custom.plugins.configs.lspconfig")
+    end,
     cond = cond_vscode,
   },
 
   ["ray-x/lsp_signature.nvim"] = {
     opt = true,
-    after = "nvim-lspconfig",
-    config = function()
-      require("lsp_signature").setup({
-        bind = false,
-        handler_opts = {
-          border = "rounded",
-        },
-        max_width = 80,
-        max_height = 4,
-        zindex = 40,
-        timer_interval = 100,
-        hint_prefix = " ",
-      })
-    end,
+    module = "lsp_signature",
+    wants = "nvim-lspconfig",
+    cond = cond_vscode,
   },
 
   ["glepnir/lspsaga.nvim"] = {
-    after = "nvim-lspconfig",
+    opt = true,
+    wants = "nvim-lspconfig",
+    cmd = "Lspsaga",
     config = function()
       require("lspsaga").init_lsp_saga({
         max_preview_lines = 50,
@@ -119,14 +109,17 @@ return {
     setup = function()
       if vim.g.vscode == nil then require("core.utils").load_mappings("lspsaga") end
     end,
+    cond = cond_vscode,
   },
 
   ["jose-elias-alvarez/null-ls.nvim"] = {
-    after = {
+    opt = true,
+    wants = {
       "mason.nvim",
+      "mason-null-ls.nvim",
     },
     requires = {
-      { "jayp0521/mason-null-ls.nvim", opt = true },
+      { "jayp0521/mason-null-ls.nvim", opt = true, module = "mason-null-ls" },
     },
     config = function()
       require("mason-null-ls").setup({
@@ -135,6 +128,7 @@ return {
       require("mason-null-ls").setup_handlers({})
       require("null-ls").setup()
     end,
+    cond = cond_vscode,
   },
 
   ["nvim-treesitter/nvim-treesitter"] = {
@@ -154,7 +148,8 @@ return {
   },
 
   ["akinsho/bufferline.nvim"] = {
-    after = "base46",
+    opt = true,
+    wants = "base46",
     config = function()
       require("custom.plugins.configs.bufferline")
     end,
@@ -193,6 +188,8 @@ return {
 
   -- update cmp key mapping
   ["hrsh7th/nvim-cmp"] = {
+    module = "cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
     override_options = function()
       local cmp = require("cmp")
       return {
@@ -237,7 +234,7 @@ return {
           { name = "luasnip" },
           { name = "nvim_lsp" },
           {
-            name = "buffer", 
+            name = "buffer",
             option = {
               get_bufnrs = function()
                 return vim.api.nvim_list_bufs()
@@ -249,19 +246,22 @@ return {
         }
       }
     end,
-    setup = function()
-      if vim.g.vscode == nil then require("custom.utils").packer_lazy_load("nvim-cmp", 0) end
-    end,
+    cond = cond_vscode,
   },
 
   ["hrsh7th/cmp-cmdline"] = {
-    after = "cmp-path",
+    opt = true,
+    event = "CmdlineEnter",
+    wants = "nvim-cmp",
     config = function()
       require("custom.plugins.configs.cmp_cmdline")
     end,
+    cond = cond_vscode,
   },
 
   ["nmac427/guess-indent.nvim"] = {
+    opt = true,
+    event = "BufEnter",
     config = function()
       require("guess-indent").setup({})
     end,
@@ -338,6 +338,9 @@ return {
           },
         },
       }
+    end,
+    setup = function()
+      if vim.g.vscode == nil then require("core.utils").load_mappings("telescope") end
     end,
     cond = cond_vscode,
   },
@@ -474,7 +477,7 @@ return {
 
   ["nvim-lualine/lualine.nvim"] = {
     opt = true,
-    after = "ui",
+    wants = "ui",
     config = function()
       require("custom.plugins.configs.lualine")
     end,
@@ -499,15 +502,6 @@ return {
   ["kylechui/nvim-surround"] = {
     opt = true,
     module = "nvim-surround",
-    keys = {
-      { "n", "sa" },
-      { "n", "sa" },
-      { "n", "sA" },
-      { "n", "sd" },
-      { "n", "sr" },
-      { "i", "<C-g>s" },
-      { "i", "<C-g>S" },
-    },
     config = function()
       require("nvim-surround").setup({
         keymaps = {
@@ -537,14 +531,13 @@ return {
 
   ["easymotion/vim-easymotion"] = {
     opt = true,
-    after = "ui",
+    wants = "ui",
     setup = easymotion_setting,
     cond = cond_vscode,
   },
 
   ["asvetliakov/vim-easymotion"] = {
     opt = true,
-    after = "ui",
     as = "vscode-easymotion",
     cond = function()
       return vim.g.vscode ~= nil
@@ -596,7 +589,7 @@ return {
   -- disable default plugins in vscode
   ["NvChad/extensions"] = { cond = cond_vscode },
   ["rafamadriz/friendly-snippets"] = { cond = cond_vscode },
-  ["kyazdani42/nvim-web-devicons"] = { cond = cond_vscode },
+  ["kyazdani42/nvim-web-devicons"] = { after = false, cond = cond_vscode },
   ["lukas-reineke/indent-blankline.nvim"] = { cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
 }
