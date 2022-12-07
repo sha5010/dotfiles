@@ -112,6 +112,32 @@ return {
     cond = cond_vscode,
   },
 
+  ["utilyre/barbecue.nvim"] = {
+    opt = true,
+    wants = {
+      "nvim-lspconfig",
+      "nvim-navic",
+    },
+    event = { "BufRead", "BufNewFile" },
+    requires = {
+      { "smiteshp/nvim-navic", opt = true },
+    },
+    config = function()
+      require("barbecue").setup()
+    end,
+    cond = cond_vscode,
+  },
+
+  ["j-hui/fidget.nvim"] = {
+    opt = true,
+    wants = "nvim-lspconfig",
+    event = "BufEnter",
+    config = function()
+      require("fidget").setup()
+    end,
+    cond = cond_vscode,
+  },
+
   ["jose-elias-alvarez/null-ls.nvim"] = {
     opt = true,
     wants = {
