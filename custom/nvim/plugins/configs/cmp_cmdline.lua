@@ -11,7 +11,6 @@ cmp.setup.cmdline("/", {
   sources = {
     { name = "buffer" },
   },
-  mapping = cmp.mapping.preset.cmdline {},
 })
    
 cmp.setup.cmdline(":", {
@@ -22,5 +21,4 @@ cmp.setup.cmdline(":", {
     -- { name = "cmdline", keyword_pattern=[=[[^[:blank:]\!]\{3,\}]=] },
     { name = "cmdline" },
   }),
-  mapping = cmp.mapping.preset.cmdline {},
 })
