@@ -27,7 +27,6 @@ opt.background = "dark"
 opt.scrolloff = 5
 opt.lazyredraw = true
 opt.cursorline = true
-opt.showtabline = 2
 opt.updatetime = 500
 opt.pumheight = 12
 opt.winhighlight = "Normal:ActiveWindow,NormalNC:InactiveWindow"

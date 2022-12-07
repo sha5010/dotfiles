@@ -48,23 +48,25 @@ return {
   ["williamboman/mason.nvim"] = {
     cmd = false,
     module = "mason",
-    event = { "BufReadPost", "BufNewFile" },
     after = { "null-ls.nvim", "mason-lspconfig.nvim" },
     cond = cond_vscode,
   },
 
   ["williamboman/mason-lspconfig.nvim"] = {
     opt = true,
-    event = { "BufReadPost", "BufNewFile" },
     wants = { "mason.nvim", "nvim-lspconfig" },
+    module = "mason-lspconfig",
     config = function()
       require("custom.plugins.configs.mason-lspconfig")
+    end,
+    setup = function()
+      require("custom.utils").packer_lazy_load("mason-lspconfig.nvim", 100)
     end,
     cond = cond_vscode,
   },
 
   ["neovim/nvim-lspconfig"] = {
-    event = { "BufReadPost", "BufNewFile" },
+    module = "lspconfig",
     config = function()
       require("custom.plugins.configs.lspconfig")
     end,
@@ -112,12 +114,15 @@ return {
       "nvim-lspconfig",
       "nvim-navic",
     },
-    event = { "BufReadPost", "BufNewFile" },
+    module = "barbecue",
     requires = {
       { "smiteshp/nvim-navic", opt = true },
     },
     config = function()
       require("barbecue").setup()
+    end,
+    setup = function()
+      require("custom.utils").packer_lazy_load("barbecue.nvim", 250)
     end,
     cond = cond_vscode,
   },
@@ -125,9 +130,12 @@ return {
   ["j-hui/fidget.nvim"] = {
     opt = true,
     wants = "nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },
+    module = "fidget",
     config = function()
       require("fidget").setup()
+    end,
+    setup = function()
+      require("custom.utils").packer_lazy_load("fidget.nvim", 200)
     end,
     cond = cond_vscode,
   },
@@ -141,7 +149,7 @@ return {
     requires = {
       { "jayp0521/mason-null-ls.nvim", opt = true, module = "mason-null-ls" },
     },
-    event = { "BufReadPost", "BufNewFile" },
+    module = "null-ls",
     config = function()
       require("mason-null-ls").setup({
         automatic_setup = true,
@@ -149,11 +157,13 @@ return {
       require("mason-null-ls").setup_handlers({})
       require("null-ls").setup()
     end,
+    setup = function()
+      require("custom.utils").packer_lazy_load("null-ls.nvim", 150)
+    end,
     cond = cond_vscode,
   },
 
   ["nvim-treesitter/nvim-treesitter"] = {
-    event = { "BufReadPost", "BufNewFile" },
     override_options = {
       auto_install = true,
     },
@@ -172,11 +182,12 @@ return {
   ["akinsho/bufferline.nvim"] = {
     opt = true,
     wants = "base46",
-    event = "VimEnter",
+    module = "bufferline",
     config = function()
       require("custom.plugins.configs.bufferline")
     end,
     setup = function()
+      require("custom.utils").packer_lazy_load("bufferline.nvim", 50)
       if vim.g.vscode == nil then require("core.utils").load_mappings("bufferline") end
     end,
     cond = cond_vscode,
@@ -297,7 +308,7 @@ return {
 
   ["nmac427/guess-indent.nvim"] = {
     opt = true,
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("guess-indent").setup({})
     end,
@@ -382,6 +393,7 @@ return {
   },
 
   ["windwp/nvim-autopairs"] = {
+    event = "InsertEnter",
     override_options = {
       disable_filetype = { "TelescopePrompt" },
       check_ts = true, -- use treesitter to check for a pair
@@ -397,6 +409,12 @@ return {
         highlight_grey = "Comment",
       },
     },
+    cond = cond_vscode,
+  },
+
+  ["lukas-reineke/indent-blankline.nvim"] = {
+    module = "indent_blankline",
+    cond = cond_vscode
   },
 
   ["windwp/nvim-ts-autotag"] = {
@@ -426,7 +444,7 @@ return {
   },
 
   ["NvChad/nvim-colorizer.lua"] = {
-    event = { "CursorMoved", "CursorHold" },
+    module = "colorizer",
     override_options = {
       filetypes = {
         "*",
@@ -460,6 +478,9 @@ return {
         "!nofile",
       },
     },
+    setup = function()
+      require("custom.utils").packer_lazy_load("mason-lspconfig.nvim", 300)
+    end,
     cond = cond_vscode,
   },
 
@@ -515,7 +536,6 @@ return {
   ["nvim-lualine/lualine.nvim"] = {
     opt = true,
     wants = "base46",
-    event = "BufEnter",
     config = function()
       require("custom.plugins.configs.lualine")
     end,
@@ -628,6 +648,5 @@ return {
   ["NvChad/extensions"] = { cond = cond_vscode },
   ["rafamadriz/friendly-snippets"] = { cond = cond_vscode },
   ["kyazdani42/nvim-web-devicons"] = { after = false, cond = cond_vscode },
-  ["lukas-reineke/indent-blankline.nvim"] = { event = { "BufReadPost", "BufNewFile", "CursorHold" } , cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
 }
