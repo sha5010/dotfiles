@@ -34,16 +34,7 @@ return {
 
   ["NvChad/ui"] = {
     module = "nvchad_ui",
-    after = { "lualine.nvim", "bufferline.nvim" },
-    override_options = {
-      tabufline = { enabled = false },
-      statusline = {
-        separator_style = "block",
-        overriden_modules = function()
-          return require("custom.plugins.configs.ui")
-        end,
-      },
-    },
+    config = function() end,
     cond = cond_vscode,
   },
 
@@ -57,12 +48,14 @@ return {
   ["williamboman/mason.nvim"] = {
     cmd = false,
     module = "mason",
+    event = { "BufReadPost", "BufNewFile" },
     after = { "null-ls.nvim", "mason-lspconfig.nvim" },
     cond = cond_vscode,
   },
 
   ["williamboman/mason-lspconfig.nvim"] = {
     opt = true,
+    event = { "BufReadPost", "BufNewFile" },
     wants = { "mason.nvim", "nvim-lspconfig" },
     config = function()
       require("custom.plugins.configs.mason-lspconfig")
@@ -71,6 +64,7 @@ return {
   },
 
   ["neovim/nvim-lspconfig"] = {
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("custom.plugins.configs.lspconfig")
     end,
@@ -118,7 +112,7 @@ return {
       "nvim-lspconfig",
       "nvim-navic",
     },
-    event = { "BufRead", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     requires = {
       { "smiteshp/nvim-navic", opt = true },
     },
@@ -131,7 +125,7 @@ return {
   ["j-hui/fidget.nvim"] = {
     opt = true,
     wants = "nvim-lspconfig",
-    event = "BufEnter",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("fidget").setup()
     end,
@@ -147,6 +141,7 @@ return {
     requires = {
       { "jayp0521/mason-null-ls.nvim", opt = true, module = "mason-null-ls" },
     },
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("mason-null-ls").setup({
         automatic_setup = true,
@@ -158,6 +153,7 @@ return {
   },
 
   ["nvim-treesitter/nvim-treesitter"] = {
+    event = { "BufReadPost", "BufNewFile" },
     override_options = {
       auto_install = true,
     },
@@ -176,6 +172,7 @@ return {
   ["akinsho/bufferline.nvim"] = {
     opt = true,
     wants = "base46",
+    event = "VimEnter",
     config = function()
       require("custom.plugins.configs.bufferline")
     end,
@@ -287,7 +284,7 @@ return {
 
   ["nmac427/guess-indent.nvim"] = {
     opt = true,
-    event = "BufEnter",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("guess-indent").setup({})
     end,
@@ -416,6 +413,7 @@ return {
   },
 
   ["NvChad/nvim-colorizer.lua"] = {
+    event = { "CursorMoved", "CursorHold" },
     override_options = {
       filetypes = {
         "*",
@@ -503,7 +501,8 @@ return {
 
   ["nvim-lualine/lualine.nvim"] = {
     opt = true,
-    wants = "ui",
+    wants = "base46",
+    event = "BufEnter",
     config = function()
       require("custom.plugins.configs.lualine")
     end,
@@ -557,7 +556,7 @@ return {
 
   ["easymotion/vim-easymotion"] = {
     opt = true,
-    wants = "ui",
+    event = { "CursorMoved", "CursorHold" },
     setup = easymotion_setting,
     cond = cond_vscode,
   },
@@ -616,6 +615,6 @@ return {
   ["NvChad/extensions"] = { cond = cond_vscode },
   ["rafamadriz/friendly-snippets"] = { cond = cond_vscode },
   ["kyazdani42/nvim-web-devicons"] = { after = false, cond = cond_vscode },
-  ["lukas-reineke/indent-blankline.nvim"] = { cond = cond_vscode },
+  ["lukas-reineke/indent-blankline.nvim"] = { event = { "BufReadPost", "BufNewFile", "CursorHold" } , cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
 }
