@@ -559,7 +559,16 @@ return {
 
   ["kylechui/nvim-surround"] = {
     opt = true,
-    module = "nvim-surround",
+    keys = {
+      { "n", "sa" },
+      { "n", "sA" },
+      { "n", "sd" },
+      { "n", "sr" },
+      { "i", "<C-g>s" },
+      { "i", "<C-g>S" },
+      { "x", "sa" },
+      { "x", "sA" },
+    },
     config = function()
       require("nvim-surround").setup({
         keymaps = {
