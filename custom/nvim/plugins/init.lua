@@ -63,7 +63,7 @@ return {
 
   ["williamboman/mason-lspconfig.nvim"] = {
     opt = true,
-    wants = "mason.nvim",
+    wants = { "mason.nvim", "nvim-lspconfig" },
     config = function()
       require("custom.plugins.configs.mason-lspconfig")
     end,
