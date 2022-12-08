@@ -2,6 +2,9 @@
 local is_wsl = os.getenv('WSLENV') ~= nil or os.getenv('WSL_DISTRO_NAME') ~= nil or os.getenv('WSL_INTEROP') ~= nil
 local is_windows = vim.fn.has('win32') ~= 0 or vim.fn.has('win64') ~= 0 or is_wsl
 
+-- fcitx-remote exists
+local has_fcitx = vim.fn.executable("fcitx-remote") == 1
+
 -- vscode judge
 local cond_vscode = (function()
   if vim.g.vscode == nil then
@@ -522,7 +525,7 @@ return {
     config = function()
       vim.g.im_select_default = "com.google.inputmethod.Japanese.Roman"
     end,
-    disable = is_windows,
+    disable = is_windows or has_fcitx,
   },
 
   ["kaz399/spzenhan.vim"] = {

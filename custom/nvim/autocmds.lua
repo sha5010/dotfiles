@@ -2,7 +2,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local M = {}
 
-vim.g.fcitx_last_status = 1
+local has_fcitx = vim.fn.executable("fcitx-remote") == 1
 
 function M.setup()
   local function disable_ime()
@@ -16,27 +16,31 @@ function M.setup()
     callback = function() vim.highlight.on_yank{timeout=500} end
   })
 
-  augroup('ControlIME', {})
-  autocmd('InsertLeave', {
-    group = 'ControlIME',
-    callback = disable_ime,
-  })
-  autocmd('CmdlineEnter', {
-    group = 'ControlIME',
-    callback = disable_ime,
-  })
-  autocmd('CmdlineLeave', {
-    group = 'ControlIME',
-    callback = disable_ime,
-  })
-  autocmd('InsertEnter', {
-    group = 'ControlIME',
-    callback = function()
-      if vim.g.fcitx_last_status == 2 then
-        vim.fn.system('fcitx-remote -o')
-     end
-    end,
-  })
+  if has_fcitx then
+    vim.g.fcitx_last_status = 1
+
+    augroup('ControlIME', {})
+    autocmd('InsertLeave', {
+      group = 'ControlIME',
+      callback = disable_ime,
+    })
+    autocmd('CmdlineEnter', {
+      group = 'ControlIME',
+      callback = disable_ime,
+    })
+    autocmd('CmdlineLeave', {
+      group = 'ControlIME',
+      callback = disable_ime,
+    })
+    autocmd('InsertEnter', {
+      group = 'ControlIME',
+      callback = function()
+        if vim.g.fcitx_last_status == 2 then
+          vim.fn.system('fcitx-remote -o')
+       end
+      end,
+    })
+  end
 
   augroup('CloseQuickFix', {})
   autocmd('FileType', {
