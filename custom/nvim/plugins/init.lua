@@ -130,6 +130,20 @@ return {
     cond = cond_vscode,
   },
 
+  ["folke/trouble.nvim"] = {
+    opt = true,
+    cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
+    wants = "nvim-web-devicons",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    config = function()
+      require("trouble").setup()
+    end,
+    setup = function()
+      require("core.utils").load_mappings("trouble")
+    end,
+    cond = cond_vscode,
+  },
+
   ["j-hui/fidget.nvim"] = {
     opt = true,
     wants = "nvim-lspconfig",
@@ -541,6 +555,35 @@ return {
     wants = "base46",
     config = function()
       require("custom.plugins.configs.lualine")
+    end,
+    cond = cond_vscode,
+  },
+
+  ["AckslD/nvim-neoclip.lua"] = {
+    opt = true,
+    requires = { "nvim-telescope/telescope.nvim", opt = true },
+    event = { "CursorMoved", "CursorHold" },
+    config = function()
+      require("neoclip").setup({
+        keys = {
+          telescope = {
+            i = {
+              paste = "<c-o>",
+              paste_behind = "<c-i>",
+              delete = "<c-x>",
+            },
+          },
+        },
+      })
+
+      local status, telescope = pcall(require, "telescope")
+      if status then
+        telescope.load_extension("neoclip")
+        telescope.load_extension("macroscope")
+      end
+    end,
+    setup = function()
+      require("core.utils").load_mappings("neoclip")
     end,
     cond = cond_vscode,
   },

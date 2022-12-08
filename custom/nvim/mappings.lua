@@ -338,6 +338,13 @@ M.lspsaga = {
   },
 }
 
+M.trouble = {
+  plugin = true,
+  n = {
+    ["<leader>x"] = { "<cmd>TroubleToggle<CR>", "toggle trouble" }
+  }
+}
+
 M.bufferline = {
   plugin = true,
   n = {
@@ -424,6 +431,14 @@ M.dial = {
       opts = { expr = true },
       "decrease by an additional",
     },
+  },
+}
+
+M.neoclip = {
+  plugin = true,
+  n = {
+    ["<leader>h"] = { "<cmd>Telescope neoclip<CR>", "neoclip history" },
+    ["<leader>q"] = { "<cmd>Telescope macroscope<CR>", "macro history" },
   },
 }
 
