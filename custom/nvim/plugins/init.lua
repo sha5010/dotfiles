@@ -549,9 +549,9 @@ return {
       if status then
         opts = {
           Search = { color = colors.base_30.yellow },
-          GitAdd = { highlight = colors.base_30.green },
-          GitChange = { highlight = colors.base_30.blue },
-          GitDelete = { highlight = colors.base_30.red },
+          GitAdd = { color = colors.base_30.green },
+          GitChange = { color = colors.base_30.blue },
+          GitDelete = { color = colors.base_30.red },
         }
       end
       require("scrollbar").setup({
