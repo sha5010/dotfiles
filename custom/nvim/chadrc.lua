@@ -5,7 +5,12 @@ M.plugins = require("custom.plugins")
 M.ui = require("custom.highlights")
 
 if vim.g.vscode ~= nil then
-  M.mappings = require("custom.vscode")
+  local vscode = require("custom.vscode")
+  for mode, tbl in pairs(vscode) do
+    for k, v in pairs(tbl) do
+      M.mappings.general[mode][k] = v
+    end
+  end
 end
 
 return M

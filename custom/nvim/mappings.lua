@@ -53,8 +53,8 @@ M.general = {
     ["<C-f>"] = { "<Right>", "move right" },
   },
   n = {
-    ["<C-j>"] = { "10j", opts = { noremap = false }, "10 up" },
-    ["<C-k>"] = { "10k", opts = { noremap = false }, "10 down" },
+    ["<C-j>"] = { "10j", "10 up", opts = { remap = true } },
+    ["<C-k>"] = { "10k", "10 down", opts = { remap = true } },
 
     ["<C-h>"] = { "g^", "beginning of window" },
     ["<C-l>"] = { "g$", "end of window" },
@@ -66,17 +66,17 @@ M.general = {
     ["c"] = { '"_c', "" },
     ["C"] = { '"_C', "" },
 
-    ["gV"] = { "`[v`]", { noremap = false }, "select put text" },
+    ["gV"] = { "`[v`]", "select put text", opts = { remap = true } },
 
     ["<Bslash>"] = { '<Cmd>call append(line(".")-1, "")<CR>', "insert blank line" },
     ["_"] = { '<Cmd>call append(line(".")-1, "")<CR>', "insert blank line" },
 
-    ["<TAB>"] = { "gt", { noremap = false }, "next tab" },
-    ["<S-Tab>"] = { "gT", { noremap = false }, "previous tab" },
+    ["<TAB>"] = { "gt", "next tab", opts = { remap = true } },
+    ["<S-Tab>"] = { "gT", "previous tab", opts = { remap = true } },
 
     ["t"] = { "<Nop>" },
     ["te"] = { ":<C-u>tabedit ", "tabedit" },
-    ["tq"] = { "<Cmd>tabclose<CR>", { noremap = false }, "close tab" },
+    ["tq"] = { ":<C-u>tabclose<CR>", "close tab", opts = { remap = true } },
 
     ["t0"] = { "<Cmd>tablast<CR>", "select last tab" },
     ["tt"] = { "<Cmd>tabedit<CR>", "add blank tab" },
@@ -89,43 +89,46 @@ M.general = {
     ["s-"] = { "5<C-w>-", "narrow window vertically" },
     ["s<"] = { "5<C-w><", "narrow window horizontally" },
     ["s>"] = { "5<C-w>>", "wider window horizontally" },
+    ["s;"] = { "s+", "wider window vertically", opts = { remap = true } },
+    ["s,"] = { "s<", "narrow window horizontally", opts = { remap = true } },
+    ["s."] = { "s>", "wider window horizontally", opts = { remap = true } },
 
-    ["s="] = { "<C-w>=", { noremap = false }, "make all window equally" },
+    ["s="] = { "<C-w>=", "make all window equally", opts = { remap = true } },
 
-    ["ss"] = { "<C-w>s", { noremap = false }, "split horizontally" },
-    ["sv"] = { "<C-w>v", { noremap = false }, "split vertically" },
+    ["ss"] = { "<C-w>s", "split horizontally", opts = { remap = true } },
+    ["sv"] = { "<C-w>v", "split vertically", opts = { remap = true } },
 
-    ["se"] = { "<C-w>n", { noremap = false }, "split new file" },
-    ["sq"] = { "<C-w>q", { noremap = false }, "close window" },
+    ["se"] = { "<C-w>n", "split new file", opts = { remap = true } },
+    ["sq"] = { "<C-w>q", "close window", opts = { remap = true } },
 
     ["st"] = { "<C-w>T", "move window to tab" },
 
-    ["sh"] = { "<C-w>h", "window left" },
-    ["sj"] = { "<C-w>j", "window down" },
-    ["sk"] = { "<C-w>k", "window up" },
-    ["sl"] = { "<C-w>l", "window right" },
+    ["sh"] = { "<C-w>h", "window left", opts = { remap = true } },
+    ["sj"] = { "<C-w>j", "window down", opts = { remap = true } },
+    ["sk"] = { "<C-w>k", "window up", opts = { remap = true } },
+    ["sl"] = { "<C-w>l", "window right", opts = { remap = true } },
 
-    ["sH"] = { "<C-w>H", "move window to left" },
-    ["sJ"] = { "<C-w>J", "move window to bottom" },
-    ["sK"] = { "<C-w>K", "move window to top" },
-    ["sL"] = { "<C-w>L", "mvoe window to right" },
+    ["sH"] = { "<C-w>H", "move window to left", opts = { remap = true } },
+    ["sJ"] = { "<C-w>J", "move window to bottom", opts = { remap = true } },
+    ["sK"] = { "<C-w>K", "move window to top", opts = { remap = true } },
+    ["sL"] = { "<C-w>L", "mvoe window to right", opts = { remap = true } },
 
     ["<leader>n"] = { "<Cmd>nohlsearch<CR>", "stop highlighting" },
 
-    ["<leader>y"] = { '"+y', { noremap = false }, "yank to clipboard" },
-    ["<leader>Y"] = { '"+Y', { noremap = false }, "yank to clipboard" },
-    ["<leader>d"] = { '"+d', { noremap = false }, "cut to clipboard" },
-    ["<leader>D"] = { '"+D', { noremap = false }, "cut to clipboard" },
-    ["<leader>p"] = { '"+p', { noremap = false }, "put from clipboard" },
-    ["<leader>P"] = { '"+P', { noremap = false }, "put from clipboard" },
+    ["<leader>y"] = { '"+y', "yank to clipboard", opts = { remap = true } },
+    ["<leader>Y"] = { '"+Y', "yank to clipboard", opts = { remap = true } },
+    ["<leader>d"] = { '"+d', "cut to clipboard", opts = { remap = true } },
+    ["<leader>D"] = { '"+D', "cut to clipboard", opts = { remap = true } },
+    ["<leader>p"] = { '"+p', "put from clipboard", opts = { remap = true } },
+    ["<leader>P"] = { '"+P', "put from clipboard", opts = { remap = true } },
 
     ["<leader>a"] = { "gg0vG$", "select entire buffer" },
     ["<leader>r"] = { "<Cmd>set relativenumber!<CR>", "toggle relativenumber" },
     ["<leader>z"] = { "<Cmd>set wrap!<CR>", "toggle wrap" },
   },
   x = {
-    ["<C-j>"] = { "10j", opts = { noremap = false }, "10 down" },
-    ["<C-k>"] = { "10k", opts = { noremap = false }, "10 up" },
+    ["<C-j>"] = { "10j", "10 down", opts = { remap = true } },
+    ["<C-k>"] = { "10k", "10 up", opts = { remap = true } },
 
     ["<C-h>"] = { "^", "beginning of line" },
     ["<C-l>"] = { "$", "end of line" },
@@ -142,12 +145,10 @@ M.general = {
 
     ["<leader>n"] = { "<Cmd>nohlsearch<CR>", "stop highlighting" },
 
-    ["<leader>y"] = { '"+y', { noremap = false }, "yank to clipboard" },
-    ["<leader>Y"] = { '"+Y', { noremap = false }, "yank to clipboard" },
-    ["<leader>d"] = { '"+d', { noremap = false }, "cut to clipboard" },
-    ["<leader>D"] = { '"+D', { noremap = false }, "cut to clipboard" },
-    ["<leader>p"] = { '"+p', { noremap = false }, "put from clipboard" },
-    ["<leader>P"] = { '"+P', { noremap = false }, "put from clipboard" },
+    ["<leader>d"] = { '"+d', "cut to clipboard", opts = { remap = true } },
+    ["<leader>D"] = { '"+D', "cut to clipboard", opts = { remap = true } },
+    ["<leader>p"] = { '"+p', "put from clipboard", opts = { remap = true } },
+    ["<leader>P"] = { '"+P', "put from clipboard", opts = { remap = true } },
 
     ["<leader>r"] = { "<Cmd>set relativenumber!<CR>", "toggle relativenumber" },
     ["<leader>z"] = { "<Cmd>set wrap!<CR>", "toggle wrap" },
@@ -168,8 +169,8 @@ M.general = {
       function()
         return vim.fn.getcmdtype() == ":" and vim.fn.expand("%:h") .. "/" or "%%"
       end,
-      opts = { expr = true },
       "expand cwd path",
+      opts = { expr = true },
     },
   },
   t = {
@@ -421,15 +422,15 @@ M.dial = {
       function()
         return require("dial.map").inc_normal()
       end,
-      opts = { expr = true },
       "increase",
+      opts = { expr = true },
     },
     ["<C-x>"] = {
       function()
         return require("dial.map").dec_normal()
       end,
-      opts = { expr = true },
       "decrease",
+      opts = { expr = true },
     },
   },
   x = {
@@ -437,29 +438,29 @@ M.dial = {
       function()
         return require("dial.map").inc_visual()
       end,
-      opts = { expr = true },
       "increase",
+      opts = { expr = true },
     },
     ["<C-x>"] = {
       function()
         return require("dial.map").dec_visual()
       end,
-      opts = { expr = true },
       "decrease",
+      opts = { expr = true },
     },
     ["g<C-a>"] = {
       function()
         return require("dial.map").inc_gvisual()
       end,
-      opts = { expr = true },
       "increase by an additional",
+      opts = { expr = true },
     },
     ["g<C-x>"] = {
       function()
         return require("dial.map").dec_gvisual()
       end,
-      opts = { expr = true },
       "decrease by an additional",
+      opts = { expr = true },
     },
   },
 }
@@ -591,8 +592,8 @@ M.quickrun = {
           return "<C-c>"
         end
       end,
-      opts = { expr = true },
       "cancel QuickRun process",
+      opts = { expr = true },
     },
   },
   x = {

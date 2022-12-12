@@ -1,18 +1,14 @@
-local M = {}
-
-M = require("custom.mappings")
-
-M.vscode = {
+local M = {
 	n = {
 		["<leader>e"] = { "<Cmd>call VSCodeNotify('workbench.view.explorer')<CR>" },
 		["<leader>z"] = { "<Cmd>call VSCodeNotify('editor.action.toggleWordWrap')<CR>" },
 		["<leader>m"] = { "<Cmd>call VSCodeNotify('editor.action.toggleMinimap')<CR>" },
 
 		["st"] = { "<Cmd>call VSCodeNotify('workbench.action.joinAllGroups')<CR>" },
-		["s+"] = { "<C-w>+", opts = { noremap = false } },
-		["s-"] = { "<C-w>-", opts = { noremap = false } },
-		["s<"] = { "<C-w><", opts = { noremap = false } },
-		["s>"] = { "<C-w>>", opts = { noremap = false } },
+		["s+"] = { "<C-w>+", opts = { remap = true } },
+		["s-"] = { "<C-w>-", opts = { remap = true } },
+		["s<"] = { "<C-w><", opts = { remap = true } },
+		["s>"] = { "<C-w>>", opts = { remap = true } },
 
 		["te"] = { "<Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>" },
 		["tt"] = { "<Cmd>call VSCodeNotify('workbench.action.files.newUntitledFile')<CR>" },
@@ -43,8 +39,8 @@ M.vscode = {
 			"<Cmd>call VSCodeNotify('cursorMove', { 'to': 'up', 'by': 'line', 'value': v:count ? v:count : 1 })<CR>",
 		},
 
-		["<C-h>"] = { "g0", opts = { noremap = false } },
-		["<C-l>"] = { "g$", opts = { noremap = false } },
+		["<C-h>"] = { "g0", opts = { remap = true } },
+		["<C-l>"] = { "g$", opts = { remap = true } },
 
 		["gz,"] = { "<Cmd>call VSCodeNotify('merge-conflict.accept.current')<CR>" },
 		["gz."] = { "<Cmd>call VSCodeNotify('merge-conflict.accept.incoming')<CR>" },
@@ -73,7 +69,7 @@ M.vscode = {
 }
 
 for i = 1, 9 do
-	M.vscode.n["t" .. i] = { "<Cmd>call VSCodeNotify('workbench.action.openEditorAtIndex" .. i .. "')<CR>" }
+	M.n["t" .. i] = { "<Cmd>call VSCodeNotify('workbench.action.openEditorAtIndex" .. i .. "')<CR>" }
 end
 
 return M
