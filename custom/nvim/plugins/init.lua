@@ -501,6 +501,68 @@ return {
     cond = cond_vscode,
   },
 
+  ["kevinhwang91/nvim-hlslens"] = {
+    opt = true,
+    module = "hlslens",
+    event = "CmdlineEnter",
+    keys = { {"n", "/"}, {"n", "?"}, },
+    setup = function()
+      require("core.utils").load_mappings("hlslens")
+    end,
+    config = function()
+      vim.opt.shortmess:append("S")
+      local opts = {
+        calm_down = true,
+      }
+
+      local status, handler = pcall(require, "scrollbar.handlers.search")
+      if status then
+        handler.setup(opts)
+      else
+        require("hlslens").setup(opts)
+      end
+    end,
+    cond = cond_vscode,
+  },
+
+  ["petertriho/nvim-scrollbar"] = {
+    opt = true,
+    event = {
+      "BufWinEnter",
+      "TabEnter",
+      "TermEnter",
+      "WinEnter",
+      "CmdwinLeave",
+      "TextChanged",
+      "VimResized",
+      "WinScrolled",
+      "BufWinLeave",
+      "TabLeave",
+      "TermLeave",
+      "WinLeave",
+    },
+    requires = { "lewis6991/gitsigns.nvim", opt = true },
+    wants = { "gitsigns.nvim", "base46" },
+    config = function()
+      local status, colors = pcall(require, "base46.themes." .. vim.g.nvchad_theme)
+      local opts = {}
+      if status then
+        opts = {
+          Search = { color = colors.base_30.yellow },
+          GitAdd = { highlight = colors.base_30.green },
+          GitChange = { highlight = colors.base_30.blue },
+          GitDelete = { highlight = colors.base_30.red },
+        }
+      end
+      require("scrollbar").setup({
+        set_highlights = true,
+        marks = opts
+      })
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
+    cond = cond_vscode,
+  },
+
   ["VonHeikemen/searchbox.nvim"] = {
     opt = true,
     module = "searchbox",

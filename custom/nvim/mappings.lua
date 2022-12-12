@@ -352,6 +352,36 @@ M.bufferline = {
   },
 }
 
+M.hlslens = {
+  plugin = true,
+  n = {
+    ["n"] = {
+      "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
+      "find next",
+    },
+    ["N"] = {
+      "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
+      "find previous",
+    },
+    ["*"] = {
+      "*<Cmd>lua require('hlslens').start()<CR>",
+      "search word forward",
+    },
+    ["#"] = {
+      "#<Cmd>lua require('hlslens').start()<CR>",
+      "search word backward",
+    },
+    ["g*"] = {
+      "g*<Cmd>lua require('hlslens').start()<CR>",
+      "search word forward",
+    },
+    ["g#"] = {
+      "g#<Cmd>lua require('hlslens').start()<CR>",
+      "search word backward",
+    },
+  },
+}
+
 M.searchbox = {
   plugin = true,
   n = {

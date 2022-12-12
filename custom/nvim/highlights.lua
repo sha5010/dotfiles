@@ -7,6 +7,9 @@ M.hl_add = {
   InactiveWindow = {
     bg = "#101214"
   },
+
+  -- hlslens
+  HlSearchLens = { bg = "one_bg", fg = "light_grey", },
 }
 
 M.hl_override = {
