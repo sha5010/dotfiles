@@ -123,6 +123,7 @@ return {
     },
     config = function()
       require("barbecue").setup()
+      require("barbecue.ui").update()
     end,
     setup = function()
       require("custom.utils").packer_lazy_load("barbecue.nvim", 250)
@@ -139,7 +140,7 @@ return {
       require("trouble").setup()
     end,
     setup = function()
-      require("core.utils").load_mappings("trouble")
+      if vim.g.vscode == nil then require("core.utils").load_mappings("trouble") end
     end,
     cond = cond_vscode,
   },
@@ -496,7 +497,7 @@ return {
       },
     },
     setup = function()
-      require("custom.utils").packer_lazy_load("mason-lspconfig.nvim", 300)
+      require("custom.utils").packer_lazy_load("nvim-colorizer.lua", 300)
     end,
     cond = cond_vscode,
   },
@@ -507,7 +508,7 @@ return {
     event = "CmdlineEnter",
     keys = { {"n", "/"}, {"n", "?"}, },
     setup = function()
-      require("core.utils").load_mappings("hlslens")
+      if vim.g.vscode == nil then require("core.utils").load_mappings("hlslens") end
     end,
     config = function()
       vim.opt.shortmess:append("S")
@@ -645,7 +646,7 @@ return {
       end
     end,
     setup = function()
-      require("core.utils").load_mappings("neoclip")
+      if vim.g.vscode == nil then require("core.utils").load_mappings("neoclip") end
     end,
     cond = cond_vscode,
   },

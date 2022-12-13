@@ -106,7 +106,7 @@ local function tab_shiftwidth()
   local shiftwidth = vim.o.shiftwidth
 
   if is_expandtab then
-    return ' ' .. shiftwidth
+    return ' ' .. shiftwidth
   else
     return ' ' .. shiftwidth
   end
