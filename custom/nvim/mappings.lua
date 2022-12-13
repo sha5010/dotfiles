@@ -415,19 +415,51 @@ M.searchbox = {
   },
 }
 
+local function dial_wrapper(mode, augend)
+  if augend == "normal" then
+    local status = require("dial.config").augends:get(vim.bo.filetype)
+    if status ~= nil then
+      if mode == "inc" then
+        return require("dial.map").inc_normal(vim.bo.filetype)
+      else
+        return require("dial.map").dec_normal(vim.bo.filetype)
+      end
+    else
+      if mode == "inc" then
+        return require("dial.map").inc_normal("default")
+      else
+        return require("dial.map").dec_normal("default")
+      end
+    end
+  elseif augend == "visual" then
+    if mode == "inc" then
+      return require("dial.map").inc_visual("visual")
+    else
+      return require("dial.map").dec_visual("visual")
+    end
+  elseif augend == "gvisual" then
+    if mode == "inc" then
+      return require("dial.map").inc_gvisual("gvisual")
+    else
+      return require("dial.map").dec_gvisual("gvisual")
+    end
+  end
+  return ""
+end
+
 M.dial = {
   plugin = true,
   n = {
     ["<C-a>"] = {
       function()
-        return require("dial.map").inc_normal()
+        return dial_wrapper("inc", "normal")
       end,
       "increase",
       opts = { expr = true },
     },
     ["<C-x>"] = {
       function()
-        return require("dial.map").dec_normal()
+        return dial_wrapper("dec", "normal")
       end,
       "decrease",
       opts = { expr = true },
@@ -436,28 +468,28 @@ M.dial = {
   x = {
     ["<C-a>"] = {
       function()
-        return require("dial.map").inc_visual()
+        return dial_wrapper("inc", "visual")
       end,
       "increase",
       opts = { expr = true },
     },
     ["<C-x>"] = {
       function()
-        return require("dial.map").dec_visual()
+        return dial_wrapper("dec", "visual")
       end,
       "decrease",
       opts = { expr = true },
     },
     ["g<C-a>"] = {
       function()
-        return require("dial.map").inc_gvisual()
+        return dial_wrapper("inc", "gvisual")
       end,
       "increase by an additional",
       opts = { expr = true },
     },
     ["g<C-x>"] = {
       function()
-        return require("dial.map").dec_gvisual()
+        return dial_wrapper("dec", "gvisual")
       end,
       "decrease by an additional",
       opts = { expr = true },
