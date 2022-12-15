@@ -216,6 +216,20 @@ return {
     cond = cond_vscode,
   },
 
+  -- git interface
+  ["TimUntersberger/neogit"] = {
+    opt = true,
+    cmd = "Neogit",
+    module = "neogit",
+    config = function()
+      require("neogit").setup()
+    end,
+    setup = function()
+      if vim.g.vscode == nil then require("core.utils").load_mappings("neogit") end
+    end,
+    cond = cond_vscode,
+  },
+
   -- suggest
   ["hrsh7th/nvim-cmp"] = {
     module = "cmp",

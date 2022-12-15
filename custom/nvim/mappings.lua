@@ -243,7 +243,7 @@ M.telescope = {
     ["<leader>b"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "fuzzy jump" },
 
     -- git
-    ["<leader>gl"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
+    ["<leader>gL"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
     ["<leader>gf"] = { "<cmd> Telescope git_files <CR>", "git files" },
     ["<leader>gh"] = { "<cmd> Telescope git_branches <CR>", "git branches" },
     ["<leader>gs"] = { "<cmd> Telescope git_stash <CR>", "git stash" },
@@ -352,6 +352,18 @@ M.diffview = {
     ["<leader>gd"] = { "<cmd> DiffviewOpen <CR>", "diffview" },
     ["<leader>gD"] = { "<cmd> DiffviewFileHistory <CR>", "diffview file history" },
   }
+}
+
+M.neogit = {
+  plugin = true,
+  n = {
+    ["<leader>gg"] = { "<cmd> Neogit <CR>", "neogit" },
+    ["<leader>gc"] = { "<cmd> Neogit commit <CR>", "git commit" },
+    ["<leader>gB"] = { "<cmd> Neogit branch <CR>", "git branch" },
+    ["<leader>gl"] = { "<cmd> Neogit log <CR>", "git log" },
+    ["<leader>gj"] = { "<cmd> Neogit pull <CR>", "git pull" },
+    ["<leader>gk"] = { "<cmd> Neogit push <CR>", "git push" },
+  },
 }
 
 M.lspsaga = {
