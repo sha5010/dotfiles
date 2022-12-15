@@ -293,7 +293,7 @@ M.gitsigns = {
       function()
         require("gitsigns").undo_stage_hunk()
       end,
-      "Reset hunk",
+      "Reset hunk index",
     },
     ["<leader>gU"] = {
       function()
@@ -305,13 +305,42 @@ M.gitsigns = {
       function()
         require("gitsigns").setqflist()
       end,
-      "Reset hunk",
+      "Hunk list",
     },
     ["<leader>gw"] = {
       function()
         require("gitsigns").toggle_word_diff()
       end,
+      "Toggle word diff",
+    },
+  },
+  x = {
+    ["<leader>ga"] = {
+      function()
+        require("gitsigns").stage_hunk({
+          vim.fn.line("."),
+          vim.fn.line("v"),
+        })
+      end,
+      "Stage hunk",
+    },
+    ["<leader>gr"] = {
+      function()
+        require("gitsigns").reset_hunk({
+          vim.fn.line("."),
+          vim.fn.line("v"),
+        })
+      end,
       "Reset hunk",
+    },
+    ["<leader>gu"] = {
+      function()
+        require("gitsigns").undo_stage_hunk({
+          vim.fn.line("."),
+          vim.fn.line("v"),
+        })
+      end,
+      "Reset hunk index",
     },
   },
 }
