@@ -14,27 +14,17 @@ local cond_vscode = (function()
   end
 end)
 
--- easymotion setting
-local easymotion_setting = function()
-  vim.g.EasyMotion_do_mapping = 0
-  vim.g.EasyMotion_smartcase = 1
-  vim.g.EasyMotion_use_smartsign_jp = 1
-  vim.g.EasyMotion_use_migemo = 1
-  vim.g.EasyMotion_verbose = 0
-
-  require("core.utils").load_mappings("easymotion")
-end
-
 return {
   -- remove from NvChad
   ["NvChad/nvterm"] = false,
 
-  -- disable tabufline and statusline
+  -- make base46 optional
   ["NvChad/base46"] = {
     module = "base46",
     cond = cond_vscode,
   },
 
+  -- disable tabufline and statusline
   ["NvChad/ui"] = {
     module = "nvchad_ui",
     config = function() end,
@@ -76,6 +66,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- lsp signature
   ["ray-x/lsp_signature.nvim"] = {
     opt = true,
     module = "lsp_signature",
@@ -83,27 +74,13 @@ return {
     cond = cond_vscode,
   },
 
+  -- lsp ui
   ["glepnir/lspsaga.nvim"] = {
     opt = true,
     wants = "nvim-lspconfig",
     cmd = "Lspsaga",
     config = function()
-      require("lspsaga").init_lsp_saga({
-        max_preview_lines = 50,
-        code_action_keys = {
-          quit = "q",
-          exec = "<CR>",
-        },
-        finder_action_keys = {
-          open = "<CR>",
-          vsplit = "v",
-          split = "w",
-          tabe = "t",
-          quit = { "q", "<Esc>" },
-          scroll_down = { "<C-f>", "<C-d>" },
-          scroll_up = { "<C-b>", "<C-u>" },
-        },
-      })
+      require("custom.plugins.configs.others").lspsaga()
     end,
     setup = function()
       if vim.g.vscode == nil then require("core.utils").load_mappings("lspsaga") end
@@ -111,6 +88,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- vscode like breadcrumbs
   ["utilyre/barbecue.nvim"] = {
     opt = true,
     wants = {
@@ -131,6 +109,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- diagnostics result list
   ["folke/trouble.nvim"] = {
     opt = true,
     cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
@@ -145,6 +124,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- lsp progress
   ["j-hui/fidget.nvim"] = {
     opt = true,
     wants = "nvim-lspconfig",
@@ -158,6 +138,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- linter, formatter
   ["jose-elias-alvarez/null-ls.nvim"] = {
     opt = true,
     wants = {
@@ -169,11 +150,7 @@ return {
     },
     module = "null-ls",
     config = function()
-      require("mason-null-ls").setup({
-        automatic_setup = true,
-      })
-      require("mason-null-ls").setup_handlers({})
-      require("null-ls").setup()
+      require("custom.plugins.configs.null-ls")
     end,
     setup = function()
       require("custom.utils").packer_lazy_load("null-ls.nvim", 150)
@@ -181,6 +158,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- more highlight
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = {
       auto_install = true,
@@ -188,6 +166,7 @@ return {
     cond = cond_vscode
   },
 
+  -- make quickfix better
   ["kevinhwang91/nvim-bqf"] = {
     opt = true,
     ft = "qf",
@@ -197,6 +176,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- tabline
   ["akinsho/bufferline.nvim"] = {
     opt = true,
     wants = "base46",
@@ -211,20 +191,18 @@ return {
     cond = cond_vscode,
   },
 
+  -- git status signs
   ["lewis6991/gitsigns.nvim"] = {
     override_options = {
       signs = {
-        add = {
-          text = "▍",
-        },
-        change = {
-          text = "▍",
-        },
+        add    = { text = "▍", },
+        change = { text = "▍", },
       },
     },
     cond = cond_vscode
   },
 
+  -- git diff view
   ["sindrets/diffview.nvim"] = {
     opt = true,
     requires = "plenary.nvim",
@@ -238,92 +216,28 @@ return {
     cond = cond_vscode,
   },
 
-  -- update cmp key mapping
+  -- suggest
   ["hrsh7th/nvim-cmp"] = {
     module = "cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     override_options = function()
-      local cmp = require("cmp")
-      return {
-        mapping = {
-          ["<C-p>"] = cmp.mapping(function()
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              cmp.complete()
-            end
-          end, { "i", "c" }),
-          ["<C-n>"] = cmp.mapping(function()
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              cmp.complete()
-            end
-          end, { "i", "c" }),
-          ["<CR>"] = cmp.mapping(cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-          }), { "i", "c" }),
-          ["<C-e>"] = cmp.mapping(function(fallback) fallback() end, { "i", "c" }),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-c>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
-          ["<Tab>"] = cmp.mapping({
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.confirm({
-                  behavior = cmp.ConfirmBehavior.Insert,
-                  select = true,
-                })
-              elseif require("luasnip").expand_or_jumpable() then
-                  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-              else
-                fallback()
-              end
-            end,
-            c = function(fallback)
-              if cmp.visible() then
-                cmp.confirm({
-                  behavior = cmp.ConfirmBehavior.Insert,
-                  select = true,
-                })
-              elseif not cmp.complete_common_string() then
-                cmp.complete()
-              end
-              fallback()
-            end
-          }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback) fallback() end, { "i", "c" }),
-        },
-        sources = {
-          { name = "luasnip" },
-          { name = "nvim_lsp" },
-          {
-            name = "buffer",
-            option = {
-              get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-              end
-            }
-          },
-          { name = "nvim_lua" },
-          { name = "path" },
-        }
-      }
+      return require("custom.plugins.configs.cmp").setup()
     end,
     cond = cond_vscode,
   },
 
+  -- suggest in cmdline
   ["hrsh7th/cmp-cmdline"] = {
     opt = true,
     event = "CmdlineEnter",
     wants = "nvim-cmp",
     config = function()
-      require("custom.plugins.configs.cmp_cmdline")
+      require("custom.plugins.configs.cmp").cmp_cmdline()
     end,
     cond = cond_vscode,
   },
 
+  -- indentation style detection
   ["nmac427/guess-indent.nvim"] = {
     opt = true,
     event = { "BufReadPre", "BufNewFile" },
@@ -333,76 +247,18 @@ return {
     cond = cond_vscode,
   },
 
+  -- filer
   ["kyazdani42/nvim-tree.lua"] = {
-    override_options = {
-      renderer = {
-        highlight_git = true,
-        group_empty = true,
-      },
-      git = {
-        enable = true,
-      },
-      diagnostics = {
-        enable = true,
-        show_on_dirs = true,
-      },
-      actions = {
-        open_file = {
-          quit_on_open = true,
-        },
-      },
-      view = {
-        mappings = {
-          list = {
-            { key = "l",  action = "edit" },
-            { key = "h",  action = "close_node" },
-            { key = "Y",  action = "copy_absolute_path" },
-            { key = "gy", action = "copy_path" },
-            { key = "[d", action = "prev_diag_item" },
-            { key = "[g", action = "prev_git_item" },
-            { key = "]d", action = "next_diag_item" },
-            { key = "]g", action = "next_git_item" },
-            { key = "o",  action = "system_open" },
-
-            -- disable default mapping
-            {
-              key = { "s", "[e", "]e", "[c", "]c" },
-              action = ""
-            },
-          },
-        },
-      },
-    },
+    override_options = function()
+      return require("custom.plugins.configs.others").nvimtree()
+    end,
     cond = cond_vscode,
   },
 
+  -- fuzzy finder
   ["nvim-telescope/telescope.nvim"] = {
     override_options = function()
-      local actions = require("telescope.actions")
-      return {
-        defaults = {
-          prompt_prefix = "   ",
-          layout_config = {
-            width = 0.90,
-            height = 0.85,
-            preview_cutoff = 100,
-          },
-          mappings = {
-            i = {
-              ["<C-[>"] = actions.close,
-              ["<C-f>"] = actions.results_scrolling_down,
-              ["<C-b>"] = actions.results_scrolling_up,
-              ["<C-j>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous,
-              ["<C-e>"] = actions.preview_scrolling_down,
-              ["<C-y>"] = actions.preview_scrolling_up,
-
-              -- disable default mapping
-              ["<C-u>"] = false,
-            },
-          },
-        },
-      }
+      return require("custom.plugins.configs.telescope")
     end,
     setup = function()
       if vim.g.vscode == nil then require("core.utils").load_mappings("telescope") end
@@ -410,31 +266,22 @@ return {
     cond = cond_vscode,
   },
 
+  -- autopairs
   ["windwp/nvim-autopairs"] = {
     event = "InsertEnter",
-    override_options = {
-      disable_filetype = { "TelescopePrompt" },
-      check_ts = true, -- use treesitter to check for a pair
-      fast_wrap = {
-        map = "<C-q>",
-        chars = { "{", "[", "(", '"', "'", "`" },
-        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,%s] ]], "%s+", ""),
-        offset = -1, -- Offset from pattern match
-        end_key = ";",
-        keys = "asdghklqwertyuiopzxcvbnmfj",
-        check_comma = true,
-        highlight = "Search",
-        highlight_grey = "Comment",
-      },
-    },
+    override_options = function()
+      require("custom.plugins.configs.others").autopairs()
+    end,
     cond = cond_vscode,
   },
 
+  -- indent guide
   ["lukas-reineke/indent-blankline.nvim"] = {
     module = "indent_blankline",
     cond = cond_vscode
   },
 
+  -- tag autopairs
   ["windwp/nvim-ts-autotag"] = {
     opt = true,
     ft = {
@@ -461,47 +308,19 @@ return {
     cond = cond_vscode,
   },
 
+  -- colorizer
   ["NvChad/nvim-colorizer.lua"] = {
     module = "colorizer",
-    override_options = {
-      filetypes = {
-        "*",
-        css = { css = true },
-        html = { css = true, tailwind = true },
-        php = { css = true, tailwind = true },
-      },
-      user_default_options = {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        names = false, -- "Name" codes like Blue or blue
-        RRGGBBAA = true, -- #RRGGBBAA hex codes
-        AARRGGBB = false, -- 0xAARRGGBB hex codes
-        rgb_fn = false, -- CSS rgb() and rgba() functions
-        hsl_fn = false, -- CSS hsl() and hsla() functions
-        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        -- Available modes for `mode`: foreground, background,  virtualtext
-        mode = "background", -- Set the display mode.
-        -- Available methods are false / true / "normal" / "lsp" / "both"
-        -- True is same as normal
-        tailwind = false, -- Enable tailwind colors
-        virtualtext = "■",
-      },
-      -- all the sub-options of filetypes apply to buftypes
-      buftypes = {
-        "*",
-        "!prompt",
-        "!popup",
-        "!terminal",
-        "!nofile",
-      },
-    },
+    override_options = function()
+      return require("custom.plugins.configs.others").colorizer()
+    end,
     setup = function()
       require("custom.utils").packer_lazy_load("nvim-colorizer.lua", 300)
     end,
     cond = cond_vscode,
   },
 
+  -- highlight search
   ["kevinhwang91/nvim-hlslens"] = {
     opt = true,
     module = "hlslens",
@@ -511,21 +330,12 @@ return {
       if vim.g.vscode == nil then require("core.utils").load_mappings("hlslens") end
     end,
     config = function()
-      vim.opt.shortmess:append("S")
-      local opts = {
-        calm_down = true,
-      }
-
-      local status, handler = pcall(require, "scrollbar.handlers.search")
-      if status then
-        handler.setup(opts)
-      else
-        require("hlslens").setup(opts)
-      end
+      require("custom.plugins.configs.others").hlslens()
     end,
     cond = cond_vscode,
   },
 
+  -- scrollbar
   ["petertriho/nvim-scrollbar"] = {
     opt = true,
     event = {
@@ -545,25 +355,12 @@ return {
     requires = { "lewis6991/gitsigns.nvim", opt = true },
     wants = { "gitsigns.nvim", "base46" },
     config = function()
-      local status, colors = pcall(require, "base46.themes." .. vim.g.nvchad_theme)
-      local opts = {}
-      if status then
-        opts = {
-          Search = { color = colors.base_30.yellow },
-          GitAdd = { color = colors.base_30.green },
-          GitChange = { color = colors.base_30.blue },
-          GitDelete = { color = colors.base_30.red },
-        }
-      end
-      require("scrollbar").setup({
-        set_highlights = true,
-        marks = opts
-      })
-      require("scrollbar.handlers.gitsigns").setup()
+      require("custom.plugins.configs.others").scrollbar()
     end,
     cond = cond_vscode,
   },
 
+  -- find & replace
   ["VonHeikemen/searchbox.nvim"] = {
     opt = true,
     module = "searchbox",
@@ -575,6 +372,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- terminal
   ["akinsho/toggleterm.nvim"] = {
     opt = true,
     module = "toggleterm",
@@ -585,6 +383,7 @@ return {
     cond = cond_vscode,
   },
 
+  -- incremental & decremental
   ["monaqa/dial.nvim"] = {
     opt = true,
     module = "dial",
@@ -596,6 +395,7 @@ return {
     end,
   },
 
+  -- ime support for mac
   ["brglng/vim-im-select"] = {
     opt = true,
     event = { "InsertEnter", "CmdlineEnter" },
@@ -605,6 +405,7 @@ return {
     disable = is_windows or has_fcitx,
   },
 
+  -- ime suppoert for windows and wsl
   ["kaz399/spzenhan.vim"] = {
     opt = true,
     setup = function()
@@ -613,6 +414,7 @@ return {
     disable = not is_windows,
   },
 
+  -- status line
   ["nvim-lualine/lualine.nvim"] = {
     opt = true,
     wants = "base46",
@@ -622,28 +424,13 @@ return {
     cond = cond_vscode,
   },
 
+  -- yank text and macro history
   ["AckslD/nvim-neoclip.lua"] = {
     opt = true,
     requires = { "nvim-telescope/telescope.nvim", opt = true },
     event = { "CursorMoved", "CursorHold" },
     config = function()
-      require("neoclip").setup({
-        keys = {
-          telescope = {
-            i = {
-              paste = "<c-o>",
-              paste_behind = "<c-i>",
-              delete = "<c-x>",
-            },
-          },
-        },
-      })
-
-      local status, telescope = pcall(require, "telescope")
-      if status then
-        telescope.load_extension("neoclip")
-        telescope.load_extension("macroscope")
-      end
+      require("custom.plugins.configs.others").neoclip()
     end,
     setup = function()
       if vim.g.vscode == nil then require("core.utils").load_mappings("neoclip") end
@@ -651,21 +438,19 @@ return {
     cond = cond_vscode,
   },
 
+  -- operator for substitute
   ["gbprod/substitute.nvim"] = {
     opt = true,
     module = "substitute",
     config = function()
-      require("substitute").setup({
-        range = {
-          prefix = "",
-        },
-      })
+      require("custom.plugins.configs.others").substitute()
     end,
     setup = function()
       require("core.utils").load_mappings("substitute")
     end,
   },
 
+  -- surround text object
   ["kylechui/nvim-surround"] = {
     opt = true,
     keys = {
@@ -679,23 +464,11 @@ return {
       { "x", "sA" },
     },
     config = function()
-      require("nvim-surround").setup({
-        keymaps = {
-          insert = "<C-g>s",
-          insert_line = "<C-g>S",
-          normal = "sa",
-          normal_cur = "saa",
-          normal_line = "sA",
-          normal_cur_line = "sAA",
-          visual = "sa",
-          visual_line = "sA",
-          delete = "sd",
-          change = "sr",
-        },
-      })
+      require("custom.plugins.configs.others").surround()
     end,
   },
 
+  -- undo history graph
   ["mbbill/undotree"] = {
     opt = true,
     cmd = { "UndotreeToggle", "UndotreeShow" },
@@ -705,13 +478,17 @@ return {
     cond = cond_vscode,
   },
 
+  -- fast motion
   ["easymotion/vim-easymotion"] = {
     opt = true,
     event = { "CursorMoved", "CursorHold" },
-    setup = easymotion_setting,
+    setup = function()
+      require("custom.plugins.configs.others").easymotion()
+    end,
     cond = cond_vscode,
   },
 
+  -- easymotion for vscode
   ["asvetliakov/vim-easymotion"] = {
     opt = true,
     as = "vscode-easymotion",
@@ -720,44 +497,16 @@ return {
     end,
   },
 
+  -- run program quickly
   ["thinca/vim-quickrun"] = {
     opt = true,
     cmd = { "QuickRun" },
     requires = "lambdalisue/vim-quickrun-neovim-job",
     setup = function()
-      -- disable default keymaps
-      vim.g.quickrun_no_default_key_mappings = 1
-
-      vim.g.quickrun_config = {
-        -- default config
-        _ = {
-          runner = "neovim_job",
-          ["outputter/buffer/opener"] = "rightbelow 8sp",
-          ["outputter/buffer/close_on_empty"] = 1,
-          ["outputter/buffer/into"] = 0,
-          ["hook/time/enable"] = 1,
-        },
-        python = {
-          command = "python3",
-          cmdopt = "-u",
-          input = '%{filereadable("input") ? "input" : "="}',
-        },
-      }
-
-      if vim.g.vscode == nil then require("core.utils").load_mappings("quickrun") end
+      require("custom.plugins.configs.quickrun").setup()
     end,
     config = function()
-      vim.api.nvim_create_augroup('QuickRunClose', {})
-      vim.api.nvim_create_autocmd('FileType', {
-        group = 'QuickRunClose',
-        pattern = 'quickrun',
-        callback = function()
-          vim.keymap.set('n', 'q', '<cmd>quit<CR>', {
-            buffer = true,
-            silent = true,
-          })
-        end,
-      })
+      require("custom.plugins.configs.quickrun").config()
     end,
     cond = cond_vscode,
   },
