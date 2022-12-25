@@ -145,6 +145,8 @@ M.general = {
 
     ["<leader>n"] = { "<Cmd>nohlsearch<CR>", "stop highlighting" },
 
+    ["<leader>y"] = { '"+y', "yank to clipboard", opts = { remap = true } },
+    ["<leader>Y"] = { '"+Y', "yank to clipboard", opts = { remap = true } },
     ["<leader>d"] = { '"+d', "cut to clipboard", opts = { remap = true } },
     ["<leader>D"] = { '"+D', "cut to clipboard", opts = { remap = true } },
     ["<leader>p"] = { '"+p', "put from clipboard", opts = { remap = true } },
