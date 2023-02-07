@@ -372,13 +372,15 @@ M.lspsaga = {
   plugin = true,
   n = {
     ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "hover doc" },
-    ["gd"] = { "<cmd>Lspsaga peek_definition<CR>", "peek definition" },
+    ["gd"] = { "<cmd>Lspsaga lsp_finder<CR>", "peek definition" },
     ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "next diagnostic result" },
     ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "previous diagnostic result" },
     ["gr"] = { "<cmd>Lspsaga rename<CR>", "rename" },
+    ["gR"] = { "<cmd>Lspsaga rename ++project<CR>", "rename whole project" },
     ["gs"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diagnostics" },
     ["gh"] = { "<cmd>Lspsaga code_action<CR>", "show code action" },
-    ["gD"] = { "<cmd>Lspsaga preview_definition<CR>", "preview definition" },
+    ["gD"] = { "<cmd>Lspsaga peek_definition<CR>", "preview definition" },
+    ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", "show outline" },
   },
 }
 

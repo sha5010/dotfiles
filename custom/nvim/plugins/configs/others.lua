@@ -1,20 +1,15 @@
 local M = {}
 
 function M.lspsaga()
-  require("lspsaga").init_lsp_saga({
-    max_preview_lines = 50,
-    code_action_keys = {
-      quit = "q",
-      exec = "<CR>",
+  require("lspsaga").setup({
+    finder = {
+      keys = {
+        vsplit = "v",
+        split = "s",
+      },
     },
-    finder_action_keys = {
-      open = "<CR>",
-      vsplit = "v",
-      split = "w",
-      tabe = "t",
-      quit = { "q", "<Esc>" },
-      scroll_down = { "<C-f>", "<C-d>" },
-      scroll_up = { "<C-b>", "<C-u>" },
+    symbol_in_winbar = {
+      enable = false,
     },
   })
 end
