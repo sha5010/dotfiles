@@ -19,12 +19,6 @@ autocmd('BufEnter', {
     vim.b.zenhan_ime_status = 0
   end
 })
-autocmd('CmdlineEnter', {
-  group = group_name,
-  callback = function()
-    switch_ime(0)
-  end
-})
 autocmd('CmdlineLeave', {
   group = group_name,
   callback = function()
