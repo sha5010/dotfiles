@@ -262,7 +262,7 @@ return {
   },
 
   -- filer
-  ["kyazdani42/nvim-tree.lua"] = {
+  ["nvim-tree/nvim-tree.lua"] = {
     override_options = function()
       return require("custom.plugins.configs.others").nvimtree()
     end,
@@ -528,6 +528,6 @@ return {
   -- disable default plugins in vscode
   ["NvChad/extensions"] = { cond = cond_vscode },
   ["rafamadriz/friendly-snippets"] = { cond = cond_vscode },
-  ["kyazdani42/nvim-web-devicons"] = { after = false, cond = cond_vscode },
+  ["nvim-tree/nvim-web-devicons"] = { after = false, cond = cond_vscode },
   ["numToStr/Comment.nvim"] = { cond = cond_vscode },
 }
