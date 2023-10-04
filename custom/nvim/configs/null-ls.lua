@@ -3,8 +3,8 @@ if not status then
   return
 end
 
+require("mason").setup()
 require("mason-null-ls").setup({
-  automatic_setup = true,
+  handlers = {},
 })
-require("mason-null-ls").setup_handlers({})
 null_ls.setup()

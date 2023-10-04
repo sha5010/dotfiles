@@ -125,6 +125,7 @@ M.general = {
     ["<leader>a"] = { "gg0vG$", "select entire buffer" },
     ["<leader>r"] = { "<Cmd>set relativenumber!<CR>", "toggle relativenumber" },
     ["<leader>z"] = { "<Cmd>set wrap!<CR>", "toggle wrap" },
+    ["<leader>i"] = { "<Cmd>Lazy<CR>", "lazy status" },
   },
   x = {
     ["<C-j>"] = { "10j", "10 down", opts = { remap = true } },
@@ -372,7 +373,7 @@ M.lspsaga = {
   plugin = true,
   n = {
     ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "hover doc" },
-    ["gd"] = { "<cmd>Lspsaga lsp_finder<CR>", "peek definition" },
+    ["gd"] = { "<cmd>Lspsaga finder<CR>", "peek definition" },
     ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "next diagnostic result" },
     ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "previous diagnostic result" },
     ["gr"] = { "<cmd>Lspsaga rename<CR>", "rename" },
@@ -381,6 +382,9 @@ M.lspsaga = {
     ["gh"] = { "<cmd>Lspsaga code_action<CR>", "show code action" },
     ["gD"] = { "<cmd>Lspsaga peek_definition<CR>", "preview definition" },
     ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", "show outline" },
+  },
+  i = {
+    ["<C-k>"] = { "<cmd>Lspsaga hover_doc<CR>", "hover doc" },
   },
 }
 
@@ -395,68 +399,6 @@ M.bufferline = {
   plugin = true,
   n = {
     ["tp"] = { "<Cmd>BufferLinePick<CR>", "pick tab" },
-  },
-}
-
-M.hlslens = {
-  plugin = true,
-  n = {
-    ["n"] = {
-      "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
-      "find next",
-    },
-    ["N"] = {
-      "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
-      "find previous",
-    },
-    ["*"] = {
-      "*<Cmd>lua require('hlslens').start()<CR>",
-      "search word forward",
-    },
-    ["#"] = {
-      "#<Cmd>lua require('hlslens').start()<CR>",
-      "search word backward",
-    },
-    ["g*"] = {
-      "g*<Cmd>lua require('hlslens').start()<CR>",
-      "search word forward",
-    },
-    ["g#"] = {
-      "g#<Cmd>lua require('hlslens').start()<CR>",
-      "search word backward",
-    },
-  },
-}
-
-M.searchbox = {
-  plugin = true,
-  n = {
-    ["<leader>s"] = {
-      function()
-        require("searchbox").replace({ confirm = "menu", default_value = vim.fn.expand("<cword>") })
-      end,
-      "Find and Replace [ Current Buffer ]",
-    },
-  },
-  x = {
-    ["<leader>s"] = {
-      function()
-        -- grab the old value of a register
-        local a_content = vim.fn.getreg("a")
-        -- copy the current visual selection to "a" register
-        vim.cmd('noau normal! "ay"')
-        -- grab content
-        local content, v_mode = vim.fn.getreg("a"), false
-        -- restore the "a" register
-        vim.fn.setreg("a", a_content)
-
-        if content:match("\n") then
-          content, v_mode = "", true
-        end
-        require("searchbox").replace({ confirm = "menu", default_value = content, visual_mode = v_mode })
-      end,
-      "Find and Replace [ Current Buffer ]",
-    },
   },
 }
 
@@ -553,6 +495,7 @@ M.neoclip = {
 M.substitute = {
   plugin = true,
   n = {
+    ["<leader>S"] = { '"+S', "substitute from clipboard", opts = { remap = true } },
     ["S"] = {
       function()
         require("substitute").operator()
@@ -585,6 +528,7 @@ M.substitute = {
     },
   },
   x = {
+    ["<leader>S"] = { '"+S', "substitute from clipboard", opts = { remap = true } },
     ["S"] = {
       function()
         require("substitute").visual()

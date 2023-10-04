@@ -8,52 +8,15 @@ function M.lspsaga()
         split = "s",
       },
     },
+    rename = {
+      keys = {
+        quit = "<C-[>",
+      },
+    },
     symbol_in_winbar = {
       enable = false,
     },
   })
-end
-
-function M.nvimtree()
-  return {
-    renderer = {
-      highlight_git = true,
-      group_empty = true,
-    },
-    git = {
-      enable = true,
-    },
-    diagnostics = {
-      enable = true,
-      show_on_dirs = true,
-    },
-    actions = {
-      open_file = {
-        quit_on_open = true,
-      },
-    },
-    view = {
-      mappings = {
-        list = {
-          { key = "l",  action = "edit" },
-          { key = "h",  action = "close_node" },
-          { key = "Y",  action = "copy_absolute_path" },
-          { key = "gy", action = "copy_path" },
-          { key = "[d", action = "prev_diag_item" },
-          { key = "[g", action = "prev_git_item" },
-          { key = "]d", action = "next_diag_item" },
-          { key = "]g", action = "next_git_item" },
-          { key = "o",  action = "system_open" },
-
-          -- disable default mapping
-          {
-            key = { "s", "[e", "]e", "[c", "]c" },
-            action = ""
-          },
-        },
-      },
-    },
-  }
 end
 
 function M.autopairs()

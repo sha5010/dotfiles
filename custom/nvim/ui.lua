@@ -1,11 +1,13 @@
 local M = {}
 
+M.theme = "tomorrow_night"
+
 M.hl_add = {
   ActiveWindow = {
     bg = "black"
   },
   InactiveWindow = {
-    bg = "#101214"
+    bg = "darker_black"
   },
 
   -- hlslens
@@ -24,6 +26,15 @@ M.hl_override = {
   DiffDelete = { bg = "NONE", fg = "red", },
   DiffRemoved = { bg = "NONE", fg = "red", },
   DiffChangeDelete = { bg = "NONE", fg = "orange", },
+}
+
+M.statusline = {
+  theme = "vscode_colored",
+  separator_style = "block",
+}
+
+M.tabufline = {
+  enabled = false,
 }
 
 return M

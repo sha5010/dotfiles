@@ -72,9 +72,6 @@ local default = {
 
   -- semver
   augend.semver.alias.semver,
-
-  -- quote
-  augend.paren.alias.quote,
 }
 
 local lang_specific = {

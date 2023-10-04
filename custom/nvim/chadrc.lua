@@ -1,8 +1,8 @@
 local M = {}
 
 M.mappings = require("custom.mappings")
-M.plugins = require("custom.plugins")
-M.ui = require("custom.highlights")
+M.ui = require("custom.ui")
+M.plugins = "custom.plugins"
 
 if vim.g.vscode ~= nil then
   local vscode = require("custom.vscode")

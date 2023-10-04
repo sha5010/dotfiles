@@ -2,7 +2,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 local group_name = 'zenhan'
-local spzenhan_executable = vim.fn.stdpath('data') .. '/site/pack/packer/opt/spzenhan.vim/zenhan/spzenhan.exe'
+local spzenhan_executable = vim.fn.stdpath('data') .. '/lazy/spzenhan.vim/zenhan/spzenhan.exe'
 spzenhan_executable = string.gsub(spzenhan_executable, '\\', '/')
 
 if (not vim.fn.executable(spzenhan_executable)) then return end

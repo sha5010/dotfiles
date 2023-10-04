@@ -53,6 +53,15 @@ function M.setup()
       })
     end,
   })
+
+  autocmd('User', {
+    pattern = "NvChadThemeReload",
+    callback = function()
+      require("custom.configs.lualine").setup()
+      require("custom.configs.bufferline").setup()
+      vim.api.nvim_exec_autocmds("ColorScheme", {})
+    end,
+  })
 end
 
 return M

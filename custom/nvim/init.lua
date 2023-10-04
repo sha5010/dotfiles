@@ -49,6 +49,3 @@ opt.timeoutlen = 1000
 
 -- autocommands
 require('custom.autocmds').setup()
-
--- colorscheme
-vim.g.nvchad_theme = "tomorrow_night"
