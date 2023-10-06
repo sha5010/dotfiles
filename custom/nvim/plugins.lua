@@ -41,6 +41,10 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      require("core.utils").lazy_load "nvim-lspconfig"
+      if vim.g.vscode == nil then require("core.utils").load_mappings("lspconfig") end
+    end,
     dependencies = "williamboman/mason-lspconfig.nvim",
     cond = cond_vscode,
   },

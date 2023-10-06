@@ -4,14 +4,28 @@ function M.lspsaga()
   require("lspsaga").setup({
     finder = {
       keys = {
+        shuttle = "<Tab>",
         vsplit = "v",
         split = "s",
+        close = "<C-c>",
+      }
+    },
+    definition = {
+      keys = {
+        edit = "o",
+        vsplit = "v",
+        split = "s",
+        tabe = "t",
+        close = "<C-c>",
       },
     },
     rename = {
       keys = {
         quit = "<C-[>",
       },
+    },
+    ui = {
+      code_action = "",
     },
     symbol_in_winbar = {
       enable = false,
