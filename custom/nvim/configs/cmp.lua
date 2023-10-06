@@ -66,7 +66,8 @@ function M.setup()
       option = {
         get_bufnrs = function()
           return vim.api.nvim_list_bufs()
-        end
+        end,
+        keyword_pattern = [[\<\%(-\?\d\{1,100\}\%(\%(\.\d\|\w\)\{1,10\}\)\?\|\%(\w\|\-\)\{1,100\}\)\>\|\%([^\x00-\xff　、。]\)\+]]
       }
     },
     { name = "nvim_lua" },
