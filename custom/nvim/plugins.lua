@@ -441,6 +441,17 @@ return {
     end,
   },
 
+  -- smart words moving
+  {
+    "kana/vim-smartword",
+    keys = {
+      { "w", "<Plug>(smartword-w)", mode = {"n", "x"}, desc = "smartword-w" },
+      { "e", "<Plug>(smartword-e)", mode = {"n", "x"}, desc = "smartword-e" },
+      { "b", "<Plug>(smartword-b)", mode = {"n", "x"}, desc = "smartword-b" },
+      { "ge","<Plug>(smartword-ge)",mode = {"n", "x"}, desc = "smartword-ge"},
+    },
+  },
+
   -- run program quickly
   {
     "thinca/vim-quickrun",
