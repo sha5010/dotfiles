@@ -489,12 +489,12 @@ return {
 
   -- smart words moving
   {
-    "kana/vim-smartword",
+    "chrisgrieser/nvim-spider",
     keys = {
-      { "w", "<Plug>(smartword-w)", mode = {"n", "x"}, desc = "smartword-w" },
-      { "e", "<Plug>(smartword-e)", mode = {"n", "x"}, desc = "smartword-e" },
-      { "b", "<Plug>(smartword-b)", mode = {"n", "x"}, desc = "smartword-b" },
-      { "ge","<Plug>(smartword-ge)",mode = {"n", "x"}, desc = "smartword-ge"},
+      { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = {"n", "x"}, desc = "Spider-w" },
+      { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = {"n", "x", "o"}, desc = "Spider-e" },
+      { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = {"n", "x", "o"}, desc = "Spider-b" },
+      { "ge","<cmd>lua require('spider').motion('ge')<CR>",mode = {"n", "x", "o"}, desc = "Spider-ge"},
     },
   },
 
