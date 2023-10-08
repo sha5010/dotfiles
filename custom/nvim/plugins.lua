@@ -29,7 +29,6 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
-    event = "VeryLazy",
     dependencies = {
       "williamboman/mason.nvim",
     },
@@ -72,7 +71,7 @@ return {
   -- vscode like breadcrumbs
   {
     "utilyre/barbecue.nvim",
-    event = "LspAttach",
+    event = { "BufRead", "BufNewFile" },
     dependencies = {
       { "smiteshp/nvim-navic" },
     },
@@ -119,7 +118,6 @@ return {
   -- linter, formatter
   {
     "jose-elias-alvarez/null-ls.nvim",
-    event = "VeryLazy",
     dependencies = {
       {
         "jayp0521/mason-null-ls.nvim",
@@ -161,7 +159,7 @@ return {
   -- word highlighting
   {
     "RRethy/vim-illuminate",
-    event = { "BufRead", "BufNewFile" },
+    event = { "BufEnter" },
     config = function()
       require("illuminate").configure({
         filetype_denylist = {
@@ -181,7 +179,6 @@ return {
       vim.api.nvim_create_autocmd({ "ColorScheme" }, {
         pattern = { "*" },
         callback = function(_)
-          local set_hl = vim.api.nvim_set_hl
           set_hl(0, "IlluminatedWordText", { link = "Visual" })
           set_hl(0, "IlluminatedWordRead", { link = "Visual" })
           set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
@@ -204,7 +201,7 @@ return {
   -- tabline
   {
     "akinsho/bufferline.nvim",
-    event = { "VeryLazy" },
+    event = { "VimEnter" },
     config = function()
       require("custom.configs.bufferline")
     end,
@@ -404,7 +401,7 @@ return {
   -- status line
   {
     "nvim-lualine/lualine.nvim",
-    event = { "VeryLazy" },
+    event = { "VimEnter" },
     init = function()
       require("base46").load_all_highlights()
     end,
@@ -420,7 +417,7 @@ return {
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
-    event = { "BufRead", "BufNewFile" },
+    event = { "TextYankPost" },
     config = function()
       require("custom.configs.others").neoclip()
     end,
@@ -471,7 +468,7 @@ return {
   -- fast motion
   {
     "easymotion/vim-easymotion",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufEnter" },
     init = function()
       require("custom.configs.others").easymotion()
     end,
@@ -501,7 +498,7 @@ return {
   -- extend % navigation
   {
     "andymass/vim-matchup",
-    lazy = false,
+    event = "VeryLazy",
     init = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
