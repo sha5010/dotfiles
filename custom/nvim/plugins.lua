@@ -158,6 +158,39 @@ return {
     cond = cond_vscode
   },
 
+  -- word highlighting
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("illuminate").configure({
+        filetype_denylist = {
+          "NvimTree",
+          "lazy",
+        },
+        large_file_cutoff = 10000,
+      })
+
+      -- change the highlight style
+      local set_hl = vim.api.nvim_set_hl
+      set_hl(0, "IlluminatedWordText", { link = "Visual" })
+      set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+      set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+
+      -- auto update the highlight style on colorscheme change
+      vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+        pattern = { "*" },
+        callback = function(_)
+          local set_hl = vim.api.nvim_set_hl
+          set_hl(0, "IlluminatedWordText", { link = "Visual" })
+          set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+          set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+        end
+      })
+    end,
+    cond = cond_vscode,
+  },
+
   -- make quickfix better
   {
     "kevinhwang91/nvim-bqf",
