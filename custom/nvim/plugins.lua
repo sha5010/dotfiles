@@ -498,6 +498,15 @@ return {
     },
   },
 
+  -- extend % navigation
+  {
+    "andymass/vim-matchup",
+    lazy = false,
+    init = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  },
+
   -- run program quickly
   {
     "thinca/vim-quickrun",
