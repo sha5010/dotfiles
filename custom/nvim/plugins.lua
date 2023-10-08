@@ -304,12 +304,18 @@ return {
     cond = cond_vscode,
   },
 
-  -- autopairs
+  -- disable default autopairs
   {
     "windwp/nvim-autopairs",
+    enabled = false,
+  },
+
+  -- autopairs, fast-break and fast-wrap
+  {
+    "hrsh7th/nvim-insx",
     event = "InsertEnter",
-    opts = function()
-      require("custom.configs.others").autopairs()
+    config = function()
+      require("insx.preset.standard").setup()
     end,
     cond = cond_vscode,
   },
