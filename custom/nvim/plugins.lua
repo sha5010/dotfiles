@@ -138,6 +138,7 @@ return {
   -- more highlight
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = { "yioneko/nvim-yati", },
     opts = {
       auto_install = true,
       ensure_installed = {
@@ -146,6 +147,12 @@ return {
       },
       indent = {
         enable = false,
+      },
+      yati = {
+        enable = true,
+        disable = {
+          "python",
+        },
       },
     },
     cond = cond_vscode
