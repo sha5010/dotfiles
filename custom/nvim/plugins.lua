@@ -465,22 +465,33 @@ return {
     cond = cond_vscode,
   },
 
-  -- fast motion
+  -- enhance navigation
   {
-    "easymotion/vim-easymotion",
-    event = { "BufEnter" },
+    "folke/flash.nvim",
+    event = { "VeryLazy" },
+    opts =  {
+      highlight = {
+        groups = {
+          label = "Todo",
+        },
+      },
+      modes = {
+        char = {
+          autohide = true,
+          jump_labels = true,
+          multi_line = true,
+        },
+      },
+    },
+    keys = {
+      { "m", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "T", mode = "n", function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "s", mode = "o", function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "<C-t>", mode = "c", function() require("flash").toggle() end, desc = "Toggle Flash" },
+    },
     init = function()
-      require("custom.configs.others").easymotion()
-    end,
-    cond = cond_vscode,
-  },
-
-  -- easymotion for vscode
-  {
-    "asvetliakov/vim-easymotion",
-    name = "vscode-easymotion",
-    cond = function()
-      return vim.g.vscode ~= nil
+      require("custom.configs.flash")
     end,
   },
 

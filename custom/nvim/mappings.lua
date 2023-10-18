@@ -551,52 +551,6 @@ M.undotree = {
   },
 }
 
-local avoid_macro = function(key, cmd)
-  if vim.g.EasyMotion_loaded == nil then
-    return key
-  end
-  return (vim.fn.reg_recording() == "" and vim.fn.reg_executing() == "") and cmd or key
-end
-
-local easymotion_keys = {
-  n = {
-    ["f"] = "<Plug>(easymotion-sl)",
-    ["F"] = "<Plug>(easymotion-lineanywhere)",
-    [";"] = "<Plug>(easymotion-next)",
-    [","] = "<Plug>(easymotion-prev)",
-    ["m"] = "<Plug>(easymotion-bd-W)",
-  },
-  x = {
-    ["f"] = "<Plug>(easymotion-sl)",
-    ["F"] = "<Plug>(easymotion-lineanywhere)",
-    [";"] = "<Plug>(easymotion-next)",
-    [","] = "<Plug>(easymotion-prev)",
-    ["m"] = "<Plug>(easymotion-bd-W)",
-  },
-  o = {
-    ["f"] = "<Plug>(easymotion-fl)",
-    ["F"] = "<Plug>(easymotion-Fl)",
-    ["t"] = "<Plug>(easymotion-tl)",
-    ["T"] = "<Plug>(easymotion-Tl)",
-  },
-}
-
-M.easymotion = {
-  plugin = true,
-}
-
-for m, v in pairs(easymotion_keys) do
-  M.easymotion[m] = M.easymotion[m] or {}
-  for k, c in pairs(v) do
-    M.easymotion[m][k] = {
-      function()
-        return avoid_macro(k, c)
-      end,
-      opts = { noremap = false, expr = true },
-    }
-  end
-end
-
 M.quickrun = {
   plugin = true,
   n = {
