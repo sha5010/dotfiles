@@ -97,11 +97,12 @@ zinit wait'1' lucid is-snippet for \
 # bat
 __bat_atload() {
   export MANPAGER="sh -c 'col -bx | bat --color=always --language=man --plain'"
-  alias cat='bat --paging=never --plain --wrap=character'
+  alias cat='bat -pp'
 }
 zinit wait lucid light-mode as'program' from'gh-r' for \
   mv'bat* -> bat' \
-  pick'bat/bat' \
+  pick'bat*/bat' \
+  atclone'cp -f bat/autocomplete/bat.zsh _bat' atpull'%atclone' \
   atload'__bat_atload' \
   @'sharkdp/bat'
 
