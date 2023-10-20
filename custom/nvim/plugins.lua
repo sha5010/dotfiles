@@ -480,6 +480,9 @@ return {
           autohide = true,
           jump_labels = true,
           multi_line = true,
+          highlight = {
+            matches = false,
+          },
         },
       },
     },
