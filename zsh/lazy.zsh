@@ -11,7 +11,7 @@ source "$ZDOTDIR/plugins.zsh"
 # ----------------------------
 # aliases
 # ----------------------------
-mkcd() { command mkdir -p -- "$@" && buildin cd "${@[-1]:a}" }
+mkcd() { command mkdir -p -- "$@" && builtin cd "${@[-1]:a}" }
 if _has bat; then
   diff() {
     command diff "$@" | bat --paging=never --plain --language=diff
