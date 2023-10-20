@@ -22,9 +22,30 @@ __zsh_history_substring_search_atload() {
   bindkey "^K" history-substring-search-up
   bindkey "^J" history-substring-search-down
 }
-zinit wait lucid light-mode for \
+zinit wait'1' lucid light-mode for \
   atload'__zsh_history_substring_search_atload' \
   zsh-users/zsh-history-substring-search
+
+# zsh-interactive-cd
+zinit wait lucid is-snippet for \
+  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+
+# enhancd
+export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
+zinit wait lucid light-mode for \
+  pick'init.sh' b4b4r07/enhancd
+
+# zsh-vi-mode
+zvm_config() {
+  export ZVM_INIT_MODE=sourcing
+  export ZVM_KEYTIMEOUT=1
+  export ZVM_VI_SURROUND_BINDKEY="s-prefix"
+}
+zvm_after_init() {
+  bindkey -M viins "^K" history-substring-search-up
+}
+zinit wait lucid light-mode depth'1' for \
+  jeffreytse/zsh-vi-mode
 
 # ripgrep
 local ARCH="$(uname -i)"
@@ -64,8 +85,10 @@ zinit wait lucid light-mode as'program' from'gh-r' for \
 
 __fzf_keybind_adload() {
   bindkey -M vicmd '^R' redo
+  bindkey -M vicmd '/'  fzf-history-widget
+  bindkey -M vicmd '?'  fzf-history-widget
 }
-zinit wait lucid is-snippet for \
+zinit wait'1' lucid is-snippet for \
   pick'completion.zsh' \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh \
   atload'__fzf_keybind_adload' \
@@ -74,7 +97,7 @@ zinit wait lucid is-snippet for \
 # bat
 __bat_atload() {
   export MANPAGER="sh -c 'col -bx | bat --color=always --language=man --plain'"
-  alias cat='bat --paging=never --plain'
+  alias cat='bat --paging=never --plain --wrap=character'
 }
 zinit wait lucid light-mode as'program' from'gh-r' for \
   mv'bat* -> bat' \
