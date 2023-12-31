@@ -383,7 +383,7 @@ return {
     "brglng/vim-im-select",
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
-      vim.g.im_select_default = "com.google.inputmethod.Japanese.Roman"
+      vim.g.im_select_default = "com.apple.keylayout.ABC"
     end,
     enabled = not is_windows and not has_fcitx,
   },
