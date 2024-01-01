@@ -1,0 +1,15 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# ignore lazyvim files
+lazyvim.json
+lazy-lock.json
+.neoconf.json
+README.md
+LICENSE

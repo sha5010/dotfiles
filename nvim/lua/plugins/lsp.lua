@@ -1,0 +1,64 @@
+return {
+  {
+    "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- disable a default keymap
+      keys[#keys + 1] = { "gd", false }
+      keys[#keys + 1] = { "gr", false }
+      keys[#keys + 1] = { "gy", false }
+    end,
+  },
+
+  -- improve lsp experience
+  {
+    "glepnir/lspsaga.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    cmd = "Lspsaga",
+    keys = {
+      { "gd", "<Cmd>Lspsaga peek_definition<CR>", desc = "Peek Definition" },
+      { "gr", "<Cmd>Lspsaga finder<CR>", desc = "Find References" },
+      { "gy", "<Cmd>Lspsaga peek_type_definition<CR>", desc = "Peek Type Definition" },
+      { "gs", "<Cmd>Lspsaga show_line_diagnostics<CR>", desc = "Current Line Diagnostics" },
+      { "gh", "<Cmd>Lspsaga code_action<CR>", desc = "Current Line Diagnostics" },
+      { "gO", "<Cmd>Lspsaga outline<CR>", desc = "Show Outline" },
+      { "gR", "<Cmd>Lspsaga rename<CR>", desc = "Rename" },
+      { "[d", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Prev Diagnostic" },
+      { "]d", "<Cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Next Diagnostic" },
+    },
+    opts = {
+      finder = {
+        keys = {
+          shuttle = "<Tab>",
+          vsplit = "v",
+          split = "s",
+          close = "<C-c>",
+        },
+      },
+      definition = {
+        width = 0.8,
+        keys = {
+          edit = "o",
+          vsplit = "v",
+          split = "s",
+          tabe = "t",
+          close = "<C-c>",
+        },
+      },
+      rename = {
+        keys = {
+          quit = "<C-[>",
+        },
+      },
+      ui = {
+        code_action = "",
+      },
+      symbol_in_winbar = {
+        enable = false,
+      },
+    },
+  },
+}
