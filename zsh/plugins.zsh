@@ -45,7 +45,6 @@ zinit wait lucid light-mode depth'1' for \
   jeffreytse/zsh-vi-mode
 
 # ripgrep
-local ARCH="$(uname -i)"
 zinit wait lucid light-mode as'program' from'gh-r' for \
     pick'ripgrep*/rg' \
     BurntSushi/ripgrep \
@@ -59,6 +58,7 @@ __eza_atload() {
   alias tree='ls --tree --icons'
 }
 zinit wait lucid light-mode as'program' from'gh-r' for \
+  if'[[ "$OSTYPE" =~ "linux" ]]' \
   pick'bin/eza' \
   atload'__eza_atload' \
   eza-community/eza
