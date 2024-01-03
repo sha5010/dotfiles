@@ -117,7 +117,13 @@ return {
   {
     "backdround/neowords.nvim",
     vscode = true,
-    keys = function()
+    keys = {
+      { "w", mode = { "n", "x", "o" } },
+      { "e", mode = { "n", "x", "o" } },
+      { "b", mode = { "n", "x", "o" } },
+      { "ge", mode = { "n", "x", "o" } },
+    },
+    config = function()
       local neowords = require("neowords")
       local presets = neowords.pattern_presets
       local patterns = {
@@ -130,13 +136,12 @@ return {
       }
 
       local hops = neowords.get_word_hops(unpack(patterns))
+      local map = vim.keymap.set
 
-      return {
-        { "w", hops.forward_start, mode = { "n", "x", "o" } },
-        { "e", hops.forward_end, mode = { "n", "x", "o" } },
-        { "b", hops.backward_start, mode = { "n", "x", "o" } },
-        { "ge", hops.backward_end, mode = { "n", "x", "o" } },
-      }
+      map({ "n", "x", "o" }, "w", hops.forward_start)
+      map({ "n", "x", "o" }, "e", hops.forward_end)
+      map({ "n", "x", "o" }, "b", hops.backward_start)
+      map({ "n", "x", "o" }, "ge", hops.backward_end)
     end,
   },
 
