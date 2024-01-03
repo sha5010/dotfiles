@@ -35,4 +35,4 @@ zinit wait'2z' lucid null for \
 # ----------------------------
 # Load custom lazy config
 # ----------------------------
-[ -f "${ZDOTDIR}/customlazy.zsh" ] && source "${ZDOTDIR}/customlazy.zsh" 
+[ -f "${ZDOTDIR}/customlazy.zsh" ] && source "${ZDOTDIR}/customlazy.zsh"
