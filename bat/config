@@ -1,1 +1,3 @@
 --theme="Monokai Extended"
+--style=rule,changes
+--paging=always
