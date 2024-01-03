@@ -28,6 +28,7 @@ zinit wait'1' lucid light-mode for \
 
 # enhancd
 export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
+export ENHANCD_FILTER="fzf --preview 'eza --tree --group-directories-first --level 1 --colour=always {}'"
 zinit wait lucid light-mode for \
   pick'init.sh' b4b4r07/enhancd
 
@@ -66,9 +67,9 @@ zinit wait lucid is-snippet as'completion' pick'_eza' for \
 
 # fzf
 __fzf_atload() {
-  export FZF_DEFAULT_OPTS='--reverse --border'
+  export FZF_DEFAULT_OPTS='--reverse --border --ansi --no-separator'
   export FZF_DEFAULT_COMMAND='fd --hidden --color=always'
-  alias f="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+  export FZF_COMPLETION_OPTS="--info=inline"
 }
 zinit wait lucid light-mode as'program' from'gh-r' for \
   pick'fzf/fzf' \
@@ -81,10 +82,50 @@ __fzf_keybind_adload() {
   bindkey -M vicmd '?'  fzf-history-widget
 }
 zinit wait'1' lucid is-snippet for \
-  pick'completion.zsh' \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh \
   atload'__fzf_keybind_adload' \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  local tree='eza --tree --group-directories-first --level 1 --colour=always {}'
+  case "$command" in
+    cd|rmdir|pushd) fzf --preview "$tree" "$@" ;;
+    export|unset)   fzf --preview "eval 'echo \$'{}" "$@" ;;
+    kill|ps)        fzf --preview 'ps --pid={} u' "@$" ;;
+    *)              fzf --preview "[ -d {} ] && $tree || bat --color=always -n --line-range=:500 {}" "$@" ;;
+  esac
+}
+
+# fzf-tab
+zstyle ':completion:*:descriptions' format
+zstyle ':fzf-tab:complete:_zlua:*' query-string input
+zstyle ':fzf-tab:complete:*' fzf-bindings \
+  'ctrl-f:page-down' \
+  'ctrl-b:page-up' \
+  'space:accept'
+zstyle ':fzf-tab:complete:*' fzf-flags --info=inline
+zstyle ':fzf-tab:complete:*' fzf-min-height 10
+zstyle ':fzf-tab:*' prefix ''
+zstyle ':fzf-tab:*' show-group none
+zstyle ':fzf-tab:*' continuous-trigger '/'
+zinit wait lucid blockf light-mode for \
+  Aloxaf/fzf-tab
+
+# fzf-tab preview
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
+  '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+zstyle ':fzf-tab:complete:(cd|rmdir|pushd|*::cd):*' fzf-preview \
+  'eza --tree --group-directories-first --level 1 --colour=always $realpath'
+zstyle ':fzf-tab:complete:(ls|cat|bat|less|*vim):*' fzf-preview \
+  '[ -d $realpath ] && eza --tree --group-directories-first --level 1 --colour=always $realpath || bat --color=always -n --line-range=:500 $realpath'
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
+	fzf-preview 'echo ${(P)word}'
 
 # bat
 __bat_atload() {
