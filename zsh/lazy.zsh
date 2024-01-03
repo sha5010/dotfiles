@@ -26,6 +26,8 @@ export EDITOR="vi"
 (( ${+commands[vim]} )) && EDITOR="vim"
 (( ${+commands[nvim]} )) && EDITOR="nvim"
 
+export WORDCHARS="*?_-.[]~&;!#$%^(){}<>"
+
 # ----------------------------
 # autoloads
 # ----------------------------
