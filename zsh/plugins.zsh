@@ -26,10 +26,6 @@ zinit wait'1' lucid light-mode for \
   atload'__zsh_history_substring_search_atload' \
   zsh-users/zsh-history-substring-search
 
-# zsh-interactive-cd
-zinit wait lucid is-snippet for \
-  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
-
 # enhancd
 export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
 zinit wait lucid light-mode for \
