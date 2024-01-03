@@ -46,12 +46,8 @@ zinit wait lucid light-mode depth'1' for \
 # ripgrep
 local ARCH="$(uname -i)"
 zinit wait lucid light-mode as'program' from'gh-r' for \
-  if'[ "$ARCH" = "x86_64" ]' pick'ripgrep*/rg' \
+    pick'ripgrep*/rg' \
     BurntSushi/ripgrep \
-  if'[ "$ARCH" = "aarch64" ]' bpick'*aarch64-unknown-linux-gnu*' pick'rg' \
-    microsoft/ripgrep-prebuilt \
-  if'[[ "$OSTYPE" =~ "darwin" ]]' bpick"*apple-darwin*" pick"rg" \
-    microsoft/ripgrep-prebuilt
 
 # eza
 __eza_atload() {
