@@ -111,6 +111,10 @@ return {
         lualine_z = { "location" },
       })
       table.insert(opts.sections.lualine_x, { tab_shiftwidth })
+      table.insert(opts.sections.lualine_x, { "fileformat" })
+      table.insert(opts.sections.lualine_x, { "encoding" })
+      table.insert(opts.sections.lualine_x, { "filetype" })
+
       opts.extensions[#opts.extensions + 1] = "quickfix"
       opts.extensions[#opts.extensions + 1] = "toggleterm"
       opts.extensions[#opts.extensions + 1] = "fzf"
