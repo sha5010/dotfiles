@@ -19,6 +19,8 @@ zinit wait'1' lucid light-mode for \
 __zsh_history_substring_search_atload() {
   bindkey "^[[A" history-substring-search-up
   bindkey "^[[B" history-substring-search-down
+  bindkey "^[OA" history-substring-search-up
+  bindkey "^[OB" history-substring-search-down
   bindkey "^K" history-substring-search-up
   bindkey "^J" history-substring-search-down
 }
@@ -41,7 +43,7 @@ zvm_config() {
 zvm_after_init() {
   bindkey -M viins "^K" history-substring-search-up
 }
-zinit wait lucid light-mode depth'1' for \
+zinit wait'0' lucid light-mode depth'1' for \
   jeffreytse/zsh-vi-mode
 
 # ripgrep
