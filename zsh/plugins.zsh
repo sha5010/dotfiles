@@ -69,9 +69,10 @@ zinit wait lucid is-snippet as'completion' pick'_eza' for \
 
 # fzf
 __fzf_atload() {
-  export FZF_DEFAULT_OPTS='--reverse --border --ansi --no-separator'
+  export FZF_DEFAULT_OPTS='--reverse --border --ansi --no-separator --info=inline --cycle --scrollbar=▐'
   export FZF_DEFAULT_COMMAND='fd --hidden --color=always'
   export FZF_COMPLETION_OPTS="--info=inline"
+  export RUNEWIDTH_EASTASIAN=0
 }
 zinit wait lucid light-mode as'program' from'gh-r' for \
   pick'fzf/fzf' \
@@ -88,6 +89,16 @@ zinit wait'1' lucid is-snippet for \
   atload'__fzf_keybind_adload' \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
 
+_fzf_compgen_path() {
+  fd --hidden --follow \
+    --exclude .git -E node_module -E __pycache__ \
+    . "$1" 2>/dev/null | sed 's@^\./@@'
+}
+_fzf_compgen_dir() {
+  fd --hidden --follow --type d \
+    --exclude .git -E node_module -E __pycache__ \
+    . "$1" 2>/dev/null | sed 's@^\./@@'
+}
 _fzf_comprun() {
   local command=$1
   shift
@@ -124,7 +135,7 @@ zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=do
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
 zstyle ':fzf-tab:complete:(cd|rmdir|pushd|*::cd):*' fzf-preview \
   'eza --tree --group-directories-first --level 1 --colour=always $realpath'
-zstyle ':fzf-tab:complete:(ls|cat|bat|less|*vim):*' fzf-preview \
+zstyle ':fzf-tab:complete:(ls|cat|bat|less|*vim|eza):*' fzf-preview \
   '[ -d $realpath ] && eza --tree --group-directories-first --level 1 --colour=always $realpath || bat --color=always -n --line-range=:500 $realpath'
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
 	fzf-preview 'echo ${(P)word}'
