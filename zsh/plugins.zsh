@@ -54,10 +54,10 @@ zinit wait lucid light-mode as'program' from'gh-r' for \
 # eza
 __eza_atload() {
   alias ls='eza -Fg --group-directories-first --time-style=long-iso --git'
-  alias la='ls -la --icons'
-  alias ll='ls -l --icons'
+  alias la='ls -la --icons=auto'
+  alias ll='ls -l --icons=auto'
   alias l='ls -1'
-  alias tree='ls --tree --icons'
+  alias tree='ls --tree --icons=auto'
 }
 zinit wait lucid light-mode as'program' from'gh-r' for \
   if'[[ "$OSTYPE" =~ "linux" ]]' \
