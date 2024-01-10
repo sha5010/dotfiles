@@ -28,12 +28,6 @@ zinit wait'1' lucid light-mode for \
   atload'__zsh_history_substring_search_atload' \
   zsh-users/zsh-history-substring-search
 
-# enhancd
-export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
-export ENHANCD_FILTER="fzf --preview 'eza --tree --group-directories-first --level 1 --colour=always {}'"
-zinit wait lucid light-mode for \
-  pick'init.sh' b4b4r07/enhancd
-
 # zsh-vi-mode
 zvm_config() {
   export ZVM_INIT_MODE=sourcing
@@ -133,7 +127,7 @@ zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
   '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
 zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
-zstyle ':fzf-tab:complete:(cd|rmdir|pushd|*::cd):*' fzf-preview \
+zstyle ':fzf-tab:complete:(cd|rmdir|pushd|__zoxide_z):*' fzf-preview \
   'eza --tree --group-directories-first --level 1 --colour=always $realpath'
 zstyle ':fzf-tab:complete:(ls|cat|bat|less|*vim|eza):*' fzf-preview \
   '[ -d $realpath ] && eza --tree --group-directories-first --level 1 --colour=always $realpath || bat --color=always -n --line-range=:500 $realpath'
@@ -157,3 +151,14 @@ zinit wait lucid light-mode as'program' from'gh-r' for \
   mv'fd* -> fd' \
   pick'fd/fd' \
   @'sharkdp/fd'
+
+# zoxide
+__zoxide_atload() {
+  export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --select-1 --delimiter '\t' --height='~100%' --preview-window='down:10' --preview 'eza --tree --group-directories-first --level 1 --colour=always {2}'"
+  eval "$(zoxide init zsh --cmd cd --hook pwd)"
+  alias z='__zoxide_zi'
+}
+zinit wait'1' lucid light-mode as'program' from'gh-r' for \
+  pick'zoxide' \
+  atload'__zoxide_atload' \
+  @ajeetdsouza/zoxide
