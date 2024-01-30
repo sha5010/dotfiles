@@ -155,8 +155,13 @@ zinit wait lucid light-mode as'program' from'gh-r' for \
 # zoxide
 __zoxide_atload() {
   export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --select-1 --delimiter '\t' --height='~100%' --preview-window='down:10' --preview 'eza --tree --group-directories-first --level 1 --colour=always {2}'"
-  eval "$(zoxide init zsh --cmd cd --hook pwd)"
-  alias z='__zoxide_zi'
+  function cd () {
+    __zoxide_z $@
+  }
+  function z () {
+    __zoxide_zi $@
+  }
+  eval "$(zoxide init zsh --no-cmd --hook pwd)"
 }
 zinit wait'1' lucid light-mode as'program' from'gh-r' for \
   pick'zoxide' \
