@@ -162,3 +162,44 @@ zinit wait'1' lucid light-mode as'program' from'gh-r' for \
   pick'zoxide' \
   atload'__zoxide_atload' \
   @ajeetdsouza/zoxide
+
+# tealdeer
+zinit wait lucid light-mode as'program' from'gh-r' for \
+  mv'tealdeer* -> tldr' \
+  pick'tldr' \
+  @nifr/tealdeer
+zinit wait lucid is-snippet as'completion' for \
+  mv'completions_zsh -> _tldr' \
+  pick'_tldr' \
+  https://github.com/nifr/tealdeer/releases/latest/download/completions_zsh
+
+# delta
+zinit wait lucid light-mode as'program' from'gh-r' for \
+  pick'delta*/delta' \
+  @dandavison/delta
+zinit wait lucid is-snippet as'completion' for \
+  mv'completion.zsh -> _delta' \
+  pick'_delta' \
+  https://github.com/dandavison/delta/raw/main/etc/completion/completion.zsh
+
+# sd
+zinit wait lucid light-mode as'program' from'gh-r' for \
+  pick'sd*/sd' \
+  @chmln/sd
+
+# dog
+zinit wait lucid light-mode as'program' from'gh-r' for \
+  mv'dog* -> dog' \
+  pick'dog' \
+  @YadominJinta/dog
+zinit wait lucid is-snippet as'completion' for \
+  mv'dog.zsh -> _dog' \
+  pick'_dog' \
+  https://github.com/YadominJinta/dog/raw/master/completions/dog.zsh
+
+# tuc
+zinit wait lucid light-mode as'program' from'gh-r' for \
+  if'[[ "$(uname -m)" != "aarch64" ]]' \
+  mv'tuc* -> tuc' \
+  pick'tuc' \
+  @riquito/tuc
