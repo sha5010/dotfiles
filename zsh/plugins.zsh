@@ -60,6 +60,8 @@ zinit wait lucid light-mode as'program' from'gh-r' for \
   eza-community/eza
 zinit wait lucid is-snippet as'completion' pick'_eza' for \
   https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza
+zinit wait lucid null if'[[ "$OSTYPE" =~ "darwin*" ]]' for \
+  atload'__eza_atload' zdharma-continuum/null
 
 # fzf
 __fzf_atload() {
