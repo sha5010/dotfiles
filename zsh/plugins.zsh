@@ -41,9 +41,9 @@ zinit wait'0' lucid light-mode depth'1' for \
   jeffreytse/zsh-vi-mode
 
 # ripgrep
-zinit wait lucid light-mode as'program' from'gh-r' for \
-    pick'ripgrep*/rg' \
-    BurntSushi/ripgrep \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"ripgrep*/rg -> $HOME/.local/bin/rg" \
+  BurntSushi/ripgrep
 
 # eza
 __eza_atload() {
@@ -53,9 +53,9 @@ __eza_atload() {
   alias l='ls -1'
   alias tree='ls --tree --icons=auto'
 }
-zinit wait lucid light-mode as'program' from'gh-r' for \
+zinit wait lucid light-mode from'gh-r' for \
   if'[[ "$OSTYPE" =~ "linux" ]]' \
-  pick'bin/eza' \
+  mv"eza -> $HOME/.local/bin/eza" \
   atload'__eza_atload' \
   eza-community/eza
 zinit wait lucid is-snippet as'completion' pick'_eza' for \
@@ -70,8 +70,8 @@ __fzf_atload() {
   export FZF_COMPLETION_OPTS="--info=inline"
   export RUNEWIDTH_EASTASIAN=0
 }
-zinit wait lucid light-mode as'program' from'gh-r' for \
-  pick'fzf/fzf' \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"fzf -> $HOME/.local/bin/fzf" \
   atload'__fzf_atload' \
   @'junegunn/fzf'
 
@@ -141,17 +141,15 @@ __bat_atload() {
   export MANPAGER="sh -c 'col -bx | bat --color=always --language=man --plain'"
   alias cat='bat -pp'
 }
-zinit wait lucid light-mode as'program' from'gh-r' for \
-  mv'bat* -> bat' \
-  pick'bat*/bat' \
-  atclone'cp -f bat/autocomplete/bat.zsh _bat' atpull'%atclone' \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"bat*/bat -> $HOME/.local/bin/bat" \
+  atclone'cp -f bat*/autocomplete/bat.zsh _bat' atpull'%atclone' \
   atload'__bat_atload' \
   @'sharkdp/bat'
 
 # fd
-zinit wait lucid light-mode as'program' from'gh-r' for \
-  mv'fd* -> fd' \
-  pick'fd/fd' \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"fd*/fd -> $HOME/.local/bin/fd" \
   @'sharkdp/fd'
 
 # zoxide
@@ -165,15 +163,14 @@ __zoxide_atload() {
   }
   eval "$(zoxide init zsh --no-cmd --hook pwd)"
 }
-zinit wait'1' lucid light-mode as'program' from'gh-r' for \
-  pick'zoxide' \
+zinit wait'1' lucid light-mode from'gh-r' for \
+  mv"zoxide -> $HOME/.local/bin/zoxide" \
   atload'__zoxide_atload' \
   @ajeetdsouza/zoxide
 
 # tealdeer
-zinit wait lucid light-mode as'program' from'gh-r' for \
-  mv'tealdeer* -> tldr' \
-  pick'tldr' \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"tealdeer* -> $HOME/.local/bin/tldr" \
   @nifr/tealdeer
 zinit wait lucid is-snippet as'completion' for \
   mv'completions_zsh -> _tldr' \
@@ -181,8 +178,8 @@ zinit wait lucid is-snippet as'completion' for \
   https://github.com/nifr/tealdeer/releases/latest/download/completions_zsh
 
 # delta
-zinit wait lucid light-mode as'program' from'gh-r' for \
-  pick'delta*/delta' \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"delta*/delta -> $HOME/.local/bin/delta" \
   @dandavison/delta
 zinit wait lucid is-snippet as'completion' for \
   mv'completion.zsh -> _delta' \
@@ -190,14 +187,13 @@ zinit wait lucid is-snippet as'completion' for \
   https://github.com/dandavison/delta/raw/main/etc/completion/completion.zsh
 
 # sd
-zinit wait lucid light-mode as'program' from'gh-r' for \
-  pick'sd*/sd' \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"sd*/sd -> $HOME/.local/bin/sd" \
   @chmln/sd
 
 # dog
-zinit wait lucid light-mode as'program' from'gh-r' for \
-  mv'dog* -> dog' \
-  pick'dog' \
+zinit wait lucid light-mode from'gh-r' for \
+  mv"dog* -> $HOME/.local/bin/dog" \
   @YadominJinta/dog
 zinit wait lucid is-snippet as'completion' for \
   mv'dog.zsh -> _dog' \
@@ -205,8 +201,7 @@ zinit wait lucid is-snippet as'completion' for \
   https://github.com/YadominJinta/dog/raw/master/completions/dog.zsh
 
 # tuc
-zinit wait lucid light-mode as'program' from'gh-r' for \
+zinit wait lucid light-mode from'gh-r' for \
   if'[[ "$(uname -m)" != "aarch64" ]]' \
-  mv'tuc* -> tuc' \
-  pick'tuc' \
+  mv"tuc* -> $HOME/.local/bin/tuc" \
   @riquito/tuc
