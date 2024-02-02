@@ -200,8 +200,8 @@ zinit wait lucid is-snippet as'completion' for \
   pick'_dog' \
   https://github.com/YadominJinta/dog/raw/master/completions/dog.zsh
 
-# tuc
+# hck
 zinit wait lucid light-mode from'gh-r' for \
   if'[[ "$(uname -m)" != "aarch64" ]]' \
-  mv"tuc* -> $HOME/.local/bin/tuc" \
-  @riquito/tuc
+  mv"hck* -> $HOME/.local/bin/hck" \
+  @sstadick/hck
