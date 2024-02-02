@@ -69,6 +69,7 @@ __fzf_atload() {
   export FZF_DEFAULT_COMMAND='fd --hidden --color=always'
   export FZF_COMPLETION_OPTS="--info=inline"
   export RUNEWIDTH_EASTASIAN=0
+  compdef _gnu_generic fzf
 }
 zinit wait lucid light-mode from'gh-r' for \
   mv"fzf -> $HOME/.local/bin/fzf" \
@@ -204,4 +205,5 @@ zinit wait lucid is-snippet as'completion' for \
 zinit wait lucid light-mode from'gh-r' for \
   if'[[ "$(uname -m)" != "aarch64" ]]' \
   mv"hck* -> $HOME/.local/bin/hck" \
+  atload'compdef _gnu_generic hck' \
   @sstadick/hck
