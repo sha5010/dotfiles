@@ -47,7 +47,7 @@ zinit wait lucid light-mode from'gh-r' for \
 
 # eza
 __eza_atload() {
-  alias ls='eza -Fg --group-directories-first --time-style=long-iso --git'
+  alias ls='eza -F -g --group-directories-first --time-style=long-iso --git'
   alias la='ls -la --icons=auto'
   alias ll='ls -l --icons=auto'
   alias l='ls -1'
