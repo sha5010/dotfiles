@@ -207,3 +207,12 @@ zinit wait lucid light-mode from'gh-r' for \
   mv"hck* -> $HOME/.local/bin/hck" \
   atload'compdef _gnu_generic hck' \
   @sstadick/hck
+
+# mise
+zinit wait lucid light-mode from'gh-r' for \
+  mv"mise* -> $HOME/.local/bin/mise" \
+  atload'eval "$(mise activate zsh)"' \
+  @jdx/mise
+zinit wait lucid is-snippet as'completion' for \
+  pick'_mise' \
+  https://github.com/jdx/mise/raw/main/completions/_mise
