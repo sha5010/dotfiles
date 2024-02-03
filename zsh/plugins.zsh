@@ -172,6 +172,7 @@ zinit wait'1' lucid light-mode from'gh-r' for \
 # tealdeer
 zinit wait lucid light-mode from'gh-r' for \
   mv"tealdeer* -> $HOME/.local/bin/tldr" \
+  atclone"chmod +x $HOME/.local/bin/tldr" atpull'%atclone' \
   @nifr/tealdeer
 zinit wait lucid is-snippet as'completion' for \
   mv'completions_zsh -> _tldr' \
@@ -195,6 +196,7 @@ zinit wait lucid light-mode from'gh-r' for \
 # dog
 zinit wait lucid light-mode from'gh-r' for \
   mv"dog* -> $HOME/.local/bin/dog" \
+  atclone"chmod +x $HOME/.local/bin/dog" atpull'%atclone' \
   @YadominJinta/dog
 zinit wait lucid is-snippet as'completion' for \
   mv'dog.zsh -> _dog' \
@@ -204,13 +206,15 @@ zinit wait lucid is-snippet as'completion' for \
 # hck
 zinit wait lucid light-mode from'gh-r' for \
   if'[[ "$(uname -m)" != "aarch64" ]]' \
+  atclone"chmod +x $HOME/.local/bin/hck" atpull'%atclone' \
   mv"hck* -> $HOME/.local/bin/hck" \
   atload'compdef _gnu_generic hck' \
   @sstadick/hck
 
 # mise
 zinit wait lucid light-mode from'gh-r' for \
-  mv"mise* -> $HOME/.local/bin/mise" \
+  bpick'*tar.xz~*musl*' \
+  mv"mise*/bin/mise -> $HOME/.local/bin/mise" \
   atload'eval "$(mise activate zsh)"' \
   @jdx/mise
 zinit wait lucid is-snippet as'completion' for \
