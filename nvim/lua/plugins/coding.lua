@@ -1,17 +1,8 @@
 return {
-  -- change cmp behavior
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      -- disable default <tab>  and <s-tab> keymap
-      return {}
-    end,
-  },
   {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local luasnip = require("luasnip")
       local cmp = require("cmp")
 
       local has_words_before = function()
@@ -46,21 +37,18 @@ return {
               behavior = cmp.ConfirmBehavior.Insert,
               select = true,
             })
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- this way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
+          elseif not vim.snippet.active() and has_words_before() then
             cmp.complete()
           else
             fallback()
           end
         end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          fallback()
-        end, { "i", "s" }),
-        ["<C-n>"] = complete_or_do(cmp.select_next_item),
-        ["<C-p>"] = complete_or_do(cmp.select_prev_item),
+        ["<C-n>"] = function()
+          complete_or_do(cmp.select_next_item)
+        end,
+        ["<C-p>"] = function()
+          complete_or_do(cmp.select_prev_item)
+        end,
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<CR>"] = cmp.mapping.confirm({
@@ -68,26 +56,25 @@ return {
           select = false,
         }),
         ["<C-c>"] = cmp.mapping.abort(),
-        ["<C-e>"] = cmp.mapping(function(fallback)
+        ["<C-E>"] = cmp.mapping(function(fallback)
+          fallback()
+        end, { "i", "s" }),
+        ["<C-Y>"] = cmp.mapping(function(fallback)
           fallback()
         end, { "i", "s" }),
       })
-      opts.sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "path" },
-      }, {
-        {
-          name = "buffer",
-          option = {
+      for i, v in pairs(opts.sources) do
+        if v.name == "buffer" then
+          opts.sources[i].option = {
             get_bufnrs = function()
               return vim.api.nvim_list_bufs()
             end,
             -- adjust for japanese words
             keyword_pattern = [[\<\%(-\?\d\{1,100\}\%(\%(\.\d\|\w\)\{1,10\}\)\?\|\%(\w\|\-\)\{1,100\}\)\>\|\%([にをはのが]\|\<\)\@<=\%([^\x00-\xff　、。]\)\{-2,}\([にをはのが]\+\|\ze[\x00-\xff　、。]\|$\)]],
-          },
-        },
-      })
+          }
+          break
+        end
+      end
     end,
   },
 

@@ -157,7 +157,7 @@ return {
         function()
           if vim.fn.exists("*quickrun#session#exists") == 1 and vim.fn["quickrun#session#exists"]() ~= 0 then
             vim.fn["quickrun#sweep_sessions"]()
-            vim.notify("Process Stopped", "info", {
+            vim.notify("Process Stopped", vim.log.levels.INFO, {
               title = "QuickRun",
             })
             return ""
