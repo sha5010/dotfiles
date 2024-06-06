@@ -181,11 +181,14 @@ return {
         desc = "Exchange",
       },
     },
-    opts = {
-      range = {
-        prefix = "S",
-      },
-    },
+    opts = function()
+      return {
+        range = {
+          prefix = "S",
+        },
+        on_substitute = require("yanky.integration").substitute(),
+      }
+    end,
   },
 
   -- extend % navigation
