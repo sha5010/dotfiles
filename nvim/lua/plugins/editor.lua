@@ -92,11 +92,20 @@ return {
   {
     "folke/which-key.nvim",
     keys = {
-      { "s", "<Cmd>WhichKey s<CR>" },
+      {
+        "s",
+        function()
+          require("which-key").show({ keys = "s" })
+        end,
+        desc = "surround/window",
+      },
     },
     opts = {
-      defaults = {
-        ["s"] = { name = "+surround/window" },
+      spec = {
+        {
+          mode = { "n", "v" },
+          { "s", group = "surround/window" },
+        },
       },
     },
   },

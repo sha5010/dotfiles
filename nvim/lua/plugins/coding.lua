@@ -182,7 +182,7 @@ return {
   {
     "andymass/vim-matchup",
     vscode = true,
-    event = "VeryLazy",
+    event = "LazyFile",
     init = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,

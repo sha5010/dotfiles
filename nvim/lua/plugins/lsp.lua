@@ -2,6 +2,10 @@ return {
   {
     "neovim/nvim-lspconfig",
     init = function()
+      require("vim.lsp._watchfiles")._watchfunc = function()
+        return function() end
+      end
+
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- disable a default keymap
       keys[#keys + 1] = { "gd", false }
