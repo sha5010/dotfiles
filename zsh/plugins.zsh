@@ -226,3 +226,11 @@ zinit wait lucid is-snippet as'completion' for \
 zinit wait lucid light-mode from'gh-r' for \
   mv"pet -> $HOME/.local/bin/pet" \
   @knqyf263/pet
+
+# tmux-thumbs
+zinit wait lucid light-mode from'gh-r' as'null' for \
+  if'[[ "$(uname -m)" != "aarch64" ]]' \
+  atinit"mkdir -p $HOME/.local/tmux/tmux-thumbs/target/release" \
+  atclone"mv *thumbs '$HOME/.local/tmux/tmux-thumbs/target/release' && chmod +x $HOME/.local/tmux/tmux-thumbs/target/release/*thumbs" \
+  atpull'%atclone' \
+  @fcsonline/tmux-thumbs
