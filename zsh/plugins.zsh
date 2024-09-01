@@ -74,6 +74,7 @@ __fzf_atload() {
 zinit wait'1' lucid light-mode from'gh-r' for \
   mv"fzf -> $HOME/.local/bin/fzf" \
   atload'__fzf_atload' \
+  atclone"cd $HOME/.local/bin && curl -sSLO https://raw.githubusercontent.com/junegunn/fzf/master/bin/fzf-tmux && chmod +x fzf-tmux" atpull'%atclone' \
   @'junegunn/fzf'
 
 __fzf_keybind_adload() {
@@ -220,3 +221,8 @@ zinit wait lucid light-mode from'gh-r' for \
 zinit wait lucid is-snippet as'completion' for \
   pick'_mise' \
   https://github.com/jdx/mise/raw/main/completions/_mise
+
+# pet
+zinit wait lucid light-mode from'gh-r' for \
+  mv"pet -> $HOME/.local/bin/pet" \
+  @knqyf263/pet
