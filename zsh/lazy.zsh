@@ -31,7 +31,7 @@ export WORDCHARS="*?_-.[]~&;!#$%^(){}<>"
 # ----------------------------
 # autoloads
 # ----------------------------
-zinit wait'2z' lucid null for \
+zinit wait'0z' lucid null for \
   atinit'autoload -Uz _zinit; zicompinit' zdharma-continuum/null
 
 # ----------------------------

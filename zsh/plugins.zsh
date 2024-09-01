@@ -12,7 +12,7 @@ zinit wait lucid blockf is-snippet for \
   PZTM::completion
 
 # autopair
-zinit wait'1' lucid light-mode for \
+zinit wait'0a' lucid light-mode for \
   hlissner/zsh-autopair
 
 # history substring search
@@ -24,7 +24,7 @@ __zsh_history_substring_search_atload() {
   bindkey "^K" history-substring-search-up
   bindkey "^J" history-substring-search-down
 }
-zinit wait'1' lucid light-mode for \
+zinit wait'0a' lucid light-mode for \
   atload'__zsh_history_substring_search_atload' \
   zsh-users/zsh-history-substring-search
 
@@ -37,7 +37,7 @@ zvm_config() {
 zvm_after_init() {
   bindkey -M viins "^K" history-substring-search-up
 }
-zinit wait'0' lucid light-mode depth'1' for \
+zinit wait lucid light-mode depth'1' for \
   jeffreytse/zsh-vi-mode
 
 # ripgrep
@@ -71,7 +71,7 @@ __fzf_atload() {
   export RUNEWIDTH_EASTASIAN=0
   compdef _gnu_generic fzf
 }
-zinit wait lucid light-mode from'gh-r' for \
+zinit wait'1' lucid light-mode from'gh-r' for \
   mv"fzf -> $HOME/.local/bin/fzf" \
   atload'__fzf_atload' \
   @'junegunn/fzf'
@@ -81,7 +81,7 @@ __fzf_keybind_adload() {
   bindkey -M vicmd '/'  fzf-history-widget
   bindkey -M vicmd '?'  fzf-history-widget
 }
-zinit wait'1' lucid is-snippet for \
+zinit wait'1a' lucid is-snippet for \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh \
   atload'__fzf_keybind_adload' \
     https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
@@ -100,11 +100,11 @@ _fzf_comprun() {
   local command=$1
   shift
 
-  local tree='eza --tree --group-directories-first --level 1 --colour=always {}'
+  local tree='eza --tree --group-directories-first --level 1 --colour=always --icons=auto {}'
   case "$command" in
     cd|rmdir|pushd) fzf --preview "$tree" "$@" ;;
     export|unset)   fzf --preview "eval 'echo \$'{}" "$@" ;;
-    kill|ps)        fzf --preview 'ps --pid={} u' "@$" ;;
+    kill|ps)        fzf --preview 'ps --pid={} u' "$@" ;;
     *)              fzf --preview "[ -d {} ] && $tree || bat --color=always -n --line-range=:500 {}" "$@" ;;
   esac
 }
@@ -120,7 +120,7 @@ zstyle ':fzf-tab:complete:*' fzf-flags --info=inline
 zstyle ':fzf-tab:complete:*' fzf-min-height 10
 zstyle ':fzf-tab:*' prefix ''
 zstyle ':fzf-tab:*' show-group none
-zstyle ':fzf-tab:*' continuous-trigger '/'
+zstyle ':fzf-tab:*' continuous-trigger 'tab'
 zinit wait lucid blockf light-mode for \
   Aloxaf/fzf-tab
 
@@ -130,9 +130,9 @@ zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
   '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
 zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
-zstyle ':fzf-tab:complete:(cd|rmdir|pushd|__zoxide_z):*' fzf-preview \
-  'eza --tree --group-directories-first --level 1 --colour=always $realpath'
-zstyle ':fzf-tab:complete:(ls|cat|bat|less|*vim|eza):*' fzf-preview \
+zstyle ':fzf-tab:complete:(cd|rmdir|pushd|__zoxide_z):argument-rest' fzf-preview \
+  'eza --tree --group-directories-first --level 1 --colour=always --icons=auto $realpath'
+zstyle ':fzf-tab:complete:(ls|cat|bat|less|*vim|eza):argument-rest' fzf-preview \
   '[ -d $realpath ] && eza --tree --group-directories-first --level 1 --colour=always $realpath || bat --color=always -n --line-range=:500 $realpath'
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
 	fzf-preview 'echo ${(P)word}'
@@ -204,7 +204,7 @@ zinit wait lucid is-snippet as'completion' for \
   https://github.com/YadominJinta/dog/raw/master/completions/dog.zsh
 
 # hck
-zinit wait lucid light-mode from'gh-r' for \
+zinit wait'1' lucid light-mode from'gh-r' for \
   if'[[ "$(uname -m)" != "aarch64" ]]' \
   atclone"chmod +x $HOME/.local/bin/hck" atpull'%atclone' \
   mv"hck* -> $HOME/.local/bin/hck" \
