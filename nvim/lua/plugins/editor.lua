@@ -47,6 +47,19 @@ return {
   {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
+    opts = {
+      func_map = {
+        split = "ss",
+        vsplit = "sv",
+      },
+    },
+  },
+
+  -- make quickfix editable
+  {
+    "stevearc/quicker.nvim",
+    ft = "qf",
+    opts = {},
   },
 
   -- git diff view
