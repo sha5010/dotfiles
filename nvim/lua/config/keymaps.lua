@@ -14,10 +14,10 @@ map({ "n", "x" }, "<C-k>", "5k", { desc = "5 down", remap = true })
 map({ "n", "x", "o" }, "<C-h>", "g^", { desc = "Beginning of window" })
 map({ "n", "x", "o" }, "<C-l>", "g$", { desc = "End of window" })
 
-map({ "n", "x" }, "x", '"_x')
-map({ "n", "x" }, "X", '"_X')
-map({ "n", "x" }, "c", '"_c')
-map({ "n", "x" }, "C", '"_C')
+map({ "n", "x" }, "x", '"_x', { desc = "Delete characters after cursor" })
+map({ "n", "x" }, "X", '"_X', { desc = "Delete characters before cursor" })
+map({ "n", "x" }, "c", '"_c', { desc = "Change" })
+map({ "n", "x" }, "C", '"_C', { desc = "Change line" })
 
 map("n", "gV", "`[v`]", { desc = "Select put text", remap = true })
 
@@ -83,16 +83,6 @@ map("c", "%%", function()
 end, { desc = "Expand cwd path", expr = true })
 
 map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Normal Mode" })
-
-for _, v in pairs({ "i", "a" }) do
-  map({ "x", "o" }, v .. "8", v .. "(", { desc = "" })
-  map({ "x", "o" }, v .. "9", v .. ")", { desc = "" })
-  map({ "x", "o" }, v .. "2", v .. '"', { desc = "" })
-  map({ "x", "o" }, v .. "7", v .. "'", { desc = "" })
-  map({ "x", "o" }, v .. "@", v .. "`", { desc = "" })
-  map({ "x", "o" }, v .. ",", v .. "<", { desc = "" })
-  map({ "x", "o" }, v .. ".", v .. ">", { desc = "" })
-end
 
 if vim.g.vscode then
   map("n", "<leader>e", "<Cmd>call VSCodeNotify('workbench.view.explorer')<CR>", { desc = "Explorer" })

@@ -5,12 +5,26 @@ return {
   opts = {
     modes = {
       search = {
-        enabled = false,
+        enabled = true,
       },
       char = {
         autohide = true,
         jump_labels = true,
         multi_line = true,
+      },
+      treesitter = {
+        label = {
+          rainbow = {
+            enabled = true,
+          },
+        },
+      },
+      treesitter_search = {
+        label = {
+          rainbow = {
+            enabled = true,
+          },
+        },
       },
     },
   },
@@ -35,6 +49,14 @@ return {
         require("flash").toggle()
       end,
       desc = "Toggle Flash",
+    },
+    {
+      "<leader>v",
+      mode = { "n", "o", "x" },
+      function()
+        require("flash").treesitter()
+      end,
+      desc = "Flash Treesitter",
     },
   },
   init = function()

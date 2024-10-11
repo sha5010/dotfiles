@@ -17,7 +17,7 @@ return {
 
   -- improve lsp experience
   {
-    "glepnir/lspsaga.nvim",
+    "nvimdev/lspsaga.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
@@ -40,7 +40,7 @@ return {
           shuttle = "<Tab>",
           vsplit = "v",
           split = "s",
-          close = "<C-c>",
+          close = "q",
         },
       },
       definition = {

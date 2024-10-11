@@ -103,7 +103,7 @@ return {
 
       local default = {
         -- integer
-        augend.integer.alias.decimal_int,
+        augend.integer.alias.decimal,
         augend.integer.alias.hex,
         augend.integer.alias.octal,
         augend.integer.alias.binary,

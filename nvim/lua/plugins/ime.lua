@@ -28,6 +28,7 @@ return {
         return
       end
 
+      vim.g["spzenhan#executable"] = spzenhan_executable
       local switch_ime = function(status)
         local code = status ~= 0 and "1" or "0"
         vim.fn.system(spzenhan_executable .. " " .. code)
@@ -57,7 +58,7 @@ return {
       autocmd("InsertEnter", {
         group = group_name,
         callback = function()
-          local status = vim.b.zenhan_ime_status
+          local status = vim.b["zenhan_ime_status"]
           if status == nil then
             status = 0
           end
