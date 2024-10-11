@@ -187,4 +187,39 @@ return {
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
+
+  -- better yank/paste
+  {
+    "gbprod/yanky.nvim",
+    keys = function(_, keys)
+      -- change keymap for Open Yank History
+      keys[1] = {
+        "<leader>sy",
+        keys[1][2],
+        desc = keys[1].desc,
+        mode = keys[1].mode,
+      }
+      return keys
+    end,
+    opts = function(_, opts)
+      local mapping = require("yanky.telescope.mapping")
+      local utils = require("yanky.utils")
+      opts = vim.tbl_extend("force", opts, {
+        picker = {
+          telescope = {
+            use_default_mappings = false,
+            mappings = {
+              default = mapping.put("p"),
+              i = {
+                ["<C-g>"] = mapping.put("P"),
+                ["<C-x>"] = mapping.delete(),
+                ["<C-r>"] = mapping.set_register(utils.get_default_register()),
+              },
+            },
+          },
+        },
+      })
+      return opts
+    end,
+  },
 }
