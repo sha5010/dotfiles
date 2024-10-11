@@ -132,19 +132,44 @@ return {
         char = "▏",
         tab_char = "▏",
       },
+      scope = {
+        enabled = false,
+      },
     },
   },
 
-  -- active indent guide
+  -- indent chunk guide
   {
-    "echasnovski/mini.indentscope",
-    opts = {
-      draw = {
-        animation = function()
-          return 0
-        end,
-      },
-      symbol = "▏",
-    },
+    "shellRaining/hlchunk.nvim",
+    event = "LazyFile",
+    opts = function()
+      return {
+        chunk = {
+          enable = true,
+          style = {
+            { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Special")), "fg", "gui") },
+            { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Error")), "fg", "gui") },
+          },
+          duration = 0,
+          delay = 300,
+        },
+        blank = {
+          enable = false,
+          chars = {
+            " ",
+          },
+          style = {
+            { bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("cursorline")), "bg", "gui") },
+            { bg = "", fg = "" },
+          },
+        },
+        indent = {
+          enable = false,
+          chars = {
+            "▏",
+          },
+        },
+      }
+    end,
   },
 }
