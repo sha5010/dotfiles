@@ -2,3 +2,6 @@
 MusicBrainz/
 configstore/
 iterm2/
+
+# pet のスニペットファイルを管理しない
+pet/snippet.toml
