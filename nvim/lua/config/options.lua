@@ -9,6 +9,7 @@ opt.fileencodings = "ucs-bom,utf-8,cp932,euc-jp,latin"
 opt.fixendofline = false
 opt.inccommand = "split"
 opt.winhighlight = "Normal:ActiveWindow,NormalNC:InactiveWindow"
+opt.spelllang:append("cjk")
 
 -- win32yank config
 if vim.fn.executable("win32yank") == 1 then
