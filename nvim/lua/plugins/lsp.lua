@@ -66,4 +66,31 @@ return {
       },
     },
   },
+
+  -- make better cursor diagnostics
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    opts = function()
+      -- disable default lsp diagnostic text
+      vim.diagnostic.config({ virtual_text = false })
+
+      return {
+        signs = {
+          left = " ",
+          right = " ",
+          arrow = "   ",
+          up_arrow = "   ",
+        },
+        options = {
+          multiple_diag_under_cursor = true,
+          multilines = true,
+          show_all_diags_on_cursorline = true,
+          virt_texts = {
+            priority = 8192,
+          },
+        },
+      }
+    end,
+  },
 }
