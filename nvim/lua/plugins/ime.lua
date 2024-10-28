@@ -3,11 +3,12 @@ local is_wsl = os.getenv("WSLENV") ~= nil or os.getenv("WSL_DISTRO_NAME") ~= nil
 local is_windows = vim.fn.has("win32") ~= 0 or vim.fn.has("win64") ~= 0 or is_wsl
 
 return {
-  -- ime support for mac
+  -- ime support for mac and linux
   {
-    "brglng/vim-im-select",
+    "keaising/im-select.nvim",
     vscode = true,
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "VimEnter", "FocusGained", "InsertEnter", "CmdlineEnter" },
+    opts = {},
     enabled = not is_windows,
   },
 
