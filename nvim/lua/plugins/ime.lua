@@ -7,8 +7,11 @@ return {
   {
     "keaising/im-select.nvim",
     vscode = true,
-    event = { "VimEnter", "FocusGained", "InsertEnter", "CmdlineEnter" },
-    opts = {},
+    event = { "VimEnter", "InsertEnter", "CmdlineEnter" },
+    opts = {
+      -- Restore the default input method state when the following events are triggered
+      set_default_events = { "VimEnter", "InsertLeave", "CmdlineLeave" },
+    },
     enabled = not is_windows,
   },
 
