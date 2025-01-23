@@ -7,6 +7,30 @@ return {
     },
   },
 
+  -- A collection of small QoL plugins
+  {
+    "folke/snacks.nvim",
+    opts = {
+      indent = {
+        animate = {
+          duration = {
+            total = 200,
+          },
+        },
+        chunk = { enabled = true },
+      },
+      scroll = {
+        animate = {
+          duration = {
+            step = 10,
+            total = 100,
+          },
+          easing = "outCubic",
+        },
+      },
+    },
+  },
+
   -- better ui
   {
     "folke/noice.nvim",
@@ -27,14 +51,6 @@ return {
           },
         },
       },
-    },
-  },
-
-  -- notices
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      render = "compact",
     },
   },
 
@@ -121,55 +137,6 @@ return {
       opts.extensions[#opts.extensions + 1] = "mason"
       opts.extensions[#opts.extensions + 1] = "nvim-dap-ui"
       opts.extensions[#opts.extensions + 1] = "trouble"
-    end,
-  },
-
-  -- indent guide
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      indent = {
-        char = "▏",
-        tab_char = "▏",
-      },
-      scope = {
-        enabled = false,
-      },
-    },
-  },
-
-  -- indent chunk guide
-  {
-    "shellRaining/hlchunk.nvim",
-    event = "LazyFile",
-    opts = function()
-      return {
-        chunk = {
-          enable = true,
-          style = {
-            { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Special")), "fg", "gui") },
-            { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Error")), "fg", "gui") },
-          },
-          duration = 0,
-          delay = 300,
-        },
-        blank = {
-          enable = false,
-          chars = {
-            " ",
-          },
-          style = {
-            { bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("cursorline")), "bg", "gui") },
-            { bg = "", fg = "" },
-          },
-        },
-        indent = {
-          enable = false,
-          chars = {
-            "▏",
-          },
-        },
-      }
     end,
   },
 }

@@ -73,34 +73,6 @@ return {
     },
   },
 
-  -- fuzzy finder
-  {
-    "nvim-telescope/telescope.nvim",
-    opts = function(_, opts)
-      local actions = require("telescope.actions")
-      opts.defaults.layout_config = {
-        width = 0.90,
-        height = 0.85,
-        preview_cutoff = 100,
-      }
-      opts.defaults.mappings = {
-        i = {
-          ["<C-[>"] = actions.close,
-          ["<C-f>"] = actions.results_scrolling_down,
-          ["<C-b>"] = actions.results_scrolling_up,
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
-          ["<C-e>"] = actions.preview_scrolling_down,
-          ["<C-y>"] = actions.preview_scrolling_up,
-
-          -- disable default mapping
-          ["<C-u>"] = false,
-          ["<C-d>"] = false,
-        },
-      }
-    end,
-  },
-
   -- key binding helper
   {
     "folke/which-key.nvim",
