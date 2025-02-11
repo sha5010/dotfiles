@@ -142,7 +142,41 @@ return {
       -- change keymap for Open Yank History
       keys[1] = {
         "<leader>sy",
-        keys[1][2],
+        function()
+          if LazyVim.pick.picker.name == "snacks" then
+            local items = {} ---@type snacks.picker.finder.Item[]
+            for i, value in ipairs(require("yanky.history").all()) do
+              if value ~= nil then
+                local text = value.regcontents
+                table.insert(items, {
+                  text = ("%d. %s"):format(i, text:gsub("\n", "\\n")),
+                  data = value,
+                  preview = {
+                    text = text,
+                    ft = "text",
+                  },
+                })
+              end
+            end
+
+            Snacks.picker({
+              title = "Yank ring history",
+              items = items,
+              format = "text",
+              preview = "preview",
+              confirm = {
+                function(picker, item)
+                  picker:close()
+                  require("yanky.picker").actions.put("p", false)(item.data)
+                end,
+              },
+            })
+          elseif type(keys[1][2]) == "function" then
+            keys[1][2]()
+          else
+            return keys[1][2]
+          end
+        end,
         desc = keys[1].desc,
         mode = keys[1].mode,
       }
@@ -163,40 +197,18 @@ return {
       {
         "<leader>if",
         function()
-          local telescope = require("telescope.builtin")
-          local actions = require("telescope.actions")
-          local action_state = require("telescope.actions.state")
-
-          telescope.find_files({
-            attach_mappings = function(_, map)
-              local function embed_image(prompt_bufnr)
-                local entry = action_state.get_selected_entry()
-                local filepath = entry[1]
-                actions.close(prompt_bufnr)
-
-                local img_clip = require("img-clip")
-                img_clip.paste_image(nil, filepath)
-              end
-
-              map("i", "<CR>", embed_image)
-              map("n", "<CR>", embed_image)
-
-              return true
-            end,
-            find_command = function(opts)
-              if vim.fn.executable("fd") then
-                local extensions = { "png", "jpg", "jpeg" }
-                local command = { "fd", "--type", "f", "--color", "never" }
-                for _, ext in ipairs(extensions) do
-                  table.insert(command, "-e")
-                  table.insert(command, ext)
+          Snacks.picker.files({
+            ft = { "png", "jpg", "jpeg" },
+            ignored = true,
+            confirm = {
+              function(picker, item)
+                picker:close()
+                if item then
+                  local img_clip = require("img-clip")
+                  img_clip.paste_image(nil, "./" .. item.file)
                 end
-                return command
-              end
-              local org_find_command = opts.find_command
-              opts.find_command = nil
-              return org_find_command(opts)
-            end,
+              end,
+            },
           })
         end,
         desc = "Insert image from local file",
