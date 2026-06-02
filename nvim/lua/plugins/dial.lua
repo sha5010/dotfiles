@@ -110,6 +110,11 @@ return {
 
         -- date
         augend.date.alias["%Y/%m/%d"],
+        augend.date.new({ -- "%Y/%-m/%-d"
+          pattern = "%Y/%-m/%-d",
+          default_kind = "day",
+          only_valid = false,
+        }),
         augend.date.alias["%Y-%m-%d"],
         augend.date.alias["%Y年%-m月%-d日"],
         augend.date.alias["%Y年%-m月%-d日(%ja)"],
