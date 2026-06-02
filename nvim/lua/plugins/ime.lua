@@ -21,10 +21,6 @@ return {
     vscode = true,
     event = { "InsertEnter", "CmdlineEnter" },
     init = function()
-      local autocmd = vim.api.nvim_create_autocmd
-      local augroup = vim.api.nvim_create_augroup
-
-      local group_name = "zenhan"
       local spzenhan_executable = vim.fn.stdpath("data") .. "/lazy/spzenhan.vim/zenhan/spzenhan.exe"
       spzenhan_executable = string.gsub(spzenhan_executable, "\\", "/")
 
@@ -33,6 +29,23 @@ return {
       end
 
       vim.g["spzenhan#executable"] = spzenhan_executable
+    end,
+    config = function()
+      local autocmd = vim.api.nvim_create_autocmd
+      local augroup = vim.api.nvim_create_augroup
+
+      local group_name = "zenhan"
+
+      local spzenhan_executable = vim.api.nvim_get_var("spzenhan#executable")
+      if spzenhan_executable == nil then
+        return
+      end
+
+      local function get_buf_var(key)
+        local ok, value = pcall(vim.api.nvim_buf_get_var, 0, key)
+        return ok and value or nil
+      end
+
       local switch_ime = function(status)
         local code = status ~= 0 and "1" or "0"
         vim.fn.system(spzenhan_executable .. " " .. code)
@@ -62,7 +75,7 @@ return {
       autocmd("InsertEnter", {
         group = group_name,
         callback = function()
-          local status = vim.b["zenhan_ime_status"]
+          local status = get_buf_var("zenhan_ime_status")
           if status == nil then
             status = 0
           end
@@ -70,6 +83,6 @@ return {
         end,
       })
     end,
-    enabled = is_windows,
+    enabled = is_windows and is_wsl,
   },
 }
