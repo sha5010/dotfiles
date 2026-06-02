@@ -61,7 +61,16 @@ map({ "n", "x" }, "<leader>D", '"+D', { desc = "Cut to clipboard", remap = true 
 map({ "n", "x" }, "<leader>p", '"+p', { desc = "Put from clipboard", remap = true })
 map({ "n", "x" }, "<leader>P", '"+P', { desc = "Put from clipboard", remap = true })
 
-map("n", "<leader>a", "gg0vG$", { desc = "Select entire buffer" })
+map("n", "<leader>a", function()
+  local ok, is_animate = pcall(vim.api.nvim_get_var("snacks_animate"))
+  if ok and is_animate then
+    vim.api.nvim_set_var("snacks_animate", false)
+  end
+  vim.cmd("normal gg0vG$")
+  if ok and is_animate then
+    vim.api.nvim_set_var("snacks_animate", true)
+  end
+end, { desc = "Select entire buffer" })
 map("n", "<leader><Tab>e", ":tabedit ", { desc = "Tab Edit" })
 map("n", "<leader><Tab>q", "<Cmd>tabclose<CR>", { desc = "Close Tab" })
 
