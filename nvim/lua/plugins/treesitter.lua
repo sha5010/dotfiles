@@ -1,19 +1,5 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = "RRethy/nvim-treesitter-textsubjects",
-    opts = {
-      textsubjects = {
-        enable = true,
-        prev_selection = ",",
-        keymaps = {
-          ["."] = { "textsubjects-smart", desc = "Next textsubjects selection" },
-        },
-      },
-    },
-  },
-
-  {
     "Wansmer/treesj",
     dependencies = "nvim-treesitter/nvim-treesitter",
     cmd = {

@@ -15,11 +15,16 @@ return {
       },
       keymap = {
         preset = "super-tab",
+        ["<Tab>"] = {
+          "select_and_accept",
+          "snippet_forward",
+          "fallback",
+        },
         ["<C-e>"] = {},
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },
-        ["<C-n>"] = { "select_next", "fallback" },
-        ["<C-p>"] = { "select_prev", "fallback" },
+        ["<C-n>"] = { "show", "select_next", "fallback" },
+        ["<C-p>"] = { "show", "select_prev", "fallback" },
         ["<C-c>"] = { "cancel", "fallback" },
       },
     },
@@ -27,7 +32,7 @@ return {
 
   -- disable mini.pairs
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     enabled = false,
   },
 
@@ -43,7 +48,7 @@ return {
 
   -- add mini.surround
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     opts = {
       mappings = {
         add = "sa",
