@@ -219,6 +219,28 @@ return {
         desc = "Insert image from local file",
       },
     },
-    opts = {},
+    opts = {
+      default = {
+        dir_path = "img",
+        file_name = function()
+          local util = require("img-clip.util")
+          local input_filename = util.input({
+            prompt = "File name: ",
+            complete = "file",
+          })
+
+          if not input_filename or input_filename == "" then
+            input_filename = "img"
+          end
+          return input_filename .. "_%Y-%m-%d-%H-%M-%S"
+        end,
+        prompt_for_file_name = false,
+      },
+      filetypes = {
+        markdown = {
+          url_encode_path = false,
+        },
+      },
+    },
   },
 }
