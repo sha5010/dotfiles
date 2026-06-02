@@ -10,6 +10,15 @@ return {
   -- A collection of small QoL plugins
   {
     "folke/snacks.nvim",
+    keys = {
+      {
+        "<C-t>",
+        function()
+          Snacks.terminal()
+        end,
+        desc = "Toggle Terminal",
+      },
+    },
     opts = {
       indent = {
         animate = {
@@ -26,6 +35,37 @@ return {
             total = 100,
           },
           easing = "outCubic",
+        },
+      },
+      picker = {
+        sources = {
+          explorer = {
+            auto_close = true,
+            win = {
+              list = {
+                keys = {
+                  ["<c-t>"] = "tab",
+                },
+              },
+            },
+          },
+        },
+      },
+      terminal = {
+        win = {
+          height = 0.25,
+          keys = {
+            nav_h = false,
+            nav_j = false,
+            nav_k = false,
+            nav_l = false,
+            toggle_term = {
+              "<C-t>",
+              "<cmd>close<cr>",
+              mode = "t",
+              desc = "Hide Terminal",
+            },
+          },
         },
       },
     },

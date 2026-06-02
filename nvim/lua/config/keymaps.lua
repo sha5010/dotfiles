@@ -74,6 +74,13 @@ end, { desc = "Select entire buffer" })
 map("n", "<leader><Tab>e", ":tabedit ", { desc = "Tab Edit" })
 map("n", "<leader><Tab>q", "<Cmd>tabclose<CR>", { desc = "Close Tab" })
 
+map("n", "<c-/>", "<cmd>normal gcc<cr>", { desc = "Toggle comment" })
+map("n", "<c-_>", "<cmd>normal gcc<cr>", { desc = "which_key_ignore" })
+map("x", "<c-/>", "<cmd>normal gcc<cr>", { desc = "Toggle comment" })
+map("x", "<c-_>", "<cmd>normal gcc<cr>", { desc = "which_key_ignore" })
+
+map("t", "<c-t>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
 map("i", "<C-a>", "<C-o>^", { desc = "Beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "End of line" })
 map("i", "<C-b>", "<Left>", { desc = "Move left" })

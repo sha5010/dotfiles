@@ -1,35 +1,4 @@
 return {
-  -- filer
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      default_component_configs = {
-        modified = {
-          symbol = "●",
-        },
-      },
-      window = {
-        mappings = {
-          ["s"] = "",
-          ["h"] = "close_node",
-          ["l"] = "open",
-          ["L"] = "focus_preview",
-          ["w"] = "open_split",
-          ["v"] = "open_vsplit",
-        },
-      },
-      event_handlers = {
-        {
-          -- add event for auto-close
-          event = "file_opened",
-          handler = function(_)
-            require("neo-tree.command").execute({ action = "close" })
-          end,
-        },
-      },
-    },
-  },
-
   -- vscode like breadcrumbs
   {
     "utilyre/barbecue.nvim",
@@ -92,18 +61,6 @@ return {
           { "s", group = "surround/window" },
         },
       },
-    },
-  },
-
-  -- terminal
-  {
-    "akinsho/toggleterm.nvim",
-    keys = { "<C-t>" },
-    cmd = { "ToggleTerm", "ToggleTermToggleAll", "TermExec" },
-    opts = {
-      open_mapping = [[<C-t>]],
-      insert_mappings = false,
-      direction = "horizontal",
     },
   },
 
