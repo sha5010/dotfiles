@@ -85,4 +85,9 @@ return {
     end,
     enabled = is_windows and is_wsl,
   },
+  {
+    "sevenc-nanashi/neov-ime.nvim",
+    event = { "InsertEnter", "CmdlineEnter" },
+    enabled = vim.g.neovide,
+  },
 }
