@@ -83,34 +83,19 @@ return {
 
   -- improve word motions
   {
-    "backdround/neowords.nvim",
+    "s-show/extend_word_motion.nvim",
     vscode = true,
-    keys = {
-      { "w", mode = { "n", "x", "o" } },
-      { "e", mode = { "n", "x", "o" } },
-      { "b", mode = { "n", "x", "o" } },
-      { "ge", mode = { "n", "x", "o" } },
+    event = "LazyFile",
+    opts = {},
+    dependencies = {
+      "sirasagi62/tinysegmenter.nvim",
     },
-    config = function()
-      local neowords = require("neowords")
-      local presets = neowords.pattern_presets
-      local patterns = {
-        presets.snake_case,
-        presets.camel_case,
-        presets.upper_case,
-        presets.number,
-        [=[\m\<[^\x00-\x7e]\{-1,}\>]=], -- treat non-ascii text
-        [=[\m\%(\s\|^\)\zs[!#%&*+./:;=?\\^_|~-]\ze\%(\s\|$\)]=], -- symbols only orphans
-      }
-
-      local hops = neowords.get_word_hops(unpack(patterns))
-      local map = vim.keymap.set
-
-      map({ "n", "x", "o" }, "w", hops.forward_start)
-      map({ "n", "x", "o" }, "e", hops.forward_end)
-      map({ "n", "x", "o" }, "b", hops.backward_start)
-      map({ "n", "x", "o" }, "ge", hops.backward_end)
-    end,
+  },
+  {
+    "qq3g7bad/sentence-jp.nvim",
+    vscode = true,
+    event = "LazyFile",
+    opts = {},
   },
 
   -- run program quickly
