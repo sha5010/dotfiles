@@ -7,6 +7,12 @@ return {
     },
   },
 
+  {
+    "zenbones-theme/zenbones.nvim",
+    dependencies = "rktjmp/lush.nvim",
+    opts = {},
+  },
+
   -- A collection of small QoL plugins
   {
     "folke/snacks.nvim",
