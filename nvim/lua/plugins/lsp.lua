@@ -107,6 +107,7 @@ return {
 
   {
     "jay-babu/mason-null-ls.nvim",
+    enabled = LazyVim.has_extra("lsp.none-ls"),
     event = "LazyFile",
     dependencies = "mason-org/mason.nvim",
     opts = {
@@ -117,6 +118,7 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    enabled = LazyVim.has_extra("lsp.none-ls"),
     dependencies = "jay-babu/mason-null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
